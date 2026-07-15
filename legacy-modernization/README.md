@@ -5,6 +5,7 @@ Almost every "greenfield" tutorial in this library assumes you're starting from 
 - [strangler-fig-pattern.md](strangler-fig-pattern.md) — replacing a legacy system incrementally, without a big-bang rewrite
 - [legacy-migration-playbook.md](legacy-migration-playbook.md) — the actual project discipline: requirement archaeology, parallel running, cutover
 - [working-with-legacy-code.md](working-with-legacy-code.md) — safely changing code you don't fully understand yet, with no tests
+- [oracle-adf.md](oracle-adf.md) — a real stack most guides skip: architecture, where the real complexity hides, migrating off it
 
 ## The uncomfortable truth this section starts from
 
