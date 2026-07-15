@@ -22,6 +22,8 @@
 | [🔧 Data Engineering](data-engineering/) | ETL/ELT pipelines, Kafka streaming, warehouses, data quality |
 | [🚨 SRE](sre/) | SLIs/SLOs/error budgets, incident management, capacity planning |
 | [🏛️ Legacy Modernization](legacy-modernization/) | Strangler fig, migration playbook, working with untested legacy code |
+| [🎮 Game Dev](game-dev/) | Game loop, ECS, rendering pipeline, multiplayer netcode |
+| [🔩 Embedded/IoT](embedded-iot/) | Microcontrollers, RTOS/priority inversion, MQTT/CoAP |
 | [🛠️ Software Engineering](software-engineering/) | Testing, code review, git workflows, agile |
 | [🚀 Projects](projects/) | Real-world projects built with this knowledge |
 | [🧭 Resources](resources/) | Roadmaps, cheatsheets, books |
