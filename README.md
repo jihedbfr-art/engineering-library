@@ -18,6 +18,8 @@
 | [🔐 Cybersecurity](cybersecurity/) | Fundamentals, web security, blue team, legal learning path |
 | [🤖 AI](ai/) | LLMs, RAG, prompt engineering, agents, evals |
 | [📡 Telecom](telecom/) | Mobile networks, 5G, protocols, OSS/BSS, billing, operators, IoT |
+| [📱 Mobile](mobile/) | Android (Kotlin/Compose), iOS (Swift/SwiftUI), Flutter, React Native |
+| [🔧 Data Engineering](data-engineering/) | ETL/ELT pipelines, Kafka streaming, warehouses, data quality |
 | [🛠️ Software Engineering](software-engineering/) | Testing, code review, git workflows, agile |
 | [🚀 Projects](projects/) | Real-world projects built with this knowledge |
 | [🧭 Resources](resources/) | Roadmaps, cheatsheets, books |
