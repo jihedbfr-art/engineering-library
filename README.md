@@ -17,6 +17,7 @@
 | [🛡️ DevSecOps](devsecops/) | CI/CD, containers, security, IaC, monitoring, GitOps |
 | [🔐 Cybersecurity](cybersecurity/) | Fundamentals, web security, blue team, legal learning path |
 | [🤖 AI](ai/) | LLMs, RAG, prompt engineering, agents, evals |
+| [📡 Telecom](telecom/) | Mobile networks, 5G, protocols, OSS/BSS, billing, operators, IoT |
 | [🛠️ Software Engineering](software-engineering/) | Testing, code review, git workflows, agile |
 | [🚀 Projects](projects/) | Real-world projects built with this knowledge |
 | [🧭 Resources](resources/) | Roadmaps, cheatsheets, books |
