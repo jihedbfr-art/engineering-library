@@ -1,0 +1,42 @@
+# engineering-library — repo public github.com/jihedbfr-art/engineering-library
+
+# Fichiers meta de chantier / notes de travail — jamais publics
+HANDOFF-nano-macro-projects.md
+KICKOFF-perso-pc.md
+ai.md
+git hub analyse.md
+book v1-0-0.docx
+The GitHub Engineering Blueprint.pdf
+
+# Repo séparé déjà publié indépendamment (a son propre .git/remote)
+/notes-app-microservices/
+
+# Java / Maven
+target/
+*.class
+*.jar
+!**/maven-wrapper.jar
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets & env — ne JAMAIS versionner
+.env
+*.local
+**/application-local.properties
+*.pem
+*.key
