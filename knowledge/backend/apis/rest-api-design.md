@@ -67,3 +67,7 @@ Response includes paging metadata (`totalElements` or `nextCursor`). An unpagina
 Clients retry (timeouts, flaky mobile). Make it safe:
 - PUT/DELETE naturally idempotent — keep them so.
 - For POST payments/orders: accept an `Idempotency-Key` header; same key → same result, no duplicate.
+
+## When REST isn't the right call
+
+Internal service-to-service traffic at scale, or a client that needs to shape its own response — see [gRPC and GraphQL](grpc-and-graphql.md) for when to reach past REST and what it actually costs you.

@@ -57,3 +57,5 @@ service NotesService {
 | Internal microservice-to-microservice, low latency | **gRPC** |
 
 Real systems mix them: REST/GraphQL at the public edge, gRPC between internal services. Pick per boundary, not by fashion.
+
+For the deeper version of this — proto versioning discipline, the N+1 trap in GraphQL resolvers, when GraphQL-as-BFF is worth the extra layer, and the Spring-specific tooling — see [gRPC and GraphQL: when REST isn't the right default](../backend/apis/grpc-and-graphql.md).
