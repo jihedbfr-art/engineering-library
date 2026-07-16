@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Management Platform</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 16px; color: #222; }
+        h1 { font-size: 1.4rem; }
+        code { background: #f2f2f2; padding: 2px 6px; border-radius: 4px; }
+        ul { line-height: 1.8; }
+    </style>
+</head>
+<body>
+<h1>Task Management Platform</h1>
+<p>API REST de gestion de projets et de taches. Pas d'interface graphique complete dans cette
+    demonstration : utiliser un client HTTP (curl, Postman) avec l'en-tete <code>X-User-Id</code>
+    pour simuler l'utilisateur courant.</p>
+<ul>
+    <li><code>GET /api/users</code> — liste des utilisateurs de demonstration</li>
+    <li><code>POST /api/projects</code> — creation d'un projet (ADMIN uniquement)</li>
+    <li><code>POST /api/tasks</code> — creation d'une tache</li>
+    <li><code>PUT /api/tasks/{id}</code> — modification (ADMIN, ou MEMBER assigne)</li>
+    <li><code>DELETE /api/tasks/{id}</code> — suppression (ADMIN uniquement)</li>
+    <li><code>GET /api/tasks/overdue</code> — taches en retard</li>
+    <li><code>POST /api/tasks/{taskId}/comments</code> — ajout d'un commentaire</li>
+</ul>
+<p>Console H2 disponible sur <code>/h2-console</code> (JDBC URL : voir application.properties).</p>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Booking System</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+        h1 { border-bottom: 2px solid #333; padding-bottom: .5rem; }
+        section { margin-bottom: 2rem; }
+        table { border-collapse: collapse; width: 100%; margin-top: .5rem; }
+        th, td { border: 1px solid #ccc; padding: .4rem .6rem; text-align: left; font-size: .9rem; }
+        th { background: #f0f0f0; }
+        input, select, button { padding: .35rem; margin: .2rem 0; }
+        form { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+        .msg { padding: .5rem; margin-top: .5rem; border-radius: 4px; }
+        .ok { background: #dff0d8; color: #3c763d; }
+        .err { background: #f2dede; color: #a94442; }
+    </style>
+</head>
+<body>
+<h1>Hotel Booking System</h1>
+<p>Interface minimale de demonstration (pages statiques + fetch vers l'API REST). Pour la gestion complete, utiliser directement les endpoints <code>/api/*</code>.</p>
+
+<section>
+    <h2>Chambres</h2>
+    <table id="roomsTable">
+        <thead><tr><th>ID</th><th>Numero</th><th>Type</th><th>Prix/nuit</th><th>Hors service</th></tr></thead>
+        <tbody></tbody>
+    </table>
+    <h3>Ajouter une chambre</h3>
+    <form id="roomForm">
+        <input name="roomNumber" placeholder="Numero (ex: 101)" required>
+        <select name="type" required>
+            <option value="SINGLE">SINGLE</option>
+            <option value="DOUBLE">DOUBLE</option>
+            <option value="SUITE">SUITE</option>
+            <option value="FAMILY">FAMILY</option>
+        </select>
+        <input name="pricePerNight" type="number" step="0.01" placeholder="Prix/nuit" required>
+        <button type="submit">Ajouter</button>
+    </form>
+</section>
+
+<section>
+    <h2>Clients</h2>
+    <table id="guestsTable">
+        <thead><tr><th>ID</th><th>Nom</th><th>Email</th><th>Telephone</th></tr></thead>
+        <tbody></tbody>
+    </table>
+    <h3>Ajouter un client</h3>
+    <form id="guestForm">
+        <input name="fullName" placeholder="Nom complet" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="phone" placeholder="Telephone">
+        <button type="submit">Ajouter</button>
+    </form>
+</section>
+
+<section>
+    <h2>Reservations</h2>
+    <table id="bookingsTable">
+        <thead><tr><th>ID</th><th>Chambre</th><th>Client</th><th>Arrivee</th><th>Depart</th><th>Prix total</th><th>Statut</th><th></th></tr></thead>
+        <tbody></tbody>
+    </table>
+    <h3>Nouvelle reservation</h3>
+    <form id="bookingForm">
+        <input name="roomId" type="number" placeholder="ID chambre" required>
+        <input name="guestId" type="number" placeholder="ID client" required>
+        <input name="checkInDate" type="date" required>
+        <input name="checkOutDate" type="date" required>
+        <button type="submit">Reserver</button>
+    </form>
+    <div id="bookingMsg"></div>
+</section>
+
+<script>
+async function refreshAll() {
+    const rooms = await (await fetch('/api/rooms')).json();
+    const roomsBody = document.querySelector('#roomsTable tbody');
+    roomsBody.innerHTML = rooms.map(r => `<tr><td>${r.id}</td><td>${r.roomNumber}</td><td>${r.type}</td><td>${r.pricePerNight}</td><td>${r.outOfService}</td></tr>`).join('');
+
+    const guests = await (await fetch('/api/guests')).json();
+    const guestsBody = document.querySelector('#guestsTable tbody');
+    guestsBody.innerHTML = guests.map(g => `<tr><td>${g.id}</td><td>${g.fullName}</td><td>${g.email}</td><td>${g.phone ?? ''}</td></tr>`).join('');
+
+    const bookings = await (await fetch('/api/bookings')).json();
+    const bookingsBody = document.querySelector('#bookingsTable tbody');
+    bookingsBody.innerHTML = bookings.map(b => `<tr>
+        <td>${b.id}</td><td>${b.room.roomNumber}</td><td>${b.guest.fullName}</td>
+        <td>${b.checkInDate}</td><td>${b.checkOutDate}</td><td>${b.totalPrice}</td><td>${b.status}</td>
+        <td>${b.status === 'CONFIRMED' ? `<button onclick="cancelBooking(${b.id})">Annuler</button>` : ''}</td>
+    </tr>`).join('');
+}
+
+async function cancelBooking(id) {
+    await fetch(`/api/bookings/${id}/cancel`, { method: 'POST' });
+    refreshAll();
+}
+
+document.getElementById('roomForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    await fetch('/api/rooms', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ roomNumber: fd.get('roomNumber'), type: fd.get('type'), pricePerNight: fd.get('pricePerNight') })
+    });
+    e.target.reset();
+    refreshAll();
+});
+
+document.getElementById('guestForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    await fetch('/api/guests', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName: fd.get('fullName'), email: fd.get('email'), phone: fd.get('phone') })
+    });
+    e.target.reset();
+    refreshAll();
+});
+
+document.getElementById('bookingForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const res = await fetch('/api/bookings', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            roomId: fd.get('roomId'), guestId: fd.get('guestId'),
+            checkInDate: fd.get('checkInDate'), checkOutDate: fd.get('checkOutDate')
+        })
+    });
+    const msgDiv = document.getElementById('bookingMsg');
+    if (res.ok) {
+        msgDiv.innerHTML = '<div class="msg ok">Reservation creee.</div>';
+        e.target.reset();
+    } else {
+        const body = await res.json();
+        msgDiv.innerHTML = `<div class="msg err">${body.message}</div>`;
+    }
+    refreshAll();
+});
+
+refreshAll();
+</script>
+</body>
+</html>
