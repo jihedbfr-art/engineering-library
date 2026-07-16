@@ -2,7 +2,7 @@
 
 - **Statut** : Accepté
 - **Date** : 2026-01-15
-- **Contexte projet** : projects/notes-app-microservices (et TTN)
+- **Contexte projet** : projects/notes-app-microservices
 
 ## Contexte
 Un projet de plateforme microservices (Spring Boot + Angular + Keycloak + Eureka + Kafka) démarre

@@ -20,8 +20,7 @@ Realm Settings → Security Defenses → Brute Force Detection
   - Quick Login Check in ms: 1000 (détecte les tentatives trop rapprochées, typiques d'un script)
 ```
 Pour un besoin plus fin que la protection native (ex. logique métier spécifique, notification à
-l'équipe sécurité au-delà d'un seuil), un authenticator SPI custom (cf. mise en œuvre réelle sur le
-projet TTN) permet d'étendre ce comportement.
+l'équipe sécurité au-delà d'un seuil), un authenticator SPI custom permet d'étendre ce comportement.
 
 ## ❌ Erreurs classiques
 - Verrouillage uniquement basé sur l'IP → un attaquant distribué (botnet) contourne facilement ;

@@ -26,5 +26,5 @@ classique en environnement mobile/réseau instable.
 `PUT` est nativement idempotent par définition HTTP (remplacer une ressource par le même contenu
 plusieurs fois produit le même état final) — pas besoin de clé supplémentaire. `POST` ne l'est pas
 par nature et nécessite ce mécanisme explicite dès que l'opération a un effet de bord qu'on ne veut
-surtout pas dupliquer (cf. la logique de soft-delete/restauration du cycle de vie utilisateur sur le
-projet TTN, où une double exécution accidentelle aurait un impact métier réel).
+surtout pas dupliquer — typiquement une logique de cycle de vie d'entité (activation, suppression
+logique, restauration) où une double exécution accidentelle aurait un impact métier réel.

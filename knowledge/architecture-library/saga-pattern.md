@@ -32,10 +32,10 @@ flowchart LR
 ```
 
 ## 💡 Exemple concret
-Le cycle de vie utilisateur du projet TTN (création, activation, blocage, suppression logique,
-restauration synchronisée avec l'IAM Keycloak) suit ce principe : chaque étape a une action
-inverse définie (ex. la suppression logique a sa restauration), plutôt qu'une transaction unique
-qui engloberait à la fois la base applicative et Keycloak.
+Un cycle de vie utilisateur classique dans une architecture avec IAM externe (création, activation,
+blocage, suppression logique, restauration synchronisée avec Keycloak) suit ce principe : chaque
+étape a une action inverse définie (ex. la suppression logique a sa restauration), plutôt qu'une
+transaction unique qui engloberait à la fois la base applicative et l'IAM.
 
 ## ⚖️ Trade-offs
 | Gagné | Perdu |
