@@ -1,41 +1,72 @@
 # 📚 Engineering Library
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Knowledge domains](https://img.shields.io/badge/knowledge%20domains-26-informational)
+![Projects](https://img.shields.io/badge/projects-nano%20%E2%86%92%20macro-success)
+![Stack](https://img.shields.io/badge/stack-Java%20%2F%20Spring%20%2F%20Angular-brightgreen)
+
 > Le but n'est pas qu'on dise « il a 120 repositories ».
 > Le but est qu'on dise « **ce GitHub est une bibliothèque d'ingénierie** ».
 
-Écosystème d'ingénierie de **Jihed** — développeur Java / Spring.
-Le code est 20 % du contenu ; les 80 % restants sont du savoir réutilisable : architectures, décisions,
-échecs, recettes, playbooks, checklists. Pensé pour rester utile dans 10 ans, à un étudiant comme à un CTO.
+Écosystème d'ingénierie de **Jihed** — développeur Java / Spring, 10+ ans d'expérience côté BSS/
+Core télécom avant l'architecture microservices. Le code est 20 % du contenu ; les 80 % restants
+sont du savoir réutilisable : architectures, décisions, échecs, recettes, playbooks, checklists.
+Pensé pour rester utile dans 10 ans, à un étudiant comme à un CTO.
+
+## Vue d'ensemble
+
+```mermaid
+flowchart TB
+    subgraph projects["projects/ — 20 %"]
+        nano["nano → micro → mini"]
+        std["standard-projects"]
+        macro["macro-projects"]
+        showcase["notes-app-microservices (vitrine)"]
+    end
+
+    subgraph practice["knowledge/ — pratique (13 domaines)"]
+        arch["architecture-library · engineering-decisions"]
+        fail["engineering-failures · debugging-recipes"]
+        perf["performance-recipes · database-engineering"]
+        sec["security-patterns · api-design-guide"]
+        ai["ai-engineering (37 sous-domaines)"]
+        ops["engineering-playbooks · checklists · code-review"]
+    end
+
+    subgraph encyclo["knowledge/ — encyclopédie développeur"]
+        cs["computer-science · programming · web"]
+        infra["cloud · devsecops · networking"]
+        domain["telecom · mobile · data-engineering"]
+    end
+
+    projects -->|alimente ADR & recettes| practice
+    practice -->|s'appuie sur les fondamentaux| encyclo
+```
 
 ## Organisation
 
 ```
-jihedapps/
+engineering-library/
 ├── projects/                  # Échelle nano → micro → mini → standard → macro → plateforme
-│   ├── nano-projects/               < 5 min — one-liner/snippet, à remplir au fil de l'eau
-│   ├── micro-projects/              ~10 min — 25 utilitaires CLI/API (Python stdlib, Java HttpServer)
-│   ├── mini-projects/               ~10-15 min — 25 petites apps (vanilla JS, Java HttpServer)
-│   ├── standard-projects/           ~1-3h — app standard, à remplir au fil de l'eau
-│   ├── macro-projects/              ~1-3j — application d'entreprise, à remplir au fil de l'eau
-│   └── notes-app-microservices/     plateforme/écosystème — Spring Boot 3.2.5 · Angular 17 · Keycloak · Kafka · MinIO · Eureka
+│   ├── nano-projects/               15 projets — Python stdlib, un seul fichier
+│   ├── micro-projects/              50 utilitaires CLI/API (Python stdlib, Java HttpServer)
+│   ├── mini-projects/               25 petites apps (vanilla JS, Java HttpServer, Angular)
+│   ├── standard-projects/           apps Spring Boot / vanilla JS de taille moyenne
+│   ├── macro-projects/              applications d'entreprise Spring Boot complètes
+│   └── notes-app-microservices/     vitrine — Spring Boot 3.2.5 · Angular 17 · Keycloak · Kafka · MinIO · Eureka
 │
-├── knowledge/                 # 80 % — la vraie bibliothèque
-│   ├── architecture-library/      monolith · microservices · event-driven · cqrs · hexagonal · ddd · saga…
-│   ├── engineering-decisions/     ADR : « Pourquoi PostgreSQL ? », « Pourquoi Keycloak ? »…
-│   ├── engineering-failures/      memory leak · deadlock · N+1 · cache stampede · OOM…
-│   ├── debugging-recipes/         « Spring ne démarre pas », « Kafka consumer stuck »…
-│   ├── performance-recipes/       SQL · JVM · GC · Hibernate · Redis · Kafka…
-│   ├── security-patterns/         JWT · OAuth2 · Keycloak · RBAC · OWASP Top 10…
-│   ├── api-design-guide/          REST · GraphQL · gRPC · pagination · idempotence…
-│   ├── database-engineering/      Postgres · Oracle · Mongo · Redis · index · MVCC · réplication…
-│   ├── ai-engineering/            hooks · prompts · agents · MCP · RAG · évaluation…
-│   ├── engineering-playbooks/     procédures 2h du matin : incident prod · rollback · migration…
-│   ├── engineering-checklists/    avant merge · avant prod · avant migration BDD…
-│   ├── code-review-guide/         comment reviewer, smells, anti-patterns…
-│   └── engineering-cookbook/      « Je veux un JWT / Kafka / Circuit Breaker » → recette
+├── knowledge/                  # 80 % — la vraie bibliothèque (26 domaines)
+│   ├── 13 domaines de pratique, liés aux projets de ce dépôt :
+│   │   architecture-library · engineering-decisions · engineering-failures · debugging-recipes ·
+│   │   performance-recipes · security-patterns · api-design-guide · database-engineering ·
+│   │   ai-engineering (37 sous-domaines : LLMs, RAG, MCP, Agents, Spring AI, sécurité IA…) ·
+│   │   engineering-playbooks · engineering-checklists · code-review-guide · engineering-cookbook
+│   └── domaines encyclopédiques : computer-science · programming · web · networking · cloud ·
+│       devsecops · cybersecurity · telecom · mobile · data-engineering · databases · frontend ·
+│       backend · sre · legacy-modernization · game-dev · embedded-iot · blockchain · compilers ·
+│       software-architecture
 │
-├── docs/standards/            # Conventions transverses (Java/Spring, Angular, SQL, sécurité)
-└── .claude/                   # Config Claude Code (skills + CLAUDE.md)
+└── docs/standards/             # Conventions transverses (Java/Spring, Angular, SQL, sécurité)
 ```
 
 ## Comment ça grandit
@@ -46,6 +77,10 @@ Chaque dossier de `knowledge/` contient :
 - des **exemples réels** ancrés dans les projets, pas du remplissage.
 
 On ne crée pas 40 pages vides d'un coup : on remplit **au fil de l'eau**, une entrée quand on la vit vraiment.
+
+## Écosystème
+
+- 📖 [**the-github-engineering-blueprint**](https://github.com/jihedbfr-art/the-github-engineering-blueprint) — le livre compagnon sur la construction d'une carrière et d'un profil GitHub durables.
 
 ## Cap à 3 ans
 
