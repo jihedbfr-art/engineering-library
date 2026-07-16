@@ -1,0 +1,130 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  background: #f4f5f7;
+  color: #222;
+}
+
+header {
+  background: #2c3e50;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+header h1 { margin: 0; font-size: 1.3rem; }
+
+nav { display: flex; gap: 0.5rem; }
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tab-btn.active { background: #fff; color: #2c3e50; font-weight: bold; }
+
+main { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; }
+
+.tab { display: none; }
+.tab.active { display: block; }
+
+.planning-grid {
+  display: grid;
+  grid-template-columns: 100px repeat(3, 1fr);
+  gap: 0.5rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.planning-grid .day-label { font-weight: bold; align-self: center; }
+.planning-grid .header-cell { font-weight: bold; color: #555; text-align: center; }
+
+.planning-grid select {
+  width: 100%;
+  padding: 0.4rem;
+}
+
+#recipe-form {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#recipe-form input[type=text], #recipe-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#ingredients-list { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.ingredient-row { display: flex; gap: 0.4rem; }
+.ingredient-row input { flex: 1; padding: 0.4rem; border: 1px solid #ccc; border-radius: 4px; }
+.ingredient-row input.qty { flex: 0 0 80px; }
+.ingredient-row input.unit { flex: 0 0 80px; }
+.ingredient-row button { flex: 0 0 auto; }
+
+.form-actions { display: flex; gap: 0.5rem; }
+
+button {
+  cursor: pointer;
+  border: none;
+  background: #2c7be5;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+button:hover { opacity: 0.9; }
+button.danger { background: #d9534f; }
+button.secondary { background: #999; }
+
+.recipes-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+
+.recipe-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+}
+
+.recipe-card h3 { margin: 0 0 0.3rem; }
+.recipe-card .ingredients { color: #555; font-size: 0.9rem; margin: 0.4rem 0; }
+.recipe-card .actions { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
+
+.shopping-list { list-style: none; padding: 0; background: #fff; border-radius: 8px; }
+.shopping-list li {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+.shopping-list li:last-child { border-bottom: none; }
+.hint { color: #777; font-size: 0.9rem; }
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: #333;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }

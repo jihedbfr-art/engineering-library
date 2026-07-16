@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planificateur de repas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Planificateur de repas</h1>
+  <nav>
+    <button class="tab-btn active" data-tab="planning">Planning</button>
+    <button class="tab-btn" data-tab="recipes">Recettes</button>
+    <button class="tab-btn" data-tab="shopping">Liste de courses</button>
+  </nav>
+</header>
+
+<main>
+  <section id="tab-planning" class="tab active">
+    <h2>Planning de la semaine</h2>
+    <div id="planning-grid" class="planning-grid"></div>
+  </section>
+
+  <section id="tab-recipes" class="tab">
+    <h2>Recettes</h2>
+    <form id="recipe-form">
+      <input type="hidden" id="recipe-id">
+      <input type="text" id="recipe-name" placeholder="Nom de la recette" required>
+      <div id="ingredients-list"></div>
+      <button type="button" id="add-ingredient">+ Ingrédient</button>
+      <textarea id="recipe-instructions" placeholder="Instructions (optionnel)"></textarea>
+      <div class="form-actions">
+        <button type="submit">Enregistrer</button>
+        <button type="button" id="cancel-edit">Annuler</button>
+      </div>
+    </form>
+    <ul id="recipes-list" class="recipes-list"></ul>
+  </section>
+
+  <section id="tab-shopping" class="tab">
+    <h2>Liste de courses de la semaine</h2>
+    <p class="hint">Agrégée automatiquement à partir des recettes planifiées.</p>
+    <ul id="shopping-list" class="shopping-list"></ul>
+  </section>
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

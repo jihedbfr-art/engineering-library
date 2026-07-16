@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservation de creneaux</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <header>
+        <h1>Reservation de creneaux</h1>
+        <p class="subtitle">Choisissez un jour, reservez un creneau disponible.</p>
+    </header>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Ajouter un creneau</h2>
+        </div>
+        <form id="slot-form" class="inline-form">
+            <input type="date" id="new-date" required>
+            <input type="time" id="new-time" required>
+            <input type="number" id="new-capacity" min="1" value="1" title="Places disponibles">
+            <button type="submit">Ajouter</button>
+        </form>
+        <p id="slot-form-error" class="error"></p>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Calendrier</h2>
+            <input type="date" id="filter-date">
+            <button id="clear-filter" type="button">Tous les jours</button>
+        </div>
+        <div id="calendar" class="calendar"></div>
+    </section>
+</div>
+
+<div id="book-modal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Reserver ce creneau</h2>
+        <p id="book-slot-label"></p>
+        <form id="book-form">
+            <label>Nom
+                <input type="text" id="book-name" required>
+            </label>
+            <label>Email
+                <input type="email" id="book-email" required>
+            </label>
+            <p id="book-error" class="error"></p>
+            <div class="modal-actions">
+                <button type="button" id="book-cancel">Annuler</button>
+                <button type="submit">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

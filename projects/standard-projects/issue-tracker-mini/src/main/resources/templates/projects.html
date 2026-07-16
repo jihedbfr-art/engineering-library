@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Tracker Mini - Projets</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; color: #222; }
+        h1 { margin-bottom: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ddd; }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<h1>Projets</h1>
+<p>Choisissez un projet pour voir ses tickets.</p>
+<table>
+    <thead>
+    <tr><th>Nom</th><th>Description</th><th></th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.name}">Nom</td>
+        <td th:text="${project.description}">Description</td>
+        <td><a th:href="@{/projects/{id}/tickets(id=${project.id})}">Voir les tickets</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

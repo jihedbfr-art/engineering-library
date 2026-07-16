@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Tickets - ' + ${project.name}">Tickets</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 960px; margin: 40px auto; color: #222; }
+        h1 { margin-bottom: 4px; }
+        .subtitle { color: #666; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ddd; }
+        .badge { padding: 2px 8px; border-radius: 10px; font-size: 12px; color: #fff; }
+        .status-TODO { background: #6b7280; }
+        .status-IN_PROGRESS { background: #2563eb; }
+        .status-DONE { background: #16a34a; }
+        .priority-LOW { background: #9ca3af; }
+        .priority-MEDIUM { background: #d97706; }
+        .priority-HIGH { background: #dc2626; }
+        .priority-CRITICAL { background: #7c2d12; }
+        form.inline { display: inline; }
+        select { padding: 2px; }
+        .filters { margin: 10px 0 20px; }
+        a.back { color: #2563eb; text-decoration: none; }
+    </style>
+</head>
+<body>
+<a class="back" th:href="@{/}">&larr; Retour aux projets</a>
+<h1 th:text="${project.name}">Projet</h1>
+<p class="subtitle" th:text="${project.description}">Description</p>
+
+<form class="filters" method="get" th:action="@{/projects/{id}/tickets(id=${project.id})}">
+    <label>Statut :
+        <select name="status" onchange="this.form.submit()">
+            <option value="">Tous</option>
+            <option th:each="s : ${statuses}" th:value="${s}" th:text="${s}"
+                    th:selected="${s == selectedStatus}"></option>
+        </select>
+    </label>
+    <label>Priorite :
+        <select name="priority" onchange="this.form.submit()">
+            <option value="">Toutes</option>
+            <option th:each="p : ${priorities}" th:value="${p}" th:text="${p}"
+                    th:selected="${p == selectedPriority}"></option>
+        </select>
+    </label>
+</form>
+
+<table>
+    <thead>
+    <tr><th>Titre</th><th>Priorite</th><th>Statut</th><th>Changer statut</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="ticket : ${tickets}">
+        <td>
+            <div th:text="${ticket.title}">Titre</div>
+            <small th:text="${ticket.description}">Description</small>
+        </td>
+        <td><span class="badge" th:classappend="'priority-' + ${ticket.priority}" th:text="${ticket.priority}"></span></td>
+        <td><span class="badge" th:classappend="'status-' + ${ticket.status}" th:text="${ticket.status}"></span></td>
+        <td>
+            <form class="inline" method="post"
+                  th:action="@{/projects/{projectId}/tickets/{ticketId}/status(projectId=${project.id},ticketId=${ticket.id})}">
+                <select name="status" onchange="this.form.submit()">
+                    <option th:each="s : ${statuses}" th:value="${s}" th:text="${s}"
+                            th:selected="${s == ticket.status}"></option>
+                </select>
+            </form>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(tickets)}">
+        <td colspan="4">Aucun ticket pour ce filtre.</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

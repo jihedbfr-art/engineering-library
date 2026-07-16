@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Finance Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        h1 { color: #1f2937; }
+        .controls { margin-bottom: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f3f4f6; }
+        .over-budget { background-color: #fee2e2; color: #991b1b; font-weight: bold; }
+        .totals { margin-top: 1rem; font-size: 1.1rem; }
+        .totals span { margin-right: 2rem; }
+    </style>
+</head>
+<body>
+<h1>Resume mensuel</h1>
+<div class="controls">
+    <label>Annee: <input type="number" id="year" value=""></label>
+    <label>Mois: <input type="number" id="month" min="1" max="12" value=""></label>
+    <button onclick="loadSummary()">Actualiser</button>
+</div>
+
+<div class="totals" id="totals"></div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Categorie</th>
+        <th>Revenus</th>
+        <th>Depenses</th>
+        <th>Plafond budget</th>
+        <th>Statut</th>
+    </tr>
+    </thead>
+    <tbody id="summary-body"></tbody>
+</table>
+
+<script>
+    const now = new Date();
+    document.getElementById('year').value = now.getFullYear();
+    document.getElementById('month').value = now.getMonth() + 1;
+
+    async function loadSummary() {
+        const year = document.getElementById('year').value;
+        const month = document.getElementById('month').value;
+        const response = await fetch(`/api/summary/monthly?year=${year}&month=${month}`);
+        const summary = await response.json();
+
+        document.getElementById('totals').innerHTML =
+            `<span>Revenus totaux: ${summary.totalIncome}</span>` +
+            `<span>Depenses totales: ${summary.totalExpense}</span>` +
+            `<span>Solde: ${summary.balance}</span>`;
+
+        const tbody = document.getElementById('summary-body');
+        tbody.innerHTML = '';
+        summary.categories.forEach(cat => {
+            const row = document.createElement('tr');
+            if (cat.overBudget) {
+                row.className = 'over-budget';
+            }
+            row.innerHTML = `
+                <td>${cat.category}</td>
+                <td>${cat.totalIncome}</td>
+                <td>${cat.totalExpense}</td>
+                <td>${cat.budgetLimit !== null ? cat.budgetLimit : '-'}</td>
+                <td>${cat.overBudget ? 'Depassement de budget' : 'OK'}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    loadSummary();
+</script>
+</body>
+</html>
