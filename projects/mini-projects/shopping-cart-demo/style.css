@@ -1,0 +1,93 @@
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 0;
+  background: #f5f6f8;
+  color: #222;
+}
+header {
+  background: #23395d;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+header h1 { margin: 0; font-size: 1.4rem; }
+.cart-summary { display: flex; align-items: center; gap: 0.75rem; }
+.cart-summary button {
+  background: #ffb703;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+main { display: flex; gap: 1rem; padding: 1.5rem; align-items: flex-start; }
+.catalog {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.product-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.product-card .emoji { font-size: 2.5rem; text-align: center; }
+.product-card h3 { margin: 0; font-size: 1rem; }
+.product-card .price { font-weight: bold; color: #23395d; }
+.product-card button {
+  margin-top: auto;
+  background: #2a9d8f;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cart-panel {
+  width: 320px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.cart-panel.hidden { display: none; }
+#cartItems { list-style: none; padding: 0; margin: 0; }
+#cartItems li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+  gap: 0.4rem;
+}
+#cartItems li .item-name { flex: 1; font-size: 0.9rem; }
+#cartItems li button {
+  background: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+.cart-total-line { font-size: 1.1rem; }
+#clearCartBtn {
+  width: 100%;
+  padding: 0.5rem;
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.note { font-size: 0.75rem; color: #888; margin-top: 0.5rem; }

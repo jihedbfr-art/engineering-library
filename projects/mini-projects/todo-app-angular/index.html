@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Todo App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <h1>Todo List</h1>
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="Nouvelle tâche..." autocomplete="off" required>
+      <button type="submit">Ajouter</button>
+    </form>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Toutes</button>
+      <button class="filter-btn" data-filter="active">Actives</button>
+      <button class="filter-btn" data-filter="done">Terminées</button>
+    </div>
+    <ul id="todo-list"></ul>
+    <p class="count" id="todo-count"></p>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

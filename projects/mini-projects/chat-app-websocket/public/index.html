@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Chat (long-polling)</title>
+<style>
+  body { font-family: system-ui, Arial, sans-serif; background: #f4f5f7; margin: 0; display: flex; justify-content: center; padding: 40px 16px; }
+  .app { background: #fff; border-radius: 8px; padding: 24px; width: 100%; max-width: 480px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  h1 { margin-top: 0; font-size: 1.4rem; }
+  .disclaimer { color: #a15c00; background: #fff3cd; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 16px; }
+  #messages { border: 1px solid #eee; border-radius: 6px; height: 260px; overflow-y: auto; padding: 8px; margin-bottom: 12px; }
+  .msg { margin-bottom: 6px; font-size: 0.9rem; }
+  .msg .user { font-weight: 600; color: #2563eb; }
+  form { display: flex; gap: 8px; margin-bottom: 8px; }
+  input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  button { padding: 8px 14px; border: none; background: #2563eb; color: #fff; border-radius: 4px; cursor: pointer; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <h1>Chat</h1>
+    <p class="disclaimer">⚠️ Long-polling toutes les 2s, pas un vrai WebSocket (voir README).</p>
+    <input type="text" id="username" placeholder="Ton pseudo" value="Anonyme">
+    <div id="messages"></div>
+    <form id="send-form">
+      <input type="text" id="message" placeholder="Message..." required autocomplete="off">
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+  <script>
+    let since = 0;
+    const messagesEl = document.getElementById('messages');
+
+    function appendMessage(m) {
+      const div = document.createElement('div');
+      div.className = 'msg';
+      div.innerHTML = `<span class="user">${escapeHtml(m.user)}:</span> ${escapeHtml(m.message)}`;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    async function poll() {
+      try {
+        const res = await fetch('/messages?since=' + since);
+        const newMessages = await res.json();
+        newMessages.forEach(m => {
+          appendMessage(m);
+          since = Math.max(since, m.timestamp);
+        });
+      } catch (e) {
+        console.error('poll failed', e);
+      }
+    }
+
+    document.getElementById('send-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim() || 'Anonyme';
+      const messageInput = document.getElementById('message');
+      const message = messageInput.value.trim();
+      if (!message) return;
+      await fetch('/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user, message })
+      });
+      messageInput.value = '';
+    });
+
+    poll();
+    setInterval(poll, 2000);
+  </script>
+</body>
+</html>

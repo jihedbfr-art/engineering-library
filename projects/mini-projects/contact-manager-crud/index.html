@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Gestionnaire de contacts</h1></header>
+
+  <main>
+    <form id="contactForm" class="contact-form">
+      <input type="hidden" id="editId">
+      <input id="nameInput" placeholder="Nom" required>
+      <input id="emailInput" type="email" placeholder="Email" required>
+      <input id="phoneInput" placeholder="Téléphone">
+      <textarea id="notesInput" placeholder="Notes"></textarea>
+      <div class="form-actions">
+        <button type="submit" id="submitBtn">Ajouter</button>
+        <button type="button" id="cancelEditBtn" class="hidden">Annuler</button>
+      </div>
+    </form>
+
+    <input id="searchInput" class="search" placeholder="Rechercher par nom...">
+
+    <ul id="contactList" class="contact-list"></ul>
+    <p id="emptyMessage" class="empty hidden">Aucun contact.</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

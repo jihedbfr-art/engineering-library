@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Suivi de stock</h1>
+  </header>
+
+  <main>
+    <form id="itemForm" class="item-form">
+      <input id="nameInput" placeholder="Nom de l'article" required>
+      <input id="qtyInput" type="number" min="0" placeholder="Quantité" required>
+      <input id="thresholdInput" type="number" min="0" placeholder="Seuil d'alerte" value="5" required>
+      <button type="submit">Ajouter</button>
+    </form>
+
+    <div class="toolbar">
+      <input id="searchInput" placeholder="Rechercher un article...">
+      <label>
+        <input type="checkbox" id="lowOnlyCheckbox"> Stock bas uniquement
+      </label>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Article</th><th>Quantité</th><th>Seuil</th><th>Statut</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="itemsBody"></tbody>
+    </table>
+    <p id="emptyMessage" class="empty hidden">Aucun article.</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

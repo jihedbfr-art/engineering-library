@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Board</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Offres d'emploi</h1></header>
+
+  <main>
+    <div class="filters">
+      <input id="searchInput" placeholder="Rechercher (titre, entreprise, mot-clé)...">
+      <select id="locationFilter"><option value="">Tous les lieux</option></select>
+      <select id="typeFilter"><option value="">Tous les types</option></select>
+    </div>
+
+    <p class="result-count" id="resultCount"></p>
+    <div id="jobList" class="job-list"></div>
+    <p id="emptyMessage" class="empty hidden">Aucune offre ne correspond à ces critères.</p>
+  </main>
+
+  <script src="jobs-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

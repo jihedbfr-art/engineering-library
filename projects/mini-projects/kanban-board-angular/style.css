@@ -1,0 +1,15 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, Arial, sans-serif; background: #f4f5f7; margin: 0; padding: 30px 16px; }
+.app { max-width: 900px; margin: 0 auto; }
+h1 { margin-top: 0; }
+#add-form { display: flex; gap: 8px; margin-bottom: 20px; }
+#task-input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+#add-form button { padding: 8px 14px; border: none; background: #2563eb; color: #fff; border-radius: 4px; cursor: pointer; }
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.column { background: #e9ebef; border-radius: 8px; padding: 12px; min-height: 300px; }
+.column h2 { font-size: 1rem; margin: 4px 0 12px; }
+.cards { display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
+.cards.drag-over { background: #d7dae0; border-radius: 6px; }
+.card { background: #fff; border-radius: 6px; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); cursor: grab; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.card.dragging { opacity: 0.4; }
+.card button { border: none; background: transparent; color: #d33; cursor: pointer; }

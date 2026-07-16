@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markdown Notes Editor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Éditeur de notes Markdown</h1>
+    <span class="save-status" id="saveStatus">Enregistré</span>
+  </header>
+
+  <main class="editor-layout">
+    <textarea id="markdownInput" placeholder="Écrivez du Markdown ici..."></textarea>
+    <div id="preview" class="preview"></div>
+  </main>
+
+  <script src="markdown.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

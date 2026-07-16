@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Boutique Demo</h1>
+    <div class="cart-summary" id="cartSummary">
+      <span id="cartCount">0</span> article(s) — <span id="cartTotal">0.00</span> €
+      <button id="toggleCartBtn">Voir le panier</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="catalog" class="catalog"></section>
+
+    <aside id="cartPanel" class="cart-panel hidden">
+      <h2>Mon panier</h2>
+      <ul id="cartItems"></ul>
+      <p class="cart-total-line">Total : <strong id="cartPanelTotal">0.00</strong> €</p>
+      <button id="clearCartBtn">Vider le panier</button>
+      <p class="note">Aucun paiement réel — cette démo ne traite aucune transaction.</p>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

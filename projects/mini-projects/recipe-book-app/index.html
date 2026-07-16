@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Recipe Book</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <h1>Livre de recettes</h1>
+    <input type="text" id="search" placeholder="Rechercher par titre ou ingrédient...">
+
+    <form id="recipe-form">
+      <input type="text" id="title" placeholder="Titre de la recette" required>
+      <textarea id="ingredients" placeholder="Ingrédients (un par ligne)" required></textarea>
+      <textarea id="steps" placeholder="Étapes (une par ligne)" required></textarea>
+      <button type="submit">Ajouter la recette</button>
+    </form>
+
+    <div id="recipe-list"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

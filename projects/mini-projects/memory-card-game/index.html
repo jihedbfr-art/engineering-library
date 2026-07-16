@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Jeu de Memory</h1>
+    <p class="stats">Coups : <span id="movesValue">0</span> — Paires trouvées : <span id="matchesValue">0</span> / <span id="totalPairs">8</span></p>
+    <div class="board" id="board"></div>
+    <p id="winMessage" class="win-message hidden">Bravo, toutes les paires sont trouvées !</p>
+    <button id="restartBtn">Recommencer</button>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

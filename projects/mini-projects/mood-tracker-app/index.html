@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Suivi d'humeur</h1></header>
+
+  <main>
+    <section class="today-entry">
+      <h2 id="todayLabel"></h2>
+      <div class="mood-picker" id="moodPicker"></div>
+      <textarea id="noteInput" placeholder="Note optionnelle..."></textarea>
+      <button id="saveBtn">Enregistrer</button>
+      <span id="saveStatus" class="save-status"></span>
+    </section>
+
+    <section class="calendar-section">
+      <div class="calendar-header">
+        <button id="prevMonthBtn">&laquo;</button>
+        <h2 id="monthLabel"></h2>
+        <button id="nextMonthBtn">&raquo;</button>
+      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

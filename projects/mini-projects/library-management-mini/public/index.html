@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library Management Mini</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, Arial, sans-serif; background: #f5f6f8; margin: 0; padding: 1.5rem; color: #222; }
+  h1 { color: #23395d; }
+  form { display: flex; gap: 0.5rem; flex-wrap: wrap; background: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.15); margin-bottom: 1.5rem; }
+  input { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; flex: 1; min-width: 140px; }
+  button { background: #2a9d8f; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid #eee; }
+  th { background: #23395d; color: #fff; }
+  .badge { padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; }
+  .badge.available { background: #d4edda; color: #256029; }
+  .badge.borrowed { background: #f8d7da; color: #842029; }
+  .actions button { margin-right: 0.3rem; font-size: 0.8rem; padding: 0.3rem 0.6rem; }
+  .actions .del { background: #e63946; }
+  .actions .toggle { background: #457b9d; }
+</style>
+</head>
+<body>
+  <h1>Library Management Mini</h1>
+
+  <form id="addForm">
+    <input id="titleInput" placeholder="Titre" required>
+    <input id="authorInput" placeholder="Auteur" required>
+    <input id="isbnInput" placeholder="ISBN" required>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr><th>Titre</th><th>Auteur</th><th>ISBN</th><th>Statut</th><th>Actions</th></tr>
+    </thead>
+    <tbody id="booksBody"></tbody>
+  </table>
+
+  <script>
+    const API = "/api/books";
+
+    async function loadBooks() {
+      const res = await fetch(API);
+      const books = await res.json();
+      const tbody = document.getElementById("booksBody");
+      tbody.innerHTML = "";
+      books.forEach(b => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${escapeHtml(b.title)}</td>
+          <td>${escapeHtml(b.author)}</td>
+          <td>${escapeHtml(b.isbn)}</td>
+          <td><span class="badge ${b.available ? 'available' : 'borrowed'}">${b.available ? 'Disponible' : 'Emprunté'}</span></td>
+          <td class="actions">
+            <button class="toggle" data-id="${b.id}" data-available="${b.available}">${b.available ? 'Emprunter' : 'Retourner'}</button>
+            <button class="del" data-id="${b.id}">Supprimer</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      tbody.querySelectorAll(".toggle").forEach(btn => btn.addEventListener("click", toggleAvailable));
+      tbody.querySelectorAll(".del").forEach(btn => btn.addEventListener("click", deleteBook));
+    }
+
+    function escapeHtml(s) {
+      const div = document.createElement("div");
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    async function toggleAvailable(e) {
+      const id = e.target.dataset.id;
+      const available = e.target.dataset.available === "true";
+      await fetch(`${API}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ available: !available })
+      });
+      loadBooks();
+    }
+
+    async function deleteBook(e) {
+      const id = e.target.dataset.id;
+      await fetch(`${API}/${id}`, { method: "DELETE" });
+      loadBooks();
+    }
+
+    document.getElementById("addForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = document.getElementById("titleInput").value;
+      const author = document.getElementById("authorInput").value;
+      const isbn = document.getElementById("isbnInput").value;
+      await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, author, isbn })
+      });
+      e.target.reset();
+      loadBooks();
+    });
+
+    loadBooks();
+  </script>
+</body>
+</html>

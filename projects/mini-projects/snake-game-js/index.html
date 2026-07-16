@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Snake</h1>
+    <p class="score">Score : <span id="scoreValue">0</span></p>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <p class="hint">Flèches du clavier pour jouer. Espace pour redémarrer après game over.</p>
+    <div id="gameOverOverlay" class="overlay hidden">
+      <p>Game Over</p>
+      <button id="restartBtn">Rejouer</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

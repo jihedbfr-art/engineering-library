@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { font-family: system-ui, Arial, sans-serif; display: flex; flex-direction: column; color: #222; }
+header { background: #073b4c; color: #fff; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+header h1 { margin: 0; font-size: 1.2rem; }
+.save-status { font-size: 0.8rem; color: #9be8d8; }
+.editor-layout { flex: 1; display: flex; min-height: 0; }
+#markdownInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 1.2rem;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1rem;
+  resize: none;
+  border-right: 1px solid #ddd;
+}
+.preview {
+  flex: 1;
+  padding: 1.2rem;
+  overflow-y: auto;
+  background: #fafafa;
+}
+.preview h1, .preview h2, .preview h3 { margin-top: 0.6em; }
+.preview ul { padding-left: 1.4rem; }
+.preview a { color: #118ab2; }

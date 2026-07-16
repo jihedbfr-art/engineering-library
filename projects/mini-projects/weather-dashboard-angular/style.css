@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, Arial, sans-serif;
+  background: #eef3f8;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+.app { width: 100%; max-width: 760px; }
+h1 { margin-bottom: 4px; }
+.disclaimer { color: #a15c00; background: #fff3cd; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 20px; }
+.city-selector { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.city-selector button { padding: 8px 14px; border: 1px solid #ccc; background: #fff; border-radius: 20px; cursor: pointer; }
+.city-selector button.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+.forecast { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; }
+.day-card { background: #fff; border-radius: 8px; padding: 14px 10px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.day-card .day-name { font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; }
+.day-card .icon { font-size: 2rem; margin: 4px 0; }
+.day-card .temp { font-size: 1.1rem; font-weight: 700; }
+.day-card .temp-min { color: #888; font-size: 0.8rem; }
+.day-card .desc { font-size: 0.75rem; color: #666; margin-top: 4px; }

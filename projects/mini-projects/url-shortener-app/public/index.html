@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>URL Shortener</title>
+<style>
+  body { font-family: system-ui, Arial, sans-serif; background: #f4f5f7; margin: 0; display: flex; justify-content: center; padding: 40px 16px; }
+  .app { background: #fff; border-radius: 8px; padding: 24px; width: 100%; max-width: 520px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  h1 { margin-top: 0; font-size: 1.4rem; }
+  form { display: flex; gap: 8px; }
+  input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  button { padding: 8px 14px; border: none; background: #2563eb; color: #fff; border-radius: 4px; cursor: pointer; }
+  #result { margin-top: 16px; word-break: break-all; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <h1>Raccourcisseur d'URL</h1>
+    <form id="shorten-form">
+      <input type="url" id="url" placeholder="https://exemple.com/une-longue-url" required>
+      <button type="submit">Raccourcir</button>
+    </form>
+    <div id="result"></div>
+  </div>
+  <script>
+    document.getElementById('shorten-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = document.getElementById('url').value.trim();
+      const res = await fetch('/shorten', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const resultEl = document.getElementById('result');
+      if (!res.ok) {
+        const err = await res.json();
+        resultEl.textContent = 'Erreur : ' + err.error;
+        return;
+      }
+      const data = await res.json();
+      const shortUrl = window.location.origin + '/' + data.code;
+      resultEl.innerHTML = `Lien court : <a href="${shortUrl}">${shortUrl}</a>`;
+    });
+  </script>
+</body>
+</html>

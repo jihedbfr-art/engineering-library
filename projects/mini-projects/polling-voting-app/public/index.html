@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Sondages</title>
+<style>
+  body { font-family: system-ui, Arial, sans-serif; background: #f4f5f7; margin: 0; display: flex; justify-content: center; padding: 40px 16px; }
+  .app { background: #fff; border-radius: 8px; padding: 24px; width: 100%; max-width: 560px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  h1 { margin-top: 0; font-size: 1.4rem; }
+  .disclaimer { color: #a15c00; background: #fff3cd; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 16px; }
+  form#create-form { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+  form#create-form input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  form#create-form button { padding: 8px 14px; border: none; background: #2563eb; color: #fff; border-radius: 4px; cursor: pointer; }
+  .poll-card { border: 1px solid #eee; border-radius: 6px; padding: 12px; margin-bottom: 14px; }
+  .poll-card h3 { margin: 0 0 8px; }
+  .option-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .option-row button { padding: 4px 10px; border: 1px solid #2563eb; background: #fff; color: #2563eb; border-radius: 4px; cursor: pointer; }
+  .bar-bg { flex: 1; background: #eee; border-radius: 4px; height: 18px; position: relative; overflow: hidden; }
+  .bar-fill { background: #2563eb; height: 100%; }
+  .option-label { position: absolute; left: 6px; top: 0; font-size: 0.75rem; line-height: 18px; color: #222; }
+  .total { font-size: 0.8rem; color: #888; }
+  #options-inputs input { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <h1>Sondages</h1>
+    <p class="disclaimer">⚠️ Stockage en mémoire uniquement : redémarrer le serveur efface les sondages.</p>
+
+    <form id="create-form">
+      <input type="text" id="question" placeholder="Question du sondage" required>
+      <div id="options-inputs">
+        <input type="text" class="option-input" placeholder="Option 1" required>
+        <input type="text" class="option-input" placeholder="Option 2" required>
+      </div>
+      <button type="button" id="add-option">+ Ajouter une option</button>
+      <button type="submit">Créer le sondage</button>
+    </form>
+
+    <div id="polls-list"></div>
+  </div>
+  <script>
+    const optionsInputs = document.getElementById('options-inputs');
+    document.getElementById('add-option').addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'option-input';
+      input.placeholder = 'Option ' + (optionsInputs.children.length + 1);
+      optionsInputs.appendChild(input);
+    });
+
+    document.getElementById('create-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const question = document.getElementById('question').value.trim();
+      const options = Array.from(document.querySelectorAll('.option-input'))
+        .map(i => i.value.trim()).filter(Boolean);
+      if (!question || options.length < 2) return;
+      await fetch('/polls', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question, options })
+      });
+      e.target.reset();
+      optionsInputs.innerHTML = `
+        <input type="text" class="option-input" placeholder="Option 1" required>
+        <input type="text" class="option-input" placeholder="Option 2" required>`;
+      loadPolls();
+    });
+
+    async function vote(pollId, optionIndex) {
+      await fetch('/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pollId, optionIndex })
+      });
+      loadPolls();
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    async function loadPolls() {
+      const res = await fetch('/polls');
+      const polls = await res.json();
+      const listEl = document.getElementById('polls-list');
+      listEl.innerHTML = '';
+      polls.forEach(poll => {
+        const card = document.createElement('div');
+        card.className = 'poll-card';
+        let optionsHtml = '';
+        poll.options.forEach((opt, idx) => {
+          optionsHtml += `
+            <div class="option-row">
+              <div class="bar-bg">
+                <div class="bar-fill" style="width:${opt.percent}%"></div>
+                <div class="option-label">${escapeHtml(opt.text)} — ${opt.votes} (${opt.percent}%)</div>
+              </div>
+              <button onclick="vote(${poll.id}, ${idx})">Voter</button>
+            </div>`;
+        });
+        card.innerHTML = `<h3>${escapeHtml(poll.question)}</h3>${optionsHtml}<div class="total">${poll.total} vote(s) au total</div>`;
+        listEl.appendChild(card);
+      });
+    }
+
+    loadPolls();
+  </script>
+</body>
+</html>

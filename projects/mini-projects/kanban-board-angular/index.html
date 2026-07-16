@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Kanban Board</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <h1>Kanban Board</h1>
+    <form id="add-form">
+      <input type="text" id="task-input" placeholder="Nouvelle tâche..." required>
+      <button type="submit">Ajouter (À faire)</button>
+    </form>
+    <div class="board">
+      <div class="column" data-status="todo">
+        <h2>À faire</h2>
+        <div class="cards" data-status="todo"></div>
+      </div>
+      <div class="column" data-status="doing">
+        <h2>En cours</h2>
+        <div class="cards" data-status="doing"></div>
+      </div>
+      <div class="column" data-status="done">
+        <h2>Terminé</h2>
+        <div class="cards" data-status="done"></div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
