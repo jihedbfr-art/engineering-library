@@ -17,6 +17,10 @@ target/
 *.jar
 !**/maven-wrapper.jar
 
+# Python
+__pycache__/
+*.pyc
+
 # Node / Angular
 node_modules/
 dist/
