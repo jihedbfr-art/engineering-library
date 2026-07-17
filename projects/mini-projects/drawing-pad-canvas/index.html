@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Bloc de dessin</title>
+<style>body{font-family:system-ui;text-align:center}canvas{border:2px solid #333;cursor:crosshair;touch-action:none}#controls{margin:10px}input,button{margin:0 6px;vertical-align:middle}</style>
+</head><body>
+<h1>Bloc de dessin</h1>
+<div id="controls">
+  <input type="color" id="color" value="#000000">
+  <input type="range" id="size" min="1" max="30" value="4">
+  <button id="clear">Effacer</button>
+</div>
+<canvas id="canvas" width="600" height="400"></canvas>
+<script src="app.js"></script>
+</body></html>
