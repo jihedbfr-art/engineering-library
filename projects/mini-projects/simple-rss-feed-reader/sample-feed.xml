@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+<channel>
+<title>Exemple de flux</title>
+<item><title>Premier article</title><link>https://example.com/1</link><pubDate>Mon, 01 Jan 2026 00:00:00 GMT</pubDate></item>
+<item><title>Deuxieme article</title><link>https://example.com/2</link><pubDate>Tue, 02 Jan 2026 00:00:00 GMT</pubDate></item>
+</channel>
+</rss>
