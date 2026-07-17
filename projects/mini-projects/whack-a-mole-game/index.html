@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Whack-a-mole</title>
+<style>
+body{font-family:system-ui;text-align:center;margin-top:20px}
+#grid{display:grid;grid-template-columns:repeat(3,100px);gap:10px;justify-content:center;margin:16px auto}
+.hole{width:100px;height:100px;background:#5d4037;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5em;cursor:pointer}
+.hole.up{background:#8d6e63}
+</style>
+</head><body>
+<h1>Whack-a-mole</h1>
+<p>Score : <span id="score">0</span> | Temps : <span id="time">30</span>s</p>
+<div id="grid"></div>
+<button id="start">Demarrer</button>
+<script src="app.js"></script>
+</body></html>
