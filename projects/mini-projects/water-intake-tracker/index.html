@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Suivi hydratation</title>
+<style>body{font-family:system-ui;max-width:400px;margin:40px auto;text-align:center}#glass{width:100px;height:150px;border:3px solid #333;border-radius:0 0 10px 10px;margin:20px auto;position:relative;overflow:hidden}#water{position:absolute;bottom:0;width:100%;background:#4fc3f7;transition:height .3s}button{padding:10px 16px;margin:4px;cursor:pointer}</style>
+</head><body>
+<h1>Suivi d'hydratation</h1>
+<div id="glass"><div id="water"></div></div>
+<p id="total">0 / 2000 ml</p>
+<button data-ml="200">+200ml</button>
+<button data-ml="330">+330ml (canette)</button>
+<button data-ml="500">+500ml</button>
+<button id="reset">Reinitialiser</button>
+<script src="app.js"></script>
+</body></html>
