@@ -1,0 +1,5 @@
+body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 16px; }
+#prompt-text { font-size: 1.1em; background: #f4f4f4; padding: 12px; border-radius: 6px; }
+textarea { width: 100%; font-size: 1em; padding: 8px; }
+#stats { display: flex; gap: 24px; margin: 12px 0; font-size: 0.95em; }
+button { padding: 8px 16px; cursor: pointer; }
