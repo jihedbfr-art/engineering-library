@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Demineur lite</title>
+<style>
+body{font-family:system-ui;text-align:center;margin-top:20px}
+#grid{display:grid;grid-template-columns:repeat(8,32px);gap:2px;justify-content:center;margin-top:16px}
+.cell{width:32px;height:32px;background:#ccc;border:1px solid #999;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:bold}
+.cell.revealed{background:#eee;cursor:default}
+.cell.mine{background:#e74c3c}
+</style>
+</head><body>
+<h1>Demineur (8x8, 10 mines)</h1>
+<p id="status">Cliquez pour reveler une case</p>
+<div id="grid"></div>
+<script src="app.js"></script>
+</body></html>
