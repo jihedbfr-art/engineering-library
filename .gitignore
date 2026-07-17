@@ -44,3 +44,7 @@ Thumbs.db
 **/application-local.properties
 *.pem
 *.key
+
+# Assistant working files — never public
+CLAUDE.md
+.claude/
