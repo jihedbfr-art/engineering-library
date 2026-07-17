@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Organisateur de snippets</title>
+<style>
+body{font-family:system-ui;max-width:700px;margin:30px auto}
+input,textarea,select{width:100%;padding:6px;margin:4px 0;box-sizing:border-box}
+.snippet{border:1px solid #ddd;border-radius:6px;padding:10px;margin:10px 0}
+pre{background:#282c34;color:#abb2bf;padding:10px;border-radius:4px;overflow-x:auto}
+button{padding:4px 10px;cursor:pointer}
+</style>
+</head><body>
+<h1>Organisateur de snippets</h1>
+<input id="title" placeholder="Titre">
+<select id="lang"><option>javascript</option><option>python</option><option>java</option><option>sql</option></select>
+<textarea id="code" rows="4" placeholder="Code..."></textarea>
+<button id="add">Sauvegarder</button>
+<input id="search" placeholder="Rechercher..." style="margin-top:16px">
+<div id="list"></div>
+<script src="app.js"></script>
+</body></html>
