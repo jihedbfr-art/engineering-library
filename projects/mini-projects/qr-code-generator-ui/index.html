@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Generateur QR (matrice ASCII)</title>
+<style>body{font-family:system-ui;max-width:500px;margin:30px auto}input{width:80%;padding:8px}button{padding:8px 14px;cursor:pointer}#grid{display:grid;margin-top:20px;width:fit-content}#grid div{width:8px;height:8px}</style>
+</head><body>
+<h1>Generateur de motif "QR-like"</h1>
+<p>Simplification pedagogique (pas un vrai encodeur QR conforme a la norme ISO/IEC 18004) :
+genere une matrice deterministe a partir du texte, pour illustrer le principe de hachage visuel.</p>
+<input id="text" placeholder="Texte a encoder" value="https://example.com">
+<button id="generate">Generer</button>
+<div id="grid"></div>
+<script src="app.js"></script>
+</body></html>
