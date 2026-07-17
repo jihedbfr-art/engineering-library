@@ -4,6 +4,8 @@
 ![Knowledge domains](https://img.shields.io/badge/knowledge%20domains-26-informational)
 ![Projects](https://img.shields.io/badge/projects-nano%20%E2%86%92%20macro-success)
 ![Stack](https://img.shields.io/badge/stack-Java%20%2F%20Spring%20%2F%20Angular-brightgreen)
+[![Build](https://github.com/jihedbfr-art/engineering-library/actions/workflows/build.yml/badge.svg)](https://github.com/jihedbfr-art/engineering-library/actions/workflows/build.yml)
+[![CodeQL](https://github.com/jihedbfr-art/engineering-library/actions/workflows/codeql.yml/badge.svg)](https://github.com/jihedbfr-art/engineering-library/actions/workflows/codeql.yml)
 
 > Le but n'est pas qu'on dise « il a 120 repositories ».
 > Le but est qu'on dise « **ce GitHub est une bibliothèque d'ingénierie** ».
