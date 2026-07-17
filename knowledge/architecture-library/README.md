@@ -11,7 +11,7 @@ Chacun répond aux mêmes questions pour qu'on puisse comparer deux styles en 30
 | Modular monolith | `modular-monolith.md` | à rédiger |
 | Microservices | `microservices.md` | ✅ exemple |
 | Event-driven | `event-driven.md` | à rédiger |
-| CQRS | `cqrs.md` | à rédiger |
+| CQRS | [`cqrs.md`](cqrs.md) | ✅ |
 | Event sourcing | `event-sourcing.md` | à rédiger |
 | Hexagonal (ports & adapters) | `hexagonal.md` | à rédiger |
 | Onion | `onion.md` | à rédiger |
