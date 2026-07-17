@@ -1,0 +1,64 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.find.outputs.dirs }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find Maven project directories
+        id: find
+        run: |
+          dirs=$(find . -name pom.xml -not -path '*/target/*' -exec dirname {} \; | sed 's#^\./##' | jq -R -s -c 'split("\n")[:-1]')
+          echo "dirs=$dirs" >> "$GITHUB_OUTPUT"
+          echo "Found project directories: $dirs"
+
+  build:
+    needs: discover
+    if: needs.discover.outputs.dirs != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJson(needs.discover.outputs.dirs) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build and test ${{ matrix.project }}
+        working-directory: ${{ matrix.project }}
+        run: mvn -B clean verify
+
+      - name: Compute artifact slug
+        id: slug
+        if: always()
+        run: echo "slug=$(echo '${{ matrix.project }}' | tr '/' '-')" >> "$GITHUB_OUTPUT"
+
+      - name: Upload JaCoCo report (${{ matrix.project }})
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-${{ steps.slug.outputs.slug }}
+          path: ${{ matrix.project }}/target/site/jacoco/
+          if-no-files-found: ignore
+
+      - name: Upload surefire reports on failure (${{ matrix.project }})
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-${{ steps.slug.outputs.slug }}
+          path: ${{ matrix.project }}/target/surefire-reports/
