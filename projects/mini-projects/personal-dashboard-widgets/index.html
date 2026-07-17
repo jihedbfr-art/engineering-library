@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Mini dashboard personnel</title>
+<style>
+body{font-family:system-ui;background:#f4f4f4;margin:0;padding:20px}
+#grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:800px;margin:0 auto}
+.widget{background:white;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.widget h3{margin-top:0}
+#clock{font-size:2em;text-align:center}
+</style>
+</head><body>
+<h1>Mon dashboard</h1>
+<div id="grid">
+  <div class="widget"><h3>Horloge</h3><div id="clock"></div></div>
+  <div class="widget"><h3>Citation du jour</h3><p id="quote"></p></div>
+  <div class="widget"><h3>To-do rapide</h3><input id="todo-input" placeholder="Ajouter..."><ul id="todo-list"></ul></div>
+</div>
+<script src="app.js"></script>
+</body></html>
