@@ -1,0 +1,10 @@
+{
+  "name": "Pates a la carbonara",
+  "servings": 4,
+  "ingredients": [
+    {"name": "pates", "quantity": 0.4, "unit_price": 2.0},
+    {"name": "lardons", "quantity": 0.2, "unit_price": 8.0},
+    {"name": "oeufs", "quantity": 3, "unit_price": 0.3},
+    {"name": "parmesan", "quantity": 0.1, "unit_price": 15.0}
+  ]
+}
