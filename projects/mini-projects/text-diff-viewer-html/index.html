@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Visualiseur de diff</title>
+<style>body{font-family:system-ui;max-width:700px;margin:30px auto}textarea{width:48%;height:150px;font-family:monospace}.row{display:flex;justify-content:space-between}#diff{margin-top:20px;font-family:monospace;white-space:pre-wrap}.added{background:#d4f8d4}.removed{background:#f8d4d4;text-decoration:line-through}button{padding:8px 14px;cursor:pointer;margin-top:10px}</style>
+</head><body>
+<h1>Visualiseur de diff (ligne par ligne)</h1>
+<div class="row">
+  <textarea id="before" placeholder="Texte original">ligne 1
+ligne 2
+ligne 3</textarea>
+  <textarea id="after" placeholder="Texte modifie">ligne 1
+ligne modifiee
+ligne 3
+ligne 4</textarea>
+</div>
+<button id="compute">Comparer</button>
+<div id="diff"></div>
+<script src="app.js"></script>
+</body></html>
