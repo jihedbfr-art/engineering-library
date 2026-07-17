@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Constructeur de requete HTTP</title>
+<style>body{font-family:system-ui;max-width:600px;margin:30px auto}select,input,textarea{padding:6px;margin:4px 0}input,textarea{width:100%;box-sizing:border-box}pre{background:#282c34;color:#abb2bf;padding:12px;border-radius:6px;overflow-x:auto}</style>
+</head><body>
+<h1>Constructeur de requete HTTP (curl / fetch)</h1>
+<select id="method"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option><option>PATCH</option></select>
+<input id="url" placeholder="https://api.example.com/users" value="https://api.example.com/users">
+<textarea id="headers" rows="3" placeholder="Authorization: Bearer xxx
+Content-Type: application/json">Content-Type: application/json</textarea>
+<textarea id="body" rows="4" placeholder='{"name": "test"}'></textarea>
+<h3>curl</h3>
+<pre id="curl-output"></pre>
+<h3>fetch (JavaScript)</h3>
+<pre id="fetch-output"></pre>
+<script src="app.js"></script>
+</body></html>
