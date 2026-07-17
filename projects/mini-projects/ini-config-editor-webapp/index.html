@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Editeur de config INI</title>
+<style>body{font-family:system-ui;max-width:600px;margin:30px auto;display:flex;gap:16px}textarea{width:100%;height:300px;font-family:monospace}#preview{width:100%}pre{background:#f4f4f4;padding:10px;border-radius:6px;font-size:0.85em}</style>
+</head><body>
+<div style="flex:1">
+<h2>Fichier .ini</h2>
+<textarea id="input">[server]
+port=8080
+host=localhost
+
+[database]
+url=jdbc:postgresql://localhost/db
+pool_size=10</textarea>
+</div>
+<div id="preview" style="flex:1">
+<h2>Apercu JSON</h2>
+<pre id="output"></pre>
+</div>
+<script src="app.js"></script>
+</body></html>
