@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Notes chiffrees</title>
+<style>body{font-family:system-ui;max-width:500px;margin:30px auto}textarea,input{width:100%;padding:8px;box-sizing:border-box;margin:6px 0}button{padding:8px 14px;cursor:pointer;margin-right:6px}</style>
+</head><body>
+<h1>Notes chiffrees (AES-GCM, Web Crypto API)</h1>
+<textarea id="note" rows="5" placeholder="Ecrivez votre note..."></textarea>
+<input id="password" type="password" placeholder="Mot de passe">
+<button id="encrypt">Chiffrer</button>
+<button id="decrypt">Dechiffrer</button>
+<h3>Resultat :</h3>
+<textarea id="result" rows="5" readonly></textarea>
+<script src="app.js"></script>
+</body></html>
