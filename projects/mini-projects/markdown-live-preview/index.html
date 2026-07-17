@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Previsualisation Markdown</title>
+<style>
+body{font-family:system-ui;margin:0;display:flex;height:100vh}
+textarea,#preview{flex:1;padding:16px;box-sizing:border-box;overflow:auto}
+textarea{border:none;border-right:1px solid #ddd;resize:none;font-family:monospace;font-size:14px}
+#preview{background:#fafafa}
+</style>
+</head><body>
+<textarea id="input" placeholder="# Ecrivez du markdown ici...">
+# Titre
+
+Du **gras**, de l'*italique*, et une [liste]:
+- item 1
+- item 2
+
+`code inline` et un lien [vers example](https://example.com)
+</textarea>
+<div id="preview"></div>
+<script src="app.js"></script>
+</body></html>
