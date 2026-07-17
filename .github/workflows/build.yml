@@ -12,7 +12,7 @@ jobs:
     outputs:
       dirs: ${{ steps.find.outputs.dirs }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Find Maven project directories
         id: find
@@ -30,7 +30,7 @@ jobs:
       matrix:
         project: ${{ fromJson(needs.discover.outputs.dirs) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
