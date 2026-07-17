@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Puissance 4</title>
+<style>
+body{font-family:system-ui;text-align:center;margin-top:20px}
+#grid{display:grid;grid-template-columns:repeat(7,50px);gap:4px;background:#2255aa;padding:8px;justify-content:center;margin:16px auto;width:fit-content;border-radius:8px}
+.cell{width:50px;height:50px;background:white;border-radius:50%;cursor:pointer}
+.cell.red{background:#e74c3c}
+.cell.yellow{background:#f1c40f}
+</style>
+</head><body>
+<h1>Puissance 4</h1>
+<p id="status">Tour du joueur Rouge</p>
+<div id="grid"></div>
+<button id="restart">Recommencer</button>
+<script src="app.js"></script>
+</body></html>
