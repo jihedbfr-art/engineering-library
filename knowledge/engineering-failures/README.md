@@ -11,8 +11,9 @@ Cause · Symptômes · Comment diagnostiquer (commandes/logs) · Solution · Pr�
 | Panne | Fichier | État |
 |---|---|---|
 | N+1 (Hibernate) | [hibernate-n-plus-1.md](hibernate-n-plus-1.md) | ✅ |
+| Rebalance storm (Kafka) | [kafka-consumer-rebalance-storm.md](kafka-consumer-rebalance-storm.md) | ✅ |
 
 ## Backlog
 Memory leak · Deadlock · Race condition · Split brain · Cache stampede · Circular dependency · OOM ·
 Slow query · Connection leak · Broken deployment · Wrong transaction · Thread starvation ·
-Kafka rebalance · Redis eviction · GC pauses. Ajouter via la skill **ajouter-entree-savoir**.
+Redis eviction · GC pauses. Ajouter via la skill **ajouter-entree-savoir**.
