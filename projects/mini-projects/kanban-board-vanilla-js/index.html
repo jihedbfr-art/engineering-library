@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Kanban vanilla JS</title>
+<style>
+body{font-family:system-ui;margin:0;padding:20px}
+#board{display:flex;gap:16px}
+.column{background:#f4f4f4;border-radius:8px;padding:10px;width:220px;min-height:300px}
+.column h3{margin-top:0}
+.card{background:white;border-radius:6px;padding:10px;margin:8px 0;cursor:grab;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.column.dragover{background:#e0e8f4}
+input{width:90%;padding:6px}
+</style>
+</head><body>
+<h1>Kanban</h1>
+<div id="board"></div>
+<script src="app.js"></script>
+</body></html>
