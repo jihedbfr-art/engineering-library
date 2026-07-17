@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Mesureur de force de mot de passe</title>
+<style>
+body{font-family:system-ui;max-width:400px;margin:40px auto}
+input{width:100%;padding:8px;box-sizing:border-box}
+#bar-bg{background:#eee;height:10px;border-radius:5px;margin-top:10px;overflow:hidden}
+#bar{height:100%;width:0;transition:.3s}
+#feedback{margin-top:10px;font-size:0.9em}
+</style>
+</head><body>
+<h1>Force du mot de passe</h1>
+<input type="password" id="pw" placeholder="Tapez un mot de passe...">
+<div id="bar-bg"><div id="bar"></div></div>
+<p id="label"></p>
+<ul id="feedback"></ul>
+<script src="app.js"></script>
+</body></html>
