@@ -45,6 +45,6 @@ Thumbs.db
 *.pem
 *.key
 
-# Assistant working files — never public
+# Assistant working files — never public, anywhere in the tree
 CLAUDE.md
 .claude/
