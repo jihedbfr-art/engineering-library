@@ -1,7 +1,8 @@
 # 🔧 Micro-projects
 
 25 utilitaires simples, un dossier par outil. Chacun a son `README.md` (usage) et son `CLAUDE.md`
-(stack, commandes). Zéro dépendance réseau : Python stdlib ou Java avec `com.sun.net.httpserver.HttpServer`
+(stack, commandes) — ce dernier reste local, jamais commité (voir `.gitignore` racine). Zéro
+dépendance réseau : Python stdlib ou Java avec `com.sun.net.httpserver.HttpServer`
 (pas de Spring Boot/Maven pour ces micro-outils).
 
 | Projet | Stack | Rôle |
