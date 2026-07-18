@@ -1,7 +1,7 @@
 # 🔧 Micro-projects
 
-25 utilitaires simples, un dossier par outil. Chacun a son `README.md` (usage) et son `CLAUDE.md`
-(stack, commandes) — ce dernier reste local, jamais commité (voir `.gitignore` racine). Zéro
+25 utilitaires simples, un dossier par outil. Chacun a son `README.md` (usage) et, en local, des
+notes techniques (stack, commandes) qui ne quittent jamais le poste de travail. Zéro
 dépendance réseau : Python stdlib ou Java avec `com.sun.net.httpserver.HttpServer`
 (pas de Spring Boot/Maven pour ces micro-outils).
 

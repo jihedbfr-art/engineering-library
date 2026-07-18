@@ -6,8 +6,8 @@ Le cran en dessous de `micro-projects/` : un one-liner ou un snippet exécutable
 fonction, pas d'options ni de gestion d'erreurs élaborée. Budget indicatif : < 5 min par projet.
 
 Chaque projet vit dans son propre dossier kebab-case, avec un `README.md` court (ce que ça fait,
-comment le lancer) et éventuellement un `CLAUDE.md` de quelques lignes si utile — ce dernier reste
-local, jamais commité (voir `.gitignore` racine).
+comment le lancer) et, éventuellement en local, quelques lignes de notes techniques qui ne
+quittent jamais le poste de travail.
 
 ## Règles
 - Vraiment minimal : si ça dépasse ~30 lignes de code, ça devrait être un `micro-project`, pas un nano.

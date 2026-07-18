@@ -1,7 +1,7 @@
 # 🧩 Mini-projects
 
-25 petites apps, un dossier par projet. Chacun a son `README.md` (but, archi, lancement) et son
-`CLAUDE.md` (celui-ci reste local, jamais commité — voir `.gitignore` racine). Choix technique
+25 petites apps, un dossier par projet. Chacun a son `README.md` (but, archi, lancement) et, en
+local, des notes techniques qui ne quittent jamais le poste de travail. Choix technique
 volontaire pour rester dans un budget ~10 min/projet : vanilla
 JS/HTML/CSS à la place d'Angular CLI complet, `com.sun.net.httpserver.HttpServer` à la place de
 Spring Boot/Maven (pas de dépendance réseau garantie). Ces écarts sont documentés dans chaque projet.

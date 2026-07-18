@@ -12,8 +12,8 @@ soumis à un budget de temps.
 Budget indicatif : ~1 à 3 jours par projet (contre ~1-3h pour `standard-projects/`).
 
 Chaque projet vit dans son propre dossier kebab-case, avec un `README.md` (but, archi, lancement)
-et un `CLAUDE.md` (stack, commandes, fichiers clés, règles spécifiques) — ce dernier reste local,
-jamais commité (voir `.gitignore` racine).
+et, en local, des notes techniques (stack, commandes, fichiers clés, règles spécifiques) qui ne
+quittent jamais le poste de travail.
 
 ## Règles
 - Une seule architecture par projet, mais on peut viser une vraie couverture fonctionnelle

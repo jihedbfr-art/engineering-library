@@ -10,8 +10,8 @@ démontrent chacun une architecture différente.
 Budget indicatif : ~1 à 3h par projet (contre ~10 min pour `micro-projects/` et `mini-projects/`).
 
 Chaque projet vit dans son propre dossier kebab-case, avec un `README.md` (but, archi, lancement)
-et un `CLAUDE.md` court (stack, commandes, fichiers clés) — ce dernier reste local, jamais commité
-(voir `.gitignore` racine).
+et, en local, un petit fichier de notes techniques (stack, commandes, fichiers clés) qui ne quitte
+jamais le poste de travail.
 
 ## Règles
 - Un projet = une portée fonctionnelle claire, pas un mini-monolithe fourre-tout.
