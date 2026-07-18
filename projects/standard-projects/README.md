@@ -16,4 +16,6 @@ jamais le poste de travail.
 ## Règles
 - Un projet = une portée fonctionnelle claire, pas un mini-monolithe fourre-tout.
 
-_(Dossier vide pour l'instant — à remplir au fil de l'eau.)_
+| Projet | Stack | Rôle |
+|---|---|---|
+| [network-monitor-dashboard](network-monitor-dashboard) | Python (stdlib) + Vanilla JS | Supervision du réseau local : appareils, trafic, débit, alertes |
