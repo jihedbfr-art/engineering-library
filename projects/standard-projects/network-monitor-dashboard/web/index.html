@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LAN Monitor</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="pulse-dot"></span> LAN&nbsp;Monitor</div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="overview">Vue d'ensemble</button>
+      <button class="tab" data-tab="devices">Appareils</button>
+      <button class="tab" data-tab="traffic">Trafic</button>
+      <button class="tab" data-tab="speed">Debit</button>
+      <button class="tab" data-tab="flows">Flux &amp; destinations</button>
+      <button class="tab" data-tab="alerts">Alertes <span id="tab-alerts-badge" class="tab-badge warn hidden">0</span></button>
+      <button class="tab tab-danger" data-tab="urgent">Urgences <span id="tab-urgent-badge" class="tab-badge crit hidden">0</span></button>
+      <button class="tab" data-tab="map">Carte</button>
+      <button class="tab" data-tab="help">Aide</button>
+      <button class="tab" data-tab="settings">Parametres</button>
+    </nav>
+    <div class="topright">
+      <span id="clock" class="clock">--:--:--</span>
+      <button id="logout" class="btn-ghost">Deconnexion</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- OVERVIEW -->
+    <section id="overview" class="panel active">
+      <div class="cards">
+        <div class="card"><div class="card-label">Appareils en ligne</div><div class="card-value" id="ov-online">-</div><div class="card-sub" id="ov-total">sur - detectes</div></div>
+        <div class="card"><div class="card-label">Debit descendant</div><div class="card-value accent-in" id="ov-in">-</div><div class="card-sub">entrant (temps reel)</div></div>
+        <div class="card"><div class="card-label">Debit montant</div><div class="card-value accent-out" id="ov-out">-</div><div class="card-sub">sortant (temps reel)</div></div>
+        <div class="card"><div class="card-label">Destinations suivies</div><div class="card-value" id="ov-hosts">-</div><div class="card-sub">hotes distants actifs</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="box">
+          <h3>Bande passante (temps reel)</h3>
+          <canvas id="ovChart" height="220"></canvas>
+          <div class="legend"><span class="dot dot-in"></span>Entrant <span class="dot dot-out"></span>Sortant</div>
+        </div>
+        <div class="box">
+          <h3>Votre connexion</h3>
+          <table class="kv">
+            <tr><td>IP locale</td><td id="net-local">-</td></tr>
+            <tr><td>Passerelle</td><td id="net-gw">-</td></tr>
+            <tr><td>Sous-reseau</td><td id="net-subnet">-</td></tr>
+            <tr><td>IP publique</td><td id="net-public">-</td></tr>
+            <tr><td>Localisation</td><td id="net-loc">-</td></tr>
+            <tr><td>FAI</td><td id="net-isp">-</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEVICES -->
+    <section id="devices" class="panel">
+      <div class="box">
+        <h3>Appareils sur le reseau <span id="dev-count" class="badge">0</span></h3>
+        <table class="data-table" id="devTable">
+          <thead><tr>
+            <th>Etat</th><th>Type</th><th>IP privee</th><th>Nom d'hote</th><th>Marque</th>
+            <th>MAC</th><th>Connecte depuis</th><th>Vu</th><th>Role</th><th></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TRAFFIC -->
+    <section id="traffic" class="panel">
+      <div class="cards">
+        <div class="card"><div class="card-label">Total entrant</div><div class="card-value accent-in" id="tr-total-in">-</div></div>
+        <div class="card"><div class="card-label">Total sortant</div><div class="card-value accent-out" id="tr-total-out">-</div></div>
+        <div class="card"><div class="card-label">Pic entrant</div><div class="card-value" id="tr-peak-in">-</div></div>
+        <div class="card"><div class="card-label">Pic sortant</div><div class="card-value" id="tr-peak-out">-</div></div>
+      </div>
+      <div class="box">
+        <h3>Historique du trafic</h3>
+        <canvas id="trChart" height="300"></canvas>
+        <div class="legend"><span class="dot dot-in"></span>Entrant <span class="dot dot-out"></span>Sortant</div>
+      </div>
+    </section>
+
+    <!-- FLOWS -->
+    <section id="flows" class="panel">
+      <div class="box">
+        <h3>Destinations &amp; temps passe <span class="badge" id="flow-count">0</span>
+          <span class="hint-inline">(connexions sortantes de cette machine, agregees par hote)</span></h3>
+        <table class="data-table" id="flowTable">
+          <thead><tr>
+            <th></th><th>Site / service</th><th>Application</th><th>Adresse technique</th>
+            <th>Ports</th><th>Temps cumule</th><th>Part</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SPEED -->
+    <section id="speed" class="panel">
+      <div class="box">
+        <h3>Test de debit Internet <span class="hint-inline">(mesure a la demande via Cloudflare)</span></h3>
+        <div class="speed-grid">
+          <div class="speed-tile"><div class="speed-label">Telechargement</div><div class="speed-value accent-in" id="sp-down">—</div><div class="speed-unit">Mbps</div></div>
+          <div class="speed-tile"><div class="speed-label">Envoi</div><div class="speed-value accent-out" id="sp-up">—</div><div class="speed-unit">Mbps</div></div>
+          <div class="speed-tile"><div class="speed-label">Ping</div><div class="speed-value" id="sp-ping">—</div><div class="speed-unit">ms</div></div>
+          <div class="speed-tile"><div class="speed-label">Gigue</div><div class="speed-value" id="sp-jitter">—</div><div class="speed-unit">ms</div></div>
+        </div>
+        <div class="speed-actions">
+          <button id="sp-run" class="btn-primary">Lancer le test</button>
+          <span id="sp-status" class="hint-inline"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALERTS -->
+    <section id="alerts" class="panel">
+      <div class="cards">
+        <div class="card card-crit"><div class="card-label">Critiques</div><div class="card-value" id="al-crit">0</div><div class="card-sub">niveau rouge</div></div>
+        <div class="card card-warn"><div class="card-label">Avertissements</div><div class="card-value" id="al-warn">0</div><div class="card-sub">niveau orange</div></div>
+        <div class="card card-info"><div class="card-label">Informations</div><div class="card-value" id="al-info">0</div><div class="card-sub">niveau bleu</div></div>
+        <div class="card"><div class="card-label">Total</div><div class="card-value" id="al-total">0</div><div class="card-sub">alertes enregistrees</div></div>
+      </div>
+      <div class="box">
+        <h3>Journal des alertes <span class="hint-inline">(depuis le lancement de l'application)</span></h3>
+        <div class="filter-row">
+          <button class="filt active" data-filt="all">Toutes</button>
+          <button class="filt" data-filt="critical">Critiques</button>
+          <button class="filt" data-filt="warning">Avertissements</button>
+          <button class="filt" data-filt="info">Infos</button>
+        </div>
+        <div id="alertList" class="alert-list"></div>
+      </div>
+    </section>
+
+    <!-- URGENT -->
+    <section id="urgent" class="panel">
+      <div id="urgentBanner" class="urgent-banner ok">
+        <div class="ub-icon">✓</div>
+        <div><div class="ub-title">Aucune urgence en cours</div>
+        <div class="ub-sub">Aucune attaque critique detectee. Le systeme surveille en continu tant que l'application est ouverte.</div></div>
+      </div>
+      <div id="urgentList" class="alert-list"></div>
+    </section>
+
+    <!-- MAP -->
+    <section id="map" class="panel">
+      <div class="box">
+        <h3>Carte du reseau local — appareils connectes <span id="topo-count" class="badge">0</span></h3>
+        <div id="topoWrap" class="mapwrap tall"></div>
+        <div class="legend">
+          <span>🌐 Routeur/Box</span> <span>💻 Ordinateur</span>
+          <span>📱 Telephone</span> <span>📺 TV</span> <span>🔌 Autre</span>
+          <span style="margin-left:auto">Cliquez un appareil pour le voir dans l'onglet Appareils</span>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="box">
+          <h3>Point de sortie Internet</h3>
+          <div id="mapWrap" class="mapwrap"></div>
+        </div>
+        <div class="box">
+          <h3>Details de la sortie</h3>
+          <table class="kv">
+            <tr><td>IP publique</td><td id="map-ip">-</td></tr>
+            <tr><td>Ville</td><td id="map-city">-</td></tr>
+            <tr><td>Region</td><td id="map-region">-</td></tr>
+            <tr><td>Pays</td><td id="map-country">-</td></tr>
+            <tr><td>Coordonnees</td><td id="map-coords">-</td></tr>
+            <tr><td>FAI</td><td id="map-isp">-</td></tr>
+          </table>
+          <p class="hint">Tous vos appareils partagent la meme IP publique (ils sortent par le meme routeur). Geolocalisation approximative basee sur cette IP, pas la position GPS reelle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HELP / MANUEL -->
+    <section id="help" class="panel">
+      <div class="box">
+        <h3>Manuel utilisateur</h3>
+        <p class="hint">Outil de supervision de <b>votre</b> réseau local. Tout fonctionne uniquement pendant que l'application est ouverte — rien ne tourne en arrière-plan une fois fermée.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="box">
+          <h3>Les écrans</h3>
+          <table class="kv help-kv">
+            <tr><td>Vue d'ensemble</td><td>Appareils en ligne, débit temps réel, graphique de bande passante et infos de votre connexion (IP locale, passerelle, IP publique).</td></tr>
+            <tr><td>Appareils</td><td>Tous les appareils du réseau : <b>type</b> (routeur, PC, téléphone…), IP privée, nom d'hôte, marque, MAC, <b>durée de connexion</b> et rôle.</td></tr>
+            <tr><td>Trafic</td><td>Historique de la bande passante, totaux et pics entrant / sortant.</td></tr>
+            <tr><td>Débit</td><td>Test de vitesse à la demande (téléchargement / envoi / ping / gigue). Clic sur <b>Lancer le test</b>.</td></tr>
+            <tr><td>Flux &amp; destinations</td><td>Connexions sortantes de cette machine, regroupées par <b>site / service</b> (Google, GitHub…) avec le temps passé sur chacun.</td></tr>
+            <tr><td>Alertes</td><td>Journal des événements de sécurité, filtrable par niveau, avec origine, explication et <b>conseils de défense</b>.</td></tr>
+            <tr><td>Urgences</td><td>Uniquement les menaces <b>critiques (rouge)</b> : attaques entrantes, scans de ports, accès non autorisés.</td></tr>
+            <tr><td>Carte</td><td>Topologie du réseau (tous les appareils autour du routeur) + point de sortie Internet géolocalisé.</td></tr>
+            <tr><td>Paramètres</td><td>Changer le mot de passe admin.</td></tr>
+          </table>
+        </div>
+
+        <div class="box">
+          <h3>Bien démarrer</h3>
+          <ol class="help-steps">
+            <li><b>Lancer</b> : double-clic sur <code>start.bat</code> (ou <code>python app.py</code>), puis ouvrir <code>http://127.0.0.1:8787</code>.</li>
+            <li><b>Se connecter</b> : <code>admin</code> / <code>admin</code> par défaut.</li>
+            <li><b>Sécuriser</b> : changer le mot de passe dans <b>Paramètres</b> dès la première utilisation.</li>
+            <li><b>Astuce</b> : lancer en <b>administrateur</b> donne une découverte réseau plus complète.</li>
+          </ol>
+
+          <h3 style="margin-top:22px">Comment arrêter l'application</h3>
+          <ul class="help-steps">
+            <li><b>Depuis ici</b> : le bouton rouge ci-dessous arrête proprement le serveur.</li>
+            <li><b>Fenêtre du terminal</b> : appuyer sur <code>Ctrl + C</code>, ou simplement fermer la fenêtre noire.</li>
+          </ul>
+          <button id="shutdownBtn" class="btn-danger">⏻ Arrêter l'application</button>
+          <div id="shutdownMsg" class="form-msg"></div>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Ce que l'outil ne fait pas</h3>
+        <p class="hint">Il ne capte pas les identifiants, mots de passe ou la navigation des autres appareils : ce serait casser leur chiffrement HTTPS (interception illégale). Le bouton <b>Bloquer</b> ne coupe pas Internet par la force — il vous renvoie vers l'admin de votre routeur pour un blocage propre (filtrage MAC).</p>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="settings" class="panel">
+      <div class="box narrow">
+        <h3>Changer le mot de passe admin</h3>
+        <form id="pwForm">
+          <label>Mot de passe actuel</label>
+          <input id="pw-current" type="password" />
+          <label>Nouveau mot de passe</label>
+          <input id="pw-new" type="password" />
+          <label>Confirmer</label>
+          <input id="pw-confirm" type="password" />
+          <button type="submit">Enregistrer</button>
+          <div id="pw-msg" class="form-msg"></div>
+        </form>
+      </div>
+      <div class="box narrow">
+        <h3>A propos</h3>
+        <p class="hint">Outil de supervision de votre reseau local, usage personnel. Il mesure la
+        presence des appareils, la bande passante et les destinations de <em>votre</em> trafic.
+        Il ne capte pas les identifiants ni la navigation des autres appareils — cela exigerait
+        de casser leur chiffrement HTTPS, ce qui est hors perimetre.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

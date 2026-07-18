@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LAN Monitor - Connexion</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body class="login-body">
+  <form id="loginForm" class="login-card">
+    <div class="login-logo">
+      <span class="pulse-dot"></span> LAN&nbsp;Monitor
+    </div>
+    <p class="login-sub">Supervision de votre reseau local</p>
+    <label>Identifiant</label>
+    <input id="username" type="text" value="admin" autocomplete="username" />
+    <label>Mot de passe</label>
+    <input id="password" type="password" placeholder="admin" autocomplete="current-password" />
+    <button type="submit">Se connecter</button>
+    <div id="err" class="login-err"></div>
+    <p class="login-hint">Par defaut : <code>admin / admin</code> — modifiable ensuite.</p>
+  </form>
+  <script>
+    const form = document.getElementById('loginForm');
+    const err = document.getElementById('err');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      err.textContent = '';
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: document.getElementById('username').value,
+          password: document.getElementById('password').value,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) { window.location = '/'; }
+      else { err.textContent = data.error || 'Echec de connexion'; }
+    });
+  </script>
+</body>
+</html>
