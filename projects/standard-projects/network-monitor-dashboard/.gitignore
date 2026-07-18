@@ -1,0 +1,7 @@
+# Donnees locales sensibles : hash du mot de passe admin + historique appareils
+data/
+cookies.txt
+
+# Python
+__pycache__/
+*.pyc
