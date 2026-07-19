@@ -14,7 +14,8 @@ Symptôme exact · Causes probables (les plus fréquentes d'abord) · Diagnostic
 | `401`/token invalide (Keycloak) | [keycloak-token-invalide.md](keycloak-token-invalide.md) |
 | `LazyInitializationException` | [hibernate-lazyinitializationexception.md](hibernate-lazyinitializationexception.md) |
 | Pool de connexions épuisé | [connexion-pool-epuise.md](connexion-pool-epuise.md) |
+| `deadlock detected` (PostgreSQL) | [deadlock-postgres.md](deadlock-postgres.md) |
 
 ## Backlog
 Spring Boot ne démarre pas · `Bean not found` · dépendance circulaire · Kafka consumer bloqué ·
-conteneur Docker qui exit · timeout Oracle · deadlock Postgres. Ajouter via la skill **ajouter-entree-savoir**.
+conteneur Docker qui exit · timeout Oracle. Ajouter via la skill **ajouter-entree-savoir**.
