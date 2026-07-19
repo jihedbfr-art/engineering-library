@@ -6,7 +6,7 @@ The full pipeline: build, secure, ship, observe.
 - [containers/](containers/) — Docker, Kubernetes, image hardening
 - [security/](security/) — OWASP Top 10, SAST/DAST, secrets management, supply-chain security
 - [iac/](iac/) — Terraform, Ansible, immutable infrastructure
-- [monitoring/](monitoring/) — Prometheus, Grafana, logging, alerting
+- [monitoring/](monitoring/) — [Prometheus/Grafana/logging](monitoring/observability.md), [distributed tracing](monitoring/distributed-tracing.md), alerting
 
 ## The DevSecOps loop
 
