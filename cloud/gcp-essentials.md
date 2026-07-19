@@ -39,7 +39,7 @@ Same pattern as [AWS](aws-essentials.md) and [Azure](azure-essentials.md). GCP's
 
 ## Vertex AI — worth knowing exists
 
-GCP's unified ML/AI platform: managed training, hosted foundation models, feature stores, and the pipeline tooling to productionize models — relevant if [ML fundamentals](../ai/machine-learning/ml-fundamentals.md) or [LLM apps](../ai/llm/llm-fundamentals.md) work needs a managed platform instead of hand-rolled infrastructure.
+GCP's unified ML/AI platform: managed training, hosted foundation models, feature stores, and the pipeline tooling to productionize models — relevant if [ML fundamentals](../ai/01-foundations/ml-fundamentals.md) or [LLM apps](../ai/01-foundations/llm-fundamentals.md) work needs a managed platform instead of hand-rolled infrastructure.
 
 ## A typical web app on GCP
 
