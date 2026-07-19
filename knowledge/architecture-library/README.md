@@ -19,7 +19,7 @@ Chacun répond aux mêmes questions pour qu'on puisse comparer deux styles en 30
 | DDD | [`ddd.md`](ddd.md) | ✅ |
 | Saga | [`saga-pattern.md`](saga-pattern.md) | ✅ |
 | Serverless | `serverless.md` | à rédiger |
-| Multi-tenant | `multi-tenant.md` | à rédiger |
+| Multi-tenant | [`multi-tenant.md`](multi-tenant.md) | ✅ |
 
 ## Structure d'une entrée
 
