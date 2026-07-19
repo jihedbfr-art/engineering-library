@@ -66,7 +66,7 @@ For regression: **MAE**, **RMSE**, **R²**. Choose based on what a mistake actua
 - **Features**: the input variables. Good features often beat fancy models.
 - **Bias–variance tradeoff**: too simple (bias) vs too sensitive (variance) — you tune between them.
 - **Cross-validation**: rotate the validation split to use data efficiently.
-- **Embeddings**: dense vectors that capture meaning — the bridge from classic ML to [LLMs/RAG](../llm/rag.md).
+- **Embeddings**: dense vectors that capture meaning — the bridge from classic ML to [LLMs/RAG](../02-rag-architectures/rag-concepts.md). See also the [tokenization & embeddings deep dive](tokenization-and-embeddings.md) in this folder.
 
 ## Where classic ML still wins over LLMs
 
