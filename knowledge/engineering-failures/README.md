@@ -13,8 +13,9 @@ Cause · Symptômes · Comment diagnostiquer (commandes/logs) · Solution · Pr�
 | N+1 (Hibernate) | [hibernate-n-plus-1.md](hibernate-n-plus-1.md) | ✅ |
 | Rebalance storm (Kafka) | [kafka-consumer-rebalance-storm.md](kafka-consumer-rebalance-storm.md) | ✅ |
 | Cache stampede (Redis) | [redis-cache-stampede.md](redis-cache-stampede.md) | ✅ |
+| Pauses GC longues (JVM) | [jvm-gc-pauses.md](jvm-gc-pauses.md) | ✅ |
 
 ## Backlog
 Memory leak · Deadlock · Race condition · Split brain · Circular dependency · OOM ·
-Slow query · Connection leak · Broken deployment · Wrong transaction · Thread starvation ·
-GC pauses. Ajouter via la skill **ajouter-entree-savoir**.
+Slow query · Connection leak · Broken deployment · Wrong transaction · Thread starvation.
+Ajouter via la skill **ajouter-entree-savoir**.
