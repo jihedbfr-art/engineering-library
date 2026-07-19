@@ -63,4 +63,4 @@ Telecom fraud is where **network engineering meets cybersecurity**:
 RA and Fraud are **streaming analytics at scale** with a money-and-security objective:
 - ingest everything, correlate across sources, detect anomalies fast, act in real time
 - measurable KPIs: leakage %, fraud loss, detection latency, false-positive rate
-- the same discipline as [observability](../../devsecops/monitoring/observability.md) and [LLM evals](../../ai/machine-learning/evals-and-testing.md) — you cannot fix what you cannot measure.
+- the same discipline as [observability](../../devsecops/monitoring/observability.md) and [LLM evals](../../ai/05-evaluation-observability/evals-and-testing.md) — you cannot fix what you cannot measure.
