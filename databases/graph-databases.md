@@ -38,7 +38,7 @@ Read the query almost literally: "Alice, friends-with, someone, friends-with, fo
 | **Fraud detection** | Find rings of accounts sharing devices/addresses/payment methods — deep multi-hop patterns that degrade badly as SQL joins |
 | **Recommendation engines** | "People who bought X also bought Y, bought by people similar to you" — naturally a graph traversal |
 | **Social networks** | Friends-of-friends, shortest path, community detection — the textbook case |
-| **Knowledge graphs / RAG** | Entities and their relationships for retrieval — an emerging pairing with [RAG](../ai/llm/rag.md) systems |
+| **Knowledge graphs / RAG** | Entities and their relationships for retrieval — an emerging pairing with [RAG](../ai/02-rag-architectures/rag-concepts.md) systems |
 | **Network/IT topology** | "What breaks if this server goes down?" — literally a graph traversal problem |
 | **Access control (complex permissions)** | "Can user X reach resource Y through any group/role chain?" |
 
