@@ -8,6 +8,7 @@ How operators turn network usage into money. This is one of the largest, most de
 - [mediation.md](mediation.md) — collecting and normalizing usage records (CDRs)
 - [rating-charging.md](rating-charging.md) — turning usage into cost; online vs offline
 - [ocs.md](ocs.md) — Online Charging System: real-time balance and control
+- [5g-converged-charging.md](5g-converged-charging.md) — CHF/Nchf: online+offline merged, Diameter replaced by HTTP/2+JSON
 - [revenue-assurance.md](revenue-assurance.md) — plugging the leaks, fighting fraud
 
 ## The chain in one line
