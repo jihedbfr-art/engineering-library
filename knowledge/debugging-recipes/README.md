@@ -17,7 +17,8 @@ Symptôme exact · Causes probables (les plus fréquentes d'abord) · Diagnostic
 | `deadlock detected` (PostgreSQL) | [deadlock-postgres.md](deadlock-postgres.md) |
 | Spring Boot ne démarre pas | [spring-boot-ne-demarre-pas.md](spring-boot-ne-demarre-pas.md) |
 | Consumer Kafka bloqué (lag figé) | [kafka-consumer-bloque.md](kafka-consumer-bloque.md) |
+| Conteneur Docker `Exited (1)` immédiatement | [docker-conteneur-exit.md](docker-conteneur-exit.md) |
+| Timeout Oracle (`ORA-01013`) | [oracle-timeout.md](oracle-timeout.md) |
 
 ## Backlog
-conteneur Docker qui exit · timeout Oracle.
 Ajouter via la skill **ajouter-entree-savoir**.
