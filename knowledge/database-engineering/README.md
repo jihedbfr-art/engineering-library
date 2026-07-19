@@ -9,4 +9,4 @@ Backup/Restore · Monitoring. Voir [`_TEMPLATE.md`](_TEMPLATE.md).
 
 ## Moteurs
 PostgreSQL (principal — voir [ADR 0002](../engineering-decisions/0002-pourquoi-postgresql.md)) ·
-Oracle · MongoDB · Redis · Neo4j · ElasticSearch. Ajouter via la skill **ajouter-entree-savoir**.
+Oracle · [Redis](redis.md) · MongoDB · Neo4j · ElasticSearch. Ajouter via la skill **ajouter-entree-savoir**.
