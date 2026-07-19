@@ -16,8 +16,14 @@ Cause · Symptômes · Comment diagnostiquer (commandes/logs) · Solution · Pr�
 | Pauses GC longues (JVM) | [jvm-gc-pauses.md](jvm-gc-pauses.md) | ✅ |
 | Double réservation (race condition) | [race-condition-double-booking.md](race-condition-double-booking.md) | ✅ |
 | Requête lente par index manquant | [missing-index-slow-query.md](missing-index-slow-query.md) | ✅ |
+| Memory leak (JVM) | [memory-leak.md](memory-leak.md) | ✅ |
+| OOM / `OOMKilled` | [oom.md](oom.md) | ✅ |
+| Connection leak (pool JDBC) | [connection-leak.md](connection-leak.md) | ✅ |
+| Split brain (double leader) | [split-brain.md](split-brain.md) | ✅ |
+| Circular dependency (beans Spring) | [circular-dependency.md](circular-dependency.md) | ✅ |
+| Broken deployment (migration vs rolling deploy) | [broken-deployment.md](broken-deployment.md) | ✅ |
+| Wrong transaction (`@Transactional` ignoré) | [wrong-transaction.md](wrong-transaction.md) | ✅ |
+| Thread starvation (pool de threads épuisé) | [thread-starvation.md](thread-starvation.md) | ✅ |
 
 ## Backlog
-Memory leak · Split brain · Circular dependency · OOM ·
-Connection leak · Broken deployment · Wrong transaction · Thread starvation.
 Ajouter via la skill **ajouter-entree-savoir**.
