@@ -13,7 +13,7 @@ Chacun répond aux mêmes questions pour qu'on puisse comparer deux styles en 30
 | Event-driven | `event-driven.md` | à rédiger |
 | CQRS | [`cqrs.md`](cqrs.md) | ✅ |
 | Event sourcing | `event-sourcing.md` | à rédiger |
-| Hexagonal (ports & adapters) | `hexagonal.md` | à rédiger |
+| Hexagonal (ports & adapters) | [`hexagonal.md`](hexagonal.md) | ✅ |
 | Onion | `onion.md` | à rédiger |
 | Clean | `clean.md` | à rédiger |
 | DDD | `ddd.md` | à rédiger |
