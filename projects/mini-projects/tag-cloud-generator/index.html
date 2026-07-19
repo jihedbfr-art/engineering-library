@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Nuage de mots-cles</title>
+<style>
+body{font-family:system-ui;max-width:700px;margin:30px auto;color:#222}
+textarea{width:100%;height:120px;padding:8px;font-family:inherit;box-sizing:border-box}
+button{padding:8px 14px;cursor:pointer;margin-top:8px}
+#cloud{margin-top:24px;line-height:2.4;text-align:center}
+#cloud span{display:inline-block;margin:0 8px;cursor:default;color:#2563eb}
+label{font-size:13px;color:#666}
+</style>
+</head><body>
+<h1>Nuage de mots-cles</h1>
+<p>Colle un texte, les mots les plus frequents s'affichent en plus grand. Purement cote client,
+aucune donnee n'est envoyee nulle part.</p>
+<textarea id="text" placeholder="Colle ton texte ici...">Le chat noir dort sur le tapis. Le chat aime dormir toute la journee. Un autre chat regarde le chat noir qui dort.</textarea>
+<div>
+  <label><input type="checkbox" id="ignoreStopwords" checked> Ignorer les mots courants (le, la, un...)</label>
+</div>
+<button id="generate">Generer le nuage</button>
+<div id="cloud"></div>
+<script src="app.js"></script>
+</body></html>
