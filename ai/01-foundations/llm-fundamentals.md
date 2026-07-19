@@ -40,10 +40,10 @@ Principles that transfer across all providers:
 
 ```
 Simple task, general knowledge        → prompt engineering alone
-Needs YOUR data (docs, tickets, db)   → RAG (see rag.md)
+Needs YOUR data (docs, tickets, db)   → RAG (see ../02-rag-architectures/rag-concepts.md)
 Needs a consistent style/format
  at very high volume                  → fine-tuning
-Needs to DO things (APIs, files)      → tools/agents (see ../agents/)
+Needs to DO things (APIs, files)      → tools/agents (see ../03-agentic-workflows/)
 ```
 Order matters: try prompting before RAG, RAG before fine-tuning. Complexity is a cost.
 
