@@ -17,7 +17,10 @@ Menace/objectif · Principe · Mise en œuvre (code/config) · Erreurs classique
 | CSRF | [csrf.md](csrf.md) | ✅ |
 | Injection SQL | [sql-injection.md](sql-injection.md) | ✅ |
 | XSS | [xss.md](xss.md) | ✅ |
+| RBAC | [rbac.md](rbac.md) | ✅ |
+| ABAC | [abac.md](abac.md) | ✅ |
+| XXE | [xxe.md](xxe.md) | ✅ |
+| SSRF | [ssrf.md](ssrf.md) | ✅ |
 
 ## Backlog
-RBAC · ABAC · XXE · SSRF.
 Ajouter via la skill **ajouter-entree-savoir**.
