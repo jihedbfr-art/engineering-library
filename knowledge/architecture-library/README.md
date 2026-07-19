@@ -16,7 +16,7 @@ Chacun répond aux mêmes questions pour qu'on puisse comparer deux styles en 30
 | Hexagonal (ports & adapters) | [`hexagonal.md`](hexagonal.md) | ✅ |
 | Onion | `onion.md` | à rédiger |
 | Clean | `clean.md` | à rédiger |
-| DDD | `ddd.md` | à rédiger |
+| DDD | [`ddd.md`](ddd.md) | ✅ |
 | Saga | [`saga-pattern.md`](saga-pattern.md) | ✅ |
 | Serverless | `serverless.md` | à rédiger |
 | Multi-tenant | `multi-tenant.md` | à rédiger |
