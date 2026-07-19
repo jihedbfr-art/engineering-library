@@ -2,7 +2,9 @@
 
 Not every workload should hit a hosted API. Data residency, offline development, and
 per-token cost at volume are all real reasons to run models on your own hardware via
-[Ollama](https://ollama.com).
+[Ollama](https://ollama.com) — see [local-inference-tradeoffs.md](local-inference-tradeoffs.md)
+for when that trade is actually worth making, plus concrete quantization and hardware sizing
+numbers instead of vibes.
 
 [local_ollama_chat.py](local_ollama_chat.py) is the client, plus two ways to trade local
 compute time for answer quality — the "test-time scaling" idea, made concrete without
