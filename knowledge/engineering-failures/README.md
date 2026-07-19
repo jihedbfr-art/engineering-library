@@ -14,8 +14,9 @@ Cause · Symptômes · Comment diagnostiquer (commandes/logs) · Solution · Pr�
 | Rebalance storm (Kafka) | [kafka-consumer-rebalance-storm.md](kafka-consumer-rebalance-storm.md) | ✅ |
 | Cache stampede (Redis) | [redis-cache-stampede.md](redis-cache-stampede.md) | ✅ |
 | Pauses GC longues (JVM) | [jvm-gc-pauses.md](jvm-gc-pauses.md) | ✅ |
+| Double réservation (race condition) | [race-condition-double-booking.md](race-condition-double-booking.md) | ✅ |
 
 ## Backlog
-Memory leak · Deadlock · Race condition · Split brain · Circular dependency · OOM ·
+Memory leak · Split brain · Circular dependency · OOM ·
 Slow query · Connection leak · Broken deployment · Wrong transaction · Thread starvation.
 Ajouter via la skill **ajouter-entree-savoir**.
