@@ -13,7 +13,9 @@ Menace/objectif · Principe · Mise en œuvre (code/config) · Erreurs classique
 | Anti-bruteforce (Keycloak) | [anti-bruteforce-keycloak.md](anti-bruteforce-keycloak.md) | ✅ |
 | MFA / step-up (Keycloak) | [mfa-step-up-keycloak.md](mfa-step-up-keycloak.md) | ✅ |
 | CORS | [cors.md](cors.md) | ✅ |
+| JWT | [jwt.md](jwt.md) | ✅ |
+| CSRF | [csrf.md](csrf.md) | ✅ |
 
 ## Backlog
-JWT · RBAC · ABAC · CSRF · OWASP Top 10 · SQL injection · XSS · XXE · SSRF.
+RBAC · ABAC · OWASP Top 10 · SQL injection · XSS · XXE · SSRF.
 Ajouter via la skill **ajouter-entree-savoir**.
