@@ -19,3 +19,4 @@ jamais le poste de travail.
 | Projet | Stack | Rôle |
 |---|---|---|
 | [network-monitor-dashboard](network-monitor-dashboard) | Python (stdlib) + Vanilla JS | Supervision du réseau local : appareils, trafic, débit, alertes |
+| [inventory-stock-tracker](inventory-stock-tracker) | Spring Boot 3 / JPA / Thymeleaf | Stock par article, mouvements entrée/sortie tracés, seuils de réappro |

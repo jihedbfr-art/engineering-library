@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${item.name}">Article</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; color: #222; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ddd; }
+        .badge { padding: 2px 8px; border-radius: 10px; font-size: 12px; color: #fff; }
+        .type-IN { background: #16a34a; }
+        .type-OUT { background: #dc2626; }
+        form.movement { margin-top: 20px; display: flex; gap: 8px; align-items: center; }
+        a.back { color: #2563eb; text-decoration: none; }
+    </style>
+</head>
+<body>
+<a class="back" th:href="@{/}">&larr; Retour au stock</a>
+<h1 th:text="${item.name}">Nom</h1>
+<p>
+    SKU <strong th:text="${item.sku}">SKU</strong> —
+    quantite actuelle <strong th:text="${item.quantity}">0</strong>
+    (seuil reappro <span th:text="${item.reorderThreshold}">0</span>)
+</p>
+
+<form class="movement" method="post" th:action="@{/items/{id}/movements(id=${item.id})}">
+    <select name="type">
+        <option th:each="t : ${types}" th:value="${t}" th:text="${t}"></option>
+    </select>
+    <input type="number" name="quantity" min="1" value="1" required>
+    <input type="text" name="reason" placeholder="Motif (optionnel)">
+    <button type="submit">Enregistrer le mouvement</button>
+</form>
+
+<table>
+    <thead>
+    <tr><th>Date</th><th>Type</th><th>Quantite</th><th>Motif</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${movements}">
+        <td th:text="${#temporals.format(m.timestamp, 'dd/MM/yyyy HH:mm')}">01/01/2026 00:00</td>
+        <td><span class="badge" th:classappend="'type-' + ${m.type}" th:text="${m.type}"></span></td>
+        <td th:text="${m.quantity}">0</td>
+        <td th:text="${m.reason}">-</td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(movements)}">
+        <td colspan="4">Aucun mouvement enregistre pour cet article.</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
