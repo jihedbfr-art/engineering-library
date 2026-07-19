@@ -21,6 +21,7 @@ Everything that makes voice, data and messaging travel across the planet — fro
 | [billing/](billing/) | Rating, charging, mediation, OCS, revenue assurance |
 | [camara-network-apis.md](camara-network-apis.md) | Coding against telecom: SIM-swap, QoD, number verification |
 | [private-5g.md](private-5g.md) | Private/enterprise 5G networks — factories, ports, campuses |
+| [edge-computing-mec.md](edge-computing-mec.md) | MEC: compute pushed to the radio edge, and what actually runs there |
 | [telecom-security.md](telecom-security.md) | Securing the network: SS7 risks, SIM swap, 5G security |
 | [operators.md](operators.md) | Key operators worldwide and their footprint |
 | [vendors.md](vendors.md) | Ericsson, Nokia, Huawei, Cisco... who builds the gear |
