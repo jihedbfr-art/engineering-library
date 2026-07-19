@@ -1,14 +1,83 @@
-# 🤖 AI
+# 🤖 AI Engineering
 
-The most important module of the decade.
+Production-grade RAG, agents, and local inference — not another notebook of demos.
 
-- [llm/](llm/) — [fundamentals](llm/llm-fundamentals.md), [RAG](llm/rag.md)
-- [machine-learning/](machine-learning/) — [ML fundamentals](machine-learning/ml-fundamentals.md), [evals & testing LLM apps](machine-learning/evals-and-testing.md)
-- [prompt-engineering/](prompt-engineering/) — [patterns](prompt-engineering/patterns.md), [ready-to-use prompt library](prompt-engineering/prompt-library.md)
-- [agents/](agents/) — [building AI agents](agents/building-agents.md)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![RAG](https://img.shields.io/badge/retrieval-Chroma%20%2B%20BM25-purple)
+![Agents](https://img.shields.io/badge/agents-CrewAI-orange)
+![Local Inference](https://img.shields.io/badge/local%20inference-Ollama-black)
 
-## Start here
+## What this is
 
-1. Understand tokens, context windows and embeddings.
-2. Build a small RAG app before touching fine-tuning.
-3. Measure everything — evals beat intuition.
+A working, opinionated slice of applied AI engineering: hybrid **RAG** (retrieval-augmented
+generation), bounded **multi-agent systems**, and **local LLM** inference you can run without
+an API key. Every module pairs a concept doc with real, runnable Python — not a snippet that
+only makes sense in a slide.
+
+I built this the way I'd want to hand it to a new engineer joining an AI feature team: enough
+theory to know *why*, enough working code to know *how*, and honest notes on where each
+approach breaks down. If you're evaluating whether I can build this stuff in production, this
+is closer to the truth than a portfolio of toy chatbots.
+
+> A terminal recording and an architecture diagram belong here — see [`assets/`](assets/).
+> Not adding a placeholder GIF that doesn't exist yet; it'll land when there's a real one.
+
+## Quick start
+
+```bash
+git clone https://github.com/jihedbfr-art/dev-library.git
+cd dev-library/ai
+pip install -r requirements.txt
+
+# pick one:
+python 02-rag-architectures/advanced_rag.py          # hybrid RAG demo, needs OPENAI_API_KEY + ANTHROPIC_API_KEY
+python 03-agentic-workflows/research_agent_crew.py "your topic here"   # needs OPENAI_API_KEY
+python 04-local-inference/local_ollama_chat.py "your question here"    # needs a running `ollama serve`, no API key
+```
+
+Two minutes to a working RAG query, agent crew, or local model chat — pick whichever matches
+what you're evaluating.
+
+## Why this over a tutorial repo
+
+- **Hybrid retrieval, not vector-search-and-hope.** Dense (Chroma) and sparse (BM25) search
+  fused with reciprocal rank fusion, then optionally reranked with a cross-encoder — because
+  pure semantic search quietly loses exact-term queries (error codes, SKUs, names) that
+  keyword search catches for free.
+- **Multi-agent systems with real cost bounds**, not an unbounded loop that racks up a bill —
+  `max_iter` and `max_rpm` are set deliberately, and the tool boundary between the Researcher
+  and Writer agent is designed on purpose, not an accident of the framework's defaults.
+- **A local-inference path that costs nothing per token.** The Ollama client isn't a toy —
+  it implements self-consistency sampling and iterative self-refinement, two real test-time
+  scaling techniques, so a small local model can trade compute time for answer quality instead
+  of needing a bigger hosted model.
+- **Evaluation is a first-class module, not a footnote.** `05-evaluation-observability` exists
+  because every technique above produces probabilistic output, and "it looked right" is not a
+  metric — this module wasn't in the original plan I started from, and I added it because
+  skipping it would make everything else in here unverifiable.
+- **One shared foundation, not three copy-pasted `try/except` blocks.** Logging, retry-with-backoff,
+  and typed errors live in `shared/` and get imported by every script — the same discipline
+  you'd expect in a real service codebase, applied to AI engineering code.
+
+## Architecture
+
+| Module | Purpose |
+|---|---|
+| [`01-foundations/`](01-foundations/) | Tokens, embeddings, prompt patterns — the primitives every other module assumes |
+| [`02-rag-architectures/`](02-rag-architectures/) | Hybrid retrieval pipeline: Chroma + BM25 + Reciprocal Rank Fusion + cross-encoder rerank |
+| [`03-agentic-workflows/`](03-agentic-workflows/) | Bounded multi-agent orchestration with CrewAI (Researcher + Writer) |
+| [`04-local-inference/`](04-local-inference/) | Ollama-based local chat with self-consistency and iterative-refinement test-time scaling |
+| [`05-evaluation-observability/`](05-evaluation-observability/) | Golden eval sets, scoring methods, CI gating — how you know any of the above actually works |
+| [`shared/`](shared/) | Logging, retry/backoff, and error types reused across every script |
+
+## Where to start
+
+New to this space: read `01-foundations` in order, then `02-rag-architectures` — RAG is the
+highest-leverage, lowest-risk place to start building. Already building agents or running
+local models: jump straight to `03` or `04`, the docs don't assume you've read the others.
+
+---
+
+Crafted with passion — By JiHéD
