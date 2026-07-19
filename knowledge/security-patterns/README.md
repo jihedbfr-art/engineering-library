@@ -15,7 +15,9 @@ Menace/objectif · Principe · Mise en œuvre (code/config) · Erreurs classique
 | CORS | [cors.md](cors.md) | ✅ |
 | JWT | [jwt.md](jwt.md) | ✅ |
 | CSRF | [csrf.md](csrf.md) | ✅ |
+| Injection SQL | [sql-injection.md](sql-injection.md) | ✅ |
+| XSS | [xss.md](xss.md) | ✅ |
 
 ## Backlog
-RBAC · ABAC · OWASP Top 10 · SQL injection · XSS · XXE · SSRF.
+RBAC · ABAC · XXE · SSRF.
 Ajouter via la skill **ajouter-entree-savoir**.
