@@ -9,9 +9,9 @@ relevant to the current task or not. [Tokenization & embeddings](../01-foundatio
 covers why that's not free: every token in a bloated system prompt is a token not available for
 the actual conversation, on every single request.
 
-The "skill" pattern (the same idea behind Claude's Agent Skills, and convergently reinvented
-under other names in several agent frameworks) separates *capability* from *context budget*: a
-skill is a self-contained folder — usually a short instruction file (`SKILL.md`, with YAML
+The "skill" pattern — convergently reinvented under different names across several agent
+frameworks and coding-agent tools, because the cost math is the same everywhere — separates
+*capability* from *context budget*: a skill is a self-contained folder — usually a short instruction file (`SKILL.md`, with YAML
 frontmatter: a name and a one-line description) plus optional scripts or reference material —
 that the agent discovers by scanning a directory, but whose full content only loads into context
 **when the current task actually needs it**.
