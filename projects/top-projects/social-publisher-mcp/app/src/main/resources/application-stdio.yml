@@ -1,0 +1,16 @@
+# Local STDIO transport for Claude Desktop. No web server, no API-key filter.
+# Logs go to a file so they don't corrupt the stdio protocol stream on stdout.
+spring:
+  main:
+    web-application-type: none
+    banner-mode: "off"
+  ai:
+    mcp:
+      server:
+        stdio: true
+
+logging:
+  file:
+    name: ./logs/mcp-stdio.log
+  pattern:
+    console: ""

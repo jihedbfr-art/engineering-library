@@ -1,0 +1,10 @@
+# Dev profile: enables the MOCK connector so the whole pipeline can be demoed without real tokens.
+socialpub:
+  mcp:
+    api-key: ${MCP_API_KEY:dev-key}
+  credentials:
+    enc-key: ${CREDENTIALS_ENC_KEY:MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=}
+
+logging:
+  level:
+    dev.jihed.socialpub: DEBUG

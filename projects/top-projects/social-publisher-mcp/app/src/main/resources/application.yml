@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: social-publisher-mcp
+  threads:
+    virtual:
+      enabled: true          # no-op on Java 17, picked up automatically on a 21+ runtime
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/socialpub}
+    username: ${DB_USER:socialpub}
+    password: ${DB_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+  ai:
+    mcp:
+      server:
+        name: social-publisher-mcp
+        version: 0.1.0
+
+server:
+  port: 8080
+
+media:
+  minio:
+    endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+    access-key: ${MINIO_ACCESS_KEY:}
+    secret-key: ${MINIO_SECRET_KEY:}
+    bucket: ${MINIO_BUCKET:media-staging}
+    presign-expiry-seconds: 3600
+
+socialpub:
+  public-base-url: ${PUBLIC_BASE_URL:http://localhost:8080}
+  mcp:
+    api-key: ${MCP_API_KEY:}
+  credentials:
+    enc-key: ${CREDENTIALS_ENC_KEY:}
+  resilience:
+    max-attempts: 3
+    initial-backoff: 500ms
+    permits-per-second: 5
+  scheduling:
+    poll-interval-ms: 30000
+    batch-size: 20
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  level:
+    dev.jihed.socialpub: INFO
