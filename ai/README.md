@@ -77,6 +77,7 @@ what you're evaluating.
 | [`06-agent-hooks-and-skills/`](06-agent-hooks-and-skills/) | Hooks for controlling an agent loop (veto/rewrite tool calls), 11 real skill packages, 4 composable hook recipes |
 | [`07-extensibility/`](07-extensibility/) | Plugin/connector pattern: discoverable external tools with an enforced, least-privilege permission boundary |
 | [`08-guards-safety/`](08-guards-safety/) | Input/output guard chain — PII and injection checks going in, leak checks coming out, fail-closed by default |
+| [`09-vector-layer/`](09-vector-layer/) | Backend-agnostic `VectorStore` interface — in-memory and Chroma today, pgvector/Qdrant are a new adapter, not a rewrite |
 | [`shared/`](shared/) | Logging, retry/backoff, and error types reused across every script |
 
 ## Where to start
