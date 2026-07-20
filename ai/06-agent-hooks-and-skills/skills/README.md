@@ -19,6 +19,8 @@ for why that field carries more weight than it looks like it should.
 | [`api-contract-reviewer/`](api-contract-reviewer/) | Breaking API changes, wrong HTTP semantics, inconsistent error shapes, missing pagination/versioning |
 | [`database-migration-reviewer/`](database-migration-reviewer/) | Rolling-deploy incompatible migrations, lock duration on real table sizes, non-reversible rollbacks |
 | [`telecom-bss-integration-review/`](telecom-bss-integration-review/) | Idempotency gaps, partial-failure handling, and correlation-ID propagation in provisioning/portability flows |
+| [`security-audit-checklist/`](security-audit-checklist/) | Injection, broken access control, unsafe deserialization, crypto misuse — defensive review only, never exploit code |
+| [`dependency-upgrade-reviewer/`](dependency-upgrade-reviewer/) | Breaking-change risk in a version bump that green CI alone doesn't prove safe |
 
 ## Scaffolding & generation
 
@@ -27,6 +29,14 @@ for why that field carries more weight than it looks like it should.
 | [`keycloak-spi-scaffold/`](keycloak-spi-scaffold/) | A working Provider/ProviderFactory/services-file scaffold for a Keycloak SPI module |
 | [`documentation-generator/`](documentation-generator/) | README/module docs prioritizing what a new reader needs over restating the code |
 
+## Planning & diagnosis
+
+| Skill | What it plans |
+|---|---|
+| [`code-refactoring-planner/`](code-refactoring-planner/) | A large refactor broken into small, independently-shippable, behavior-preserving steps |
+| [`performance-profiling-guide/`](performance-profiling-guide/) | Measure-first diagnosis of a real bottleneck, before proposing any fix |
+| [`test-plan-writer/`](test-plan-writer/) | What to test, at which level, before any test code gets written |
+
 ## Writing & reporting
 
 | Skill | What it structures |
@@ -34,15 +44,15 @@ for why that field carries more weight than it looks like it should.
 | [`git-commit-message-writer/`](git-commit-message-writer/) | A commit message that explains *why*, from an actual diff — not a restatement of *what* |
 | [`adr-writer/`](adr-writer/) | An Architecture Decision Record with honest alternatives and consequences, not a decision dressed up as obvious |
 | [`incident-postmortem-writer/`](incident-postmortem-writer/) | A blameless postmortem — root cause as a system condition, never a person |
-| [`test-plan-writer/`](test-plan-writer/) | What to test, at which level, before any test code gets written |
+| [`changelog-writer/`](changelog-writer/) | Commits/PRs grouped by user-facing impact, in plain language, breaking changes never buried |
 | [`rag-eval-report/`](rag-eval-report/) | Raw eval output turned into failure clusters and one ranked next action, not a wall of red rows |
 
-## Why these specific eleven
+## Why this specific mix
 
-A mix on purpose: a few grounded in one specific stack deeply (Spring Boot, Keycloak, telecom
-provisioning — where generic advice would be too shallow to be useful), and several
-domain-general ones (commit messages, ADRs, migrations, test plans, postmortems) that apply
-regardless of what stack a project runs. That split mirrors the real shape of a useful skill
-catalog: some skills need deep, narrow expertise; others need a rigorous *process* applied
-consistently, and the value is in the process being followed the same way every time, not in
-niche knowledge.
+A deliberate split: a few skills grounded in one specific stack deeply (Spring Boot, Keycloak,
+telecom provisioning — where generic advice would be too shallow to be useful), and most of the
+catalog domain-general (commit messages, ADRs, migrations, test plans, postmortems, refactoring,
+performance, security, dependency review) that apply regardless of what stack a project runs.
+That split mirrors the real shape of a useful skill catalog: some skills need deep, narrow
+expertise; most need a rigorous *process* applied consistently, and the value is in the process
+being followed the same way every time, not in niche knowledge.
