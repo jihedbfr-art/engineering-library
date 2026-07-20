@@ -40,7 +40,7 @@ Most business ML is **supervised**. LLM alignment uses **reinforcement** (RLHF).
 - **Underfitting**: model too simple to capture the pattern (high error everywhere).
 - **The fix**: always evaluate on a **held-out test set the model never saw**; use regularization, more data, or a simpler model.
 
-> This is exactly why [LLM evals](evals-and-testing.md) insist on a held-out set — same principle, one level up.
+> This is exactly why [LLM evals](../05-evaluation-observability/evals-and-testing.md) insist on a held-out set — same principle, one level up.
 
 ## Train / validation / test — why three splits
 
