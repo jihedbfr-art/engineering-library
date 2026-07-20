@@ -78,6 +78,7 @@ what you're evaluating.
 | [`07-extensibility/`](07-extensibility/) | Plugin/connector pattern: discoverable external tools with an enforced, least-privilege permission boundary |
 | [`08-guards-safety/`](08-guards-safety/) | Input/output guard chain — PII and injection checks going in, leak checks coming out, fail-closed by default |
 | [`09-vector-layer/`](09-vector-layer/) | Backend-agnostic `VectorStore` interface — in-memory and Chroma today, pgvector/Qdrant are a new adapter, not a rewrite |
+| [`10-model-routing-and-cost/`](10-model-routing-and-cost/) | Rule-based model tier routing, a semantic cache built on the vector layer, and per-call cost tracking |
 | [`shared/`](shared/) | Logging, retry/backoff, and error types reused across every script |
 
 ## Where to start
