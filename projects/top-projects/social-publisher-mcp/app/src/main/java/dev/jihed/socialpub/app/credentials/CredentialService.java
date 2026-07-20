@@ -1,5 +1,6 @@
 package dev.jihed.socialpub.app.credentials;
 
+import dev.jihed.socialpub.api.CredentialProvider;
 import dev.jihed.socialpub.api.Platform;
 import dev.jihed.socialpub.persistence.entity.PlatformCredentialEntity;
 import dev.jihed.socialpub.persistence.repo.PlatformCredentialRepository;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * interprets; they are encrypted with {@link CredentialCipher} before hitting the database.
  */
 @Service
-public class CredentialService {
+public class CredentialService implements CredentialProvider {
 
   public record ConnectedAccount(Platform platform, Instant expiresAt, boolean valid) {}
 
@@ -48,6 +49,11 @@ public class CredentialService {
   @Transactional(readOnly = true)
   public Optional<String> load(Platform platform) {
     return repository.findByPlatform(platform).map(e -> cipher.decrypt(e.getPayloadEncrypted()));
+  }
+
+  @Override
+  public Optional<String> find(Platform platform) {
+    return load(platform);
   }
 
   @Transactional(readOnly = true)
