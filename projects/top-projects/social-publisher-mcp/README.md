@@ -58,6 +58,21 @@ Run with the `dev` profile and target the `MOCK` platform — the whole pipeline
 staging, persistence, fan-out) runs end to end and returns a fake post URL. That's also what the
 end-to-end integration test drives.
 
+### Local demo, no Docker
+
+If you can't run Docker (no Postgres/MinIO), there's a self-contained `demo` profile: in-memory H2,
+a no-op media stager, the MOCK connector, and a small web UI.
+
+```bash
+make demo
+# or: mvn -pl app -am -DskipTests package && \
+#     java -jar app/target/social-publisher-mcp.jar --spring.profiles.active=demo
+```
+
+Then open <http://localhost:8080>: write a caption, suggest hashtags, publish to MOCK and watch it
+land in the history — the browser calls the same tools the MCP layer exposes. Nothing leaves your
+machine and no credentials are needed.
+
 ## Tool reference
 
 | Tool | What it does |
