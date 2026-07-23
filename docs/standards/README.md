@@ -1,6 +1,6 @@
 # docs/standards
 
-Conventions **transverses** aux projets de `jihedapps`. Uniquement ce qui est spécifique à cet
+Conventions **transverses** aux projets de ce dépôt. Uniquement ce qui est spécifique à cet
 écosystème — pas les généralités qu'un modèle connaît déjà. À charger à la demande.
 
 | Fichier | Domaine |
