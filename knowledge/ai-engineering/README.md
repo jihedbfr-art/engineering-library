@@ -8,6 +8,7 @@ Production-grade RAG, agents, and local inference — not another notebook of de
 ![RAG](https://img.shields.io/badge/retrieval-Chroma%20%2B%20BM25-purple)
 ![Agents](https://img.shields.io/badge/agents-CrewAI-orange)
 ![Local Inference](https://img.shields.io/badge/local%20inference-Ollama-black)
+![Identity](https://img.shields.io/badge/agent%20identity-Keycloak%20%2F%20OIDC-1a1a2e)
 
 ## What this is
 
@@ -79,6 +80,7 @@ what you're evaluating.
 | [`08-guards-safety/`](08-guards-safety/) | Input/output guard chain — PII and injection checks going in, leak checks coming out, fail-closed by default |
 | [`09-vector-layer/`](09-vector-layer/) | Backend-agnostic `VectorStore` interface — in-memory and Chroma today, pgvector/Qdrant are a new adapter, not a rewrite |
 | [`10-model-routing-and-cost/`](10-model-routing-and-cost/) | Rule-based model tier routing, a semantic cache built on the vector layer, and per-call cost tracking |
+| [`11-agent-identity-and-access/`](11-agent-identity-and-access/) | Per-agent OAuth2/OIDC clients via Keycloak, scoped and short-lived tokens, fail-closed scope enforcement |
 | [`shared/`](shared/) | Logging, retry/backoff, and error types reused across every script |
 
 ## Where to start

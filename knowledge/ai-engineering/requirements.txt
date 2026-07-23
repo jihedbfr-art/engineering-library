@@ -25,5 +25,10 @@ python-dotenv==1.2.2
 # Agent hooks & skills (06-agent-hooks-and-skills)
 pyyaml==6.0.2
 
+# Agent identity & access (11-agent-identity-and-access)
+requests==2.32.3
+pyjwt==2.10.1
+cryptography==43.0.3
+
 # Dev / testing
 pytest==9.0.3
