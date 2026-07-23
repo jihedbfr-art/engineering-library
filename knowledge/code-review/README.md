@@ -23,7 +23,7 @@ Code review catches bugs, spreads knowledge, and keeps the codebase coherent. Do
 1. **Correctness** — does it do what it claims? Edge cases (empty, null, concurrent, large input)?
 2. **Security** — injection, authz checks, secrets, untrusted input → [OWASP Top 10](../devsecops/security/owasp-top10.md).
 3. **Tests** — is the new behavior covered? Do tests actually assert something?
-4. **Readability** — will someone understand this in 6 months? → [clean code](../programming/clean-code.md)
+4. **Readability** — will someone understand this in 6 months? → [clean code](../../foundations/programming/clean-code.md)
 5. **Design** — does it fit the architecture, or bolt on tech debt?
 6. *Then* style — and style should be automated (formatter/linter), not debated in review.
 
