@@ -100,7 +100,7 @@ def require_scope(validator: TokenValidator, scope: str) -> Callable[[Callable],
     return decorator
 
 
-def _make_demo_token(scopes: str, *, expires_in: int, secret: str = "demo-signing-key") -> str:
+def _make_demo_token(scopes: str, *, expires_in: int, secret: str = "demo-signing-key-thats-long-enough-for-hs256") -> str:
     """Builds a locally HS256-signed token so the demo below runs without a
     live Keycloak instance. Production tokens are RS256, verified against the
     IdP's JWKS via TokenValidator — this helper exists purely so this file's
@@ -126,7 +126,7 @@ def _demo() -> None:
     keycloak_agent_client.py's _demo() for the end-to-end path against a real
     Keycloak instance.
     """
-    secret = "demo-signing-key"
+    secret = "demo-signing-key-thats-long-enough-for-hs256"
 
     def check(scopes: str, required: str, *, expires_in: int = 300) -> None:
         token = _make_demo_token(scopes, expires_in=expires_in, secret=secret)
