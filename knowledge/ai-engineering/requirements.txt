@@ -20,10 +20,10 @@ duckduckgo-search==6.3.7
 
 # Shared
 pydantic==2.10.3
-python-dotenv==1.0.1
+python-dotenv==1.2.2
 
 # Agent hooks & skills (06-agent-hooks-and-skills)
 pyyaml==6.0.2
 
 # Dev / testing
-pytest==8.3.4
+pytest==9.0.3
