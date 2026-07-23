@@ -20,6 +20,7 @@ target/
 # Python
 __pycache__/
 *.pyc
+.venv/
 
 # Node / Angular
 node_modules/
