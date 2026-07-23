@@ -45,6 +45,8 @@ class SocialPublisherEndToEndIT {
     registry.add("media.minio.endpoint", minio::getS3URL);
     registry.add("media.minio.access-key", minio::getUserName);
     registry.add("media.minio.secret-key", minio::getPassword);
+    // Push the scheduled poller far out so it doesn't fire against the container during teardown.
+    registry.add("socialpub.scheduling.poll-interval-ms", () -> "3600000");
   }
 
   @Autowired private PublicationService publications;
