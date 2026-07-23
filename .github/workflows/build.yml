@@ -17,9 +17,24 @@ jobs:
       - name: Find Maven project directories
         id: find
         run: |
-          dirs=$(find . -name pom.xml -not -path '*/target/*' -exec dirname {} \; | sed 's#^\./##' | jq -R -s -c 'split("\n")[:-1]')
+          # A directory is a buildable root only if no ancestor directory also has a pom.xml.
+          # This builds each multi-module reactor once through its parent, instead of trying to
+          # build reactor submodules on their own (they can't resolve their sibling modules).
+          all=$(find . -name pom.xml -not -path '*/target/*' -exec dirname {} \; | sed 's#^\./##' | sort -u)
+          roots=""
+          while IFS= read -r d; do
+            [ -z "$d" ] && continue
+            parent=$(dirname "$d")
+            is_child=false
+            while [ "$parent" != "." ]; do
+              if printf '%s\n' "$all" | grep -qxF "$parent"; then is_child=true; break; fi
+              parent=$(dirname "$parent")
+            done
+            [ "$is_child" = false ] && roots="$roots$d"$'\n'
+          done <<< "$all"
+          dirs=$(printf '%s' "$roots" | sed '/^$/d' | jq -R -s -c 'split("\n")[:-1]')
           echo "dirs=$dirs" >> "$GITHUB_OUTPUT"
-          echo "Found project directories: $dirs"
+          echo "Root project directories: $dirs"
 
   build:
     needs: discover
