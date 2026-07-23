@@ -8,6 +8,7 @@ import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
  * store's {@code claimDue} uses {@code FOR UPDATE SKIP LOCKED} as a second line of defence.
  */
 @Component
+@Profile("!demo")
 public class ScheduledPublisher {
 
   private static final Logger log = LoggerFactory.getLogger(ScheduledPublisher.class);

@@ -6,10 +6,12 @@ import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /** Enables ShedLock so the scheduled poller is safe to run on more than one instance. */
 @Configuration
+@Profile("!demo")
 @EnableSchedulerLock(defaultLockAtMostFor = "PT5M")
 public class ShedLockConfig {
 

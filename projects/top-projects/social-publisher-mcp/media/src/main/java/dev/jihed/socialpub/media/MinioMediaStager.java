@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
@@ -34,6 +35,7 @@ import org.springframework.stereotype.Component;
  * connectors can pull from via a presigned URL.
  */
 @Component
+@Profile("!demo")
 public class MinioMediaStager implements MediaStager {
 
   private static final Logger log = LoggerFactory.getLogger(MinioMediaStager.class);

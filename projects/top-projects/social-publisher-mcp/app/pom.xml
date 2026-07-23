@@ -93,6 +93,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- In-memory database for the local `demo` profile (no Docker). -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * credentials.
  */
 @Component
-@Profile("dev")
+@Profile({"dev", "demo"})
 public class MockPublisher implements SocialPublisher {
 
   @Override

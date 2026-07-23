@@ -1,0 +1,25 @@
+# Local demo profile — runs with NO Docker.
+# In-memory H2 instead of Postgres, a no-op media stager instead of MinIO, the MOCK connector on,
+# and a small web UI at http://localhost:8080. Scheduling and MinIO beans are switched off.
+spring:
+  datasource:
+    url: jdbc:h2:mem:socialpub_demo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  flyway:
+    enabled: false
+
+socialpub:
+  mcp:
+    api-key: ""          # blank key = the bearer filter lets everything through (local demo only)
+  credentials:
+    enc-key: "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY="
+
+logging:
+  level:
+    dev.jihed.socialpub: INFO
