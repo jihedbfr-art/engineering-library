@@ -10,3 +10,6 @@ Backup/Restore · Monitoring. Voir [`_TEMPLATE.md`](_TEMPLATE.md).
 ## Moteurs
 PostgreSQL (principal — voir [ADR 0002](../engineering-decisions/0002-pourquoi-postgresql.md)) ·
 Oracle · [Redis](redis.md) · [MongoDB](mongodb.md) · [Neo4j](neo4j.md) · [ElasticSearch](elasticsearch.md). Ajouter via la skill **ajouter-entree-savoir**.
+
+Pour les concepts transverses (indexation, transactions, modélisation, NoSQL) indépendants du moteur,
+voir [`foundations/databases/`](../../foundations/databases/README.md).
