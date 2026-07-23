@@ -1,61 +1,46 @@
 # knowledge/ — La bibliothèque de savoir
 
 Les 80 % de l'écosystème. Ici on réfléchit plus qu'on ne code. Chaque dossier est un domaine ;
-chaque fichier est **une** entrée autonome qui suit le `_TEMPLATE.md` de son domaine (là où il
-existe — les domaines encyclopédiques ci-dessous suivent le format libre hérité de leur origine).
+chaque fichier est **une** entrée autonome. Les domaines "maison" (nés dans ce dépôt) suivent le
+`_TEMPLATE.md` du domaine quand il existe. Les domaines absorbés depuis `dev-library` gardent leur
+format libre d'origine — les reformater juste pour l'uniformité n'aurait rien ajouté au contenu.
 
-## Domaines de pratique (liés aux projets de ce dépôt)
+## Domaines de pratique
 
-| Domaine | Ce qu'on y met | État |
+Ce qui existait déjà ici, lié à l'expérience directe et aux projets du dépôt.
+
+| Domaine | Ce qu'on y met | Entrées |
 |---|---|---|
-| [architecture-library](architecture-library/) | Styles d'architecture : pourquoi, quand (pas), trade-offs, diagrammes | 2 exemples (microservices, event-driven vs request-response) |
-| [engineering-decisions](engineering-decisions/) | ADR numérotés : « Pourquoi X ? » avec contexte, options, conséquences | 3 ADR (Keycloak, PostgreSQL, JHipster) |
-| [engineering-failures](engineering-failures/) | Pannes vécues : cause, symptômes, diagnostic, solution, prévention | 2 exemples (Hibernate N+1, Kafka consumer lag) |
-| [debugging-recipes](debugging-recipes/) | « Ça ne marche pas » → checklist de diagnostic ciblée | 2 exemples (LazyInitializationException, pool épuisé) |
-| [performance-recipes](performance-recipes/) | Optimisations SQL / JVM / GC / Hibernate / cache / Kafka | 1 exemple (dimensionnement HikariCP) |
-| [security-patterns](security-patterns/) | JWT, OAuth2, Keycloak, RBAC, OWASP Top 10 | 2 exemples (OAuth2/Keycloak, anti-bruteforce) |
-| [api-design-guide](api-design-guide/) | REST, GraphQL, gRPC, versioning, pagination, idempotence | 1 exemple (pagination) |
-| [database-engineering](database-engineering/) | Par moteur : index, transactions, isolation, MVCC, réplication | 2 moteurs (PostgreSQL, Oracle) |
-| [ai-engineering](ai-engineering/) | Hooks, prompts, agents, MCP, RAG, évaluation, context engineering | squelette (37 sous-domaines) + 26 fiches réelles |
-| [engineering-playbooks](engineering-playbooks/) | Procédures « 2h du matin » : incident, rollback, migration | 1 exemple (rollback de déploiement) |
-| [engineering-checklists](engineering-checklists/) | Avant merge / prod / migration / release | 2 exemples (before-merge, avant mise en prod) |
-| [code-review-guide](code-review-guide/) | Comment reviewer : smells, anti-patterns, perf, tests, sécurité | 1 exemple (détecter un N+1) |
-| [engineering-cookbook](engineering-cookbook/) | « Je veux faire X » → recette prête à l'emploi | 2 exemples (JWT resource server, Kafka producer/consumer) |
+| [architecture-library](architecture-library/) | Styles d'architecture : pourquoi, quand (pas), trade-offs | 14 patterns |
+| [engineering-failures](engineering-failures/) | Pannes vécues : cause, symptômes, diagnostic, prévention | 15 cas |
+| [debugging-recipes](debugging-recipes/) | « Ça ne marche pas » → checklist de diagnostic ciblée | 9 recettes |
+| [security-patterns](security-patterns/) | JWT, OAuth2, Keycloak, RBAC, OWASP | 12 patterns |
+| [devsecops](devsecops/) | CI/CD, conteneurs, IaC, monitoring, sécurité pipeline | 12 fiches |
+| [backend](backend/) | Java/Spring, Node.js, APIs, microservices | 9 fiches |
+| [database-engineering](database-engineering/) | Par moteur : Postgres, Oracle, Redis, Mongo, Neo4j, Elasticsearch | 7 moteurs |
+| [telecom](telecom/) | BSS/OSS, 5G, provisioning, number portability, billing — ancré dans dix ans de terrain | 26 fiches |
 
-## Domaines encyclopédiques (absorbés depuis l'ancien dépôt dev-library)
+## Domaines absorbés depuis dev-library (consolidation du 23 juillet 2026)
 
-Contenu généraliste développeur/IT, un fichier = un article, format libre (pas de `_TEMPLATE.md`
-imposé). Ancien dépôt `dev-library` archivé — tout le contenu vit désormais ici.
+`dev-library` avait fini par recouvrir les mêmes sujets que ce dépôt sans jamais devenir plus
+qu'une seconde bibliothèque à moitié à jour. Le contenu qui n'existait nulle part ici est arrivé
+tel quel, historique Git compris (voir [`docs/governance/migration-map.md`](../docs/governance/migration-map.md)
+pour le détail des décisions). Ce qui faisait doublon (backend, devsecops, patterns d'architecture,
+telecom) n'a pas été recopié — les versions déjà en place ici étaient au moins aussi complètes.
 
-| Domaine | Ce qu'on y trouve |
-|---|---|
-| [computer-science](computer-science/) | Big-O, structures de données, algorithmes, design patterns, system design |
-| [programming](programming/) | Python, JS/TS, Java, Go, Rust, clean code, concurrence par langage |
-| [web](web/) | Fonctionnement du web, HTTP, REST vs GraphQL, rendu navigateur |
-| [networking](networking/) | TCP/IP, DNS, ports, outils de diagnostic |
-| [backend](backend/) | Java/Spring, Node.js, patterns API, microservices |
-| [frontend](frontend/) | Angular, React, fondamentaux web |
-| [databases](databases/) | SQL, NoSQL, modélisation, performance (complète `database-engineering`) |
-| [cloud](cloud/) | Modèles de service, AWS/Azure/GCP essentiels |
-| [devsecops](devsecops/) | CI/CD, conteneurs, sécurité, IaC, monitoring, GitOps |
-| [cybersecurity](cybersecurity/) | Fondamentaux, sécurité web, blue team, parcours d'apprentissage |
-| [ai-reference](ai-reference/) | LLM, RAG, prompt engineering, agents, évaluation (angle encyclopédique, complète `ai-engineering`) |
-| [telecom](telecom/) | Réseaux mobiles, 5G, protocoles, OSS/BSS, billing, opérateurs, IoT — ancré dans l'expérience réelle |
-| [mobile](mobile/) | Android, iOS, Flutter, React Native |
-| [data-engineering](data-engineering/) | Pipelines ETL/ELT, streaming Kafka, entrepôts, qualité des données |
-| [sre](sre/) | SLI/SLO/error budgets, gestion d'incident, capacity planning |
-| [legacy-modernization](legacy-modernization/) | Strangler fig, playbook de migration, legacy non testé, Oracle ADF |
-| [game-dev](game-dev/) | Boucle de jeu, ECS, pipeline de rendu, netcode multijoueur |
-| [embedded-iot](embedded-iot/) | Microcontrôleurs, RTOS/inversion de priorité, MQTT/CoAP |
-| [blockchain](blockchain/) | Consensus, smart contracts, exploits réels (reentrancy, The DAO) |
-| [compilers](compilers/) | Lexing/parsing/IR/JIT, typage statique vs dynamique |
-| [software-architecture](software-architecture/) | DDD, hexagonal/clean architecture, event sourcing & CQRS (complète `architecture-library`) |
-| [software-engineering](software-engineering/) | Tests, revue de code, git workflows, agile |
-| [resources](resources/) | Roadmaps, cheatsheets (bash/docker/git/http/k8s/linux/regex/sql), livres |
+| Domaine | Ce qu'on y trouve | Entrées |
+|---|---|---|
+| [ai-engineering](ai-engineering/) | RAG, agents, inférence locale, évaluation, hooks/skills, guardrails, routing/coût | 41 fiches |
+| [cybersecurity](cybersecurity/) | Fondamentaux offense/défense, pentest, blue team, parcours d'apprentissage | 5 fiches |
+| [code-review](code-review/) | Comment reviewer et être reviewé, des deux côtés | 1 fiche |
+| [practices](practices/) | Tests, git workflows, agile — le liant entre les domaines techniques | 3 fiches |
+
+Le contenu généraliste (langages, web, cloud, front, mobile, etc., sans lien direct avec la
+pratique d'ingénierie de ce dépôt) vit séparément dans [`foundations/`](../foundations/README.md).
 
 ## Règle d'or
 
-Une entrée = un fichier, un savoir réel. Pas de page vide « pour faire nombre ».
-Pour ajouter une entrée aux domaines de pratique, utiliser la skill **ajouter-entree-savoir**
-(ou **ajouter-recette-cookbook** pour le cookbook). Les domaines encyclopédiques se complètent au
-fil de l'eau, format libre.
+Une entrée = un fichier, un savoir réel. Pas de page vide « pour faire nombre ». Si un sujet a
+déjà une entrée quelque part dans `knowledge/` ou `foundations/`, on l'étend plutôt que d'en ouvrir
+une seconde — le glossaire ([`GLOSSARY.md`](GLOSSARY.md)) est là pour repérer les recoupements
+avant d'écrire.
