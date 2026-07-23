@@ -97,7 +97,7 @@ class ChromaVectorStore:
     to change for a different backend's filter DSL.
     """
 
-    def __init__(self, collection_name: str = "dev-library-demo"):
+    def __init__(self, collection_name: str = "engineering-library-demo"):
         try:
             import chromadb
         except ImportError as exc:
