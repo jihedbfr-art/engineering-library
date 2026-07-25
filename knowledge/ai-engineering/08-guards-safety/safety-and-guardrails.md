@@ -77,6 +77,5 @@ an eval for being wrong, and a tool call can be perfectly safe by hook standards
 around it fails an output guard for leaking something. Treat them as independent gates, not a
 single pass/fail.
 
-TODO: this module doesn't yet cover red-teaming methodology (deliberately trying to break your
-own guards before someone else does) — that's a big enough topic it probably deserves its own
-file rather than a section tacked onto this one. Left out for now rather than done badly.
+Red-teaming — deliberately trying to break your own guards before someone else does — gets its
+own file: [`red-teaming-methodology.md`](red-teaming-methodology.md).

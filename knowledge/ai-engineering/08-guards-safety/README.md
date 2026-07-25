@@ -11,6 +11,12 @@ prompt-injection checks on the way in, system-prompt-leak and empty-response che
 out — built so a classifier or an LLM-as-judge slots into the same `GuardRule` interface later
 without changing the chain itself.
 
+[`red-teaming-methodology.md`](red-teaming-methodology.md) and
+[`red_team_probes.py`](red_team_probes.py) are the other half: a fixed suite of known attack
+patterns run against the chain above, so a fixed gap can't quietly come back. Running it against
+this module's own default chain already found two real gaps — worth reading before assuming rule
+lists are more solid than they are.
+
 This sits next to, not instead of, the other control layers already in this library:
 
 | Layer | Question it answers | Module |
