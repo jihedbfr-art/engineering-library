@@ -16,6 +16,7 @@ strong tier), a `SemanticCache` built directly on
 mechanism rather than a bespoke cache index — and a `CostTracker` that records spend per call,
 broken down by tier.
 
-TODO: per-tenant budget caps (cutting off one customer's spend without affecting everyone else)
-are a related but separate concern this module doesn't cover yet — it needs a tenant-scoped
-identity in the request path first, which doesn't exist anywhere in this library today.
+Per-tenant budget caps (cutting off one customer's spend without affecting everyone else) get
+their own file: [`per-tenant-budget-caps.md`](per-tenant-budget-caps.md) and
+[`tenant_budget.py`](tenant_budget.py), built on `CostTracker` above rather than a parallel
+accounting system.

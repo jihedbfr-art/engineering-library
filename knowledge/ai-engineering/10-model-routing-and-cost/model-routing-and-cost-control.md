@@ -61,5 +61,5 @@ model" is a query, not a guess reconstructed from provider logs after the fact.
 Actual per-provider pricing tables age fast and belong in configuration, not in a code file that
 gets read as a pattern reference — this module takes a price-per-1k-tokens number as an input
 rather than hardcoding OpenAI's or Anthropic's current rates. Multi-tenant budget enforcement
-(cutting off *tenant X* specifically, not the whole system) is a related but separate concern —
-see the TODO in this module's README.
+(cutting off *tenant X* specifically, not the whole system) is a related but separate concern,
+covered in [`per-tenant-budget-caps.md`](per-tenant-budget-caps.md).
