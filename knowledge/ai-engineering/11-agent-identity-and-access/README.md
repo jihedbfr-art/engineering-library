@@ -7,6 +7,10 @@ key across every agent is the default that eventually bites someone, why the fix
 confidential client per agent with its own scopes, and why short-lived tokens matter more than
 they look like they should.
 
+[`delegated-access-on-behalf-of.md`](delegated-access-on-behalf-of.md) covers the other half:
+what happens once an agent is acting *for a specific human*, not for itself — token exchange
+(RFC 8693), why forwarding the user's raw token isn't the same thing, and where it breaks down.
+
 ## What this module ships
 
 - [`keycloak_agent_client.py`](keycloak_agent_client.py) — the lab. Authenticates as a Keycloak
@@ -16,6 +20,9 @@ they look like they should.
 - [`scoped_token_middleware.py`](scoped_token_middleware.py) — the enforcement side. Validates a
   Bearer token against the issuer's published keys and checks the required scope is present,
   fail-closed on every error path (expired token, bad signature, unreachable JWKS, missing scope).
+- [`obo_token_exchange.py`](obo_token_exchange.py) — trades an agent's own credentials plus a
+  user's access token for a new token that carries both identities, scoped down to what the agent
+  needs for this one call. The RFC 8693 lab behind `delegated-access-on-behalf-of.md`.
 
 ## Quick start
 

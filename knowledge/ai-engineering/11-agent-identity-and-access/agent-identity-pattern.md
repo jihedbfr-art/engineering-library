@@ -84,7 +84,7 @@ module is a third instance of the same rule applied to a third kind of gate.
 Identity answers a question none of the other three can: those three all assume you already know
 which agent is asking. This module is what makes that assumption true instead of aspirational.
 
-TODO: this only covers client-credentials (machine-to-machine). An agent acting *on behalf of a
+This only covers client-credentials (machine-to-machine). An agent acting *on behalf of a
 specific human user* — token exchange, on-behalf-of flows — is a different enough problem
-(delegation, not just service identity) that it deserves its own file rather than a paragraph
-bolted onto this one. Left out for now rather than done badly.
+(delegation, not just service identity) that it gets its own file:
+[`delegated-access-on-behalf-of.md`](delegated-access-on-behalf-of.md).
