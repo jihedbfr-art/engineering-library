@@ -81,6 +81,7 @@ what you're evaluating.
 | [`09-vector-layer/`](09-vector-layer/) | Backend-agnostic `VectorStore` interface — in-memory and Chroma today, pgvector/Qdrant are a new adapter, not a rewrite |
 | [`10-model-routing-and-cost/`](10-model-routing-and-cost/) | Rule-based model tier routing, a semantic cache built on the vector layer, and per-call cost tracking |
 | [`11-agent-identity-and-access/`](11-agent-identity-and-access/) | Per-agent OAuth2/OIDC clients via Keycloak, scoped and short-lived tokens, fail-closed scope enforcement |
+| [`actualites/`](actualites/) | Dated daily round-up of what mattered in AI that day, French then English |
 | [`shared/`](shared/) | Logging, retry/backoff, and error types reused across every script |
 
 ## Where to start
