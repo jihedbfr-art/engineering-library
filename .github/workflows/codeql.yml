@@ -37,14 +37,27 @@ jobs:
           languages: ${{ matrix.language }}
 
       - name: Compile every Maven project
-        # No single root aggregator pom here (each tier's project is its own standalone
-        # pom.xml), so CodeQL's generic autobuilder won't find them all - compile each one
-        # explicitly instead. The CodeQL tracer picks up these javac invocations regardless.
+        # Most projects here are standalone poms with no aggregator, so CodeQL's generic
+        # autobuilder won't find them all - compile each one explicitly instead. But
+        # social-publisher-mcp *is* a multi-module reactor, and compiling one of its
+        # submodules on its own fails because it can't resolve a sibling module that
+        # hasn't been built yet. Same root-detection logic as build.yml: only compile a
+        # directory if no ancestor directory also has a pom.xml, so a reactor gets built
+        # once through its parent instead of module-by-module.
         run: |
-          for dir in $(find . -name pom.xml -not -path '*/target/*' -exec dirname {} \;); do
+          all=$(find . -name pom.xml -not -path '*/target/*' -exec dirname {} \; | sed 's#^\./##' | sort -u)
+          while IFS= read -r dir; do
+            [ -z "$dir" ] && continue
+            parent=$(dirname "$dir")
+            is_child=false
+            while [ "$parent" != "." ]; do
+              if printf '%s\n' "$all" | grep -qxF "$parent"; then is_child=true; break; fi
+              parent=$(dirname "$parent")
+            done
+            [ "$is_child" = true ] && continue
             echo "Compiling $dir"
             (cd "$dir" && mvn -B -q clean compile)
-          done
+          done <<< "$all"
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v4
