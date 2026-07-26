@@ -14,6 +14,8 @@ snippet. Read [`../hooks-pattern.md`](../hooks-pattern.md) first for the underly
 | [`rate-limiter.md`](rate-limiter.md) | `PRE_TOOL_USE` | veto (deny) | Cap call frequency per tool in a rolling window, catching a runaway loop before the session cost budget even notices |
 | [`context-window-guard.md`](context-window-guard.md) | `PRE_MODEL_CALL` | rewrite | Trim message history to stay under a token budget without ever dropping the original task framing |
 | [`human-approval-gate.md`](human-approval-gate.md) | `PRE_TOOL_USE` | veto (deny until approved) | Structurally pause irreversible actions (send, delete, deploy, pay) on explicit human confirmation, not just a prompt instruction |
+| [`schema-validation-gate.md`](schema-validation-gate.md) | `PRE_TOOL_USE` | veto (deny) | Reject a tool call against its own manifest `input_schema` before it reaches real code |
+| [`duplicate-call-deduper.md`](duplicate-call-deduper.md) | `PRE_TOOL_USE` | veto (deny) | Catch a retry of an identical side-effecting call within a time window, not just a rapid burst |
 
 ## Composing more than one
 
