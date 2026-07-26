@@ -1,0 +1,33 @@
+{
+  "name": "messaging",
+  "description": "Post messages to a team chat workspace (Slack/Teams-style). No read access to existing channel history by design — a chat plugin doesn't need to read what humans said to post a message on the agent's own behalf.",
+  "requested_permissions": ["messaging:post"],
+  "tools": [
+    {
+      "name": "post_message",
+      "description": "Post a message to a named channel.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": {"type": "string"},
+          "text": {"type": "string"}
+        },
+        "required": ["channel", "text"]
+      },
+      "requires_permission": "messaging:post"
+    },
+    {
+      "name": "post_direct_message",
+      "description": "Post a direct message to a single named user. Kept as a separate tool (not just 'channel' accepting a user ID) so a permission or hook can distinguish broadcasting to a channel from messaging one specific person.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "user": {"type": "string"},
+          "text": {"type": "string"}
+        },
+        "required": ["user", "text"]
+      },
+      "requires_permission": "messaging:post"
+    }
+  ]
+}

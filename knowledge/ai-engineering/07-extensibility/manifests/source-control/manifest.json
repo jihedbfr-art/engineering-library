@@ -1,0 +1,37 @@
+{
+  "name": "source-control",
+  "description": "Read repository content and open pull requests on a git hosting platform (GitHub/GitLab-style). Never includes a merge or force-push tool in this manifest on purpose — those are exactly the kind of action the human-approval-gate hook recipe in 06-agent-hooks-and-skills/hooks exists for, not something a plugin manifest should hand out as a permission string.",
+  "requested_permissions": ["repo:read", "repo:pr_write"],
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Read a file's content at a given ref (branch, tag, or commit).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {"type": "string"},
+          "path": {"type": "string"},
+          "ref": {"type": "string", "default": "main"}
+        },
+        "required": ["repo", "path"]
+      },
+      "requires_permission": "repo:read"
+    },
+    {
+      "name": "open_pull_request",
+      "description": "Open a pull request from a branch that already has commits pushed to it. Deliberately does not accept raw file diffs to write directly — the plugin doesn't perform the commit itself, it only opens the PR once a branch already exists, keeping the actual code-writing step outside this plugin's authority.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {"type": "string"},
+          "head_branch": {"type": "string"},
+          "base_branch": {"type": "string", "default": "main"},
+          "title": {"type": "string"},
+          "body": {"type": "string"}
+        },
+        "required": ["repo", "head_branch", "title"]
+      },
+      "requires_permission": "repo:pr_write"
+    }
+  ]
+}

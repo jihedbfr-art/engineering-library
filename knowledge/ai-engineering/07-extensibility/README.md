@@ -14,6 +14,11 @@ manifests, and deliberately separates what a plugin *requests* from what it's ac
 *granted* — the demo connects a plugin that asks for read+write calendar access, grants only
 read, and shows the write call getting denied at call time, not just documented as unsupported.
 
+[`manifests/`](manifests/) is a real catalog of five plugin manifests in the exact shape the
+registry scans for — calendar, ticketing, messaging, a read-only database, and source control —
+worth reading for how each one narrows its own tool surface at the manifest level, not just
+relying on the runtime permission check.
+
 Four extension mechanisms now live in this library, each answering a different question:
 
 | Mechanism | Answers |

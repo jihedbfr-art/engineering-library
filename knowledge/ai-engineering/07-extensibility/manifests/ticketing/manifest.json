@@ -1,0 +1,46 @@
+{
+  "name": "ticketing",
+  "description": "Read and update tickets in an issue-tracking system (Jira/Linear-style).",
+  "requested_permissions": ["tickets:read", "tickets:comment", "tickets:transition"],
+  "tools": [
+    {
+      "name": "search_tickets",
+      "description": "Search tickets by project, status, or free-text query.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project": {"type": "string"},
+          "status": {"type": "string"},
+          "query": {"type": "string"}
+        }
+      },
+      "requires_permission": "tickets:read"
+    },
+    {
+      "name": "add_comment",
+      "description": "Post a comment on an existing ticket.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {"type": "string"},
+          "body": {"type": "string"}
+        },
+        "required": ["ticket_id", "body"]
+      },
+      "requires_permission": "tickets:comment"
+    },
+    {
+      "name": "transition_status",
+      "description": "Move a ticket to a new status (e.g. 'In Progress' -> 'Done'). Deliberately its own permission, separate from commenting — an agent that can explain itself shouldn't automatically be trusted to also change ticket state.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {"type": "string"},
+          "new_status": {"type": "string"}
+        },
+        "required": ["ticket_id", "new_status"]
+      },
+      "requires_permission": "tickets:transition"
+    }
+  ]
+}

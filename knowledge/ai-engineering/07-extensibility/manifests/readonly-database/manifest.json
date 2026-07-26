@@ -1,0 +1,30 @@
+{
+  "name": "readonly-database",
+  "description": "Run read-only SQL queries against an analytics or reporting database. No write tool exists in this manifest at all — the strongest form of least privilege is a permission that was never wired up on the plugin side, not just one that's ungranted.",
+  "requested_permissions": ["database:query"],
+  "tools": [
+    {
+      "name": "run_query",
+      "description": "Execute a SELECT-only SQL query and return rows. The plugin implementation is expected to reject any statement that isn't a SELECT before it ever reaches the database driver — this manifest documents the intent, it doesn't enforce it by itself.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "sql": {"type": "string"},
+          "max_rows": {"type": "integer", "default": 1000}
+        },
+        "required": ["sql"]
+      },
+      "requires_permission": "database:query"
+    },
+    {
+      "name": "describe_table",
+      "description": "Return column names and types for a given table, so an agent can write a correct query without guessing the schema.",
+      "input_schema": {
+        "type": "object",
+        "properties": {"table": {"type": "string"}},
+        "required": ["table"]
+      },
+      "requires_permission": "database:query"
+    }
+  ]
+}

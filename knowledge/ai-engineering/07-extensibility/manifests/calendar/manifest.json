@@ -1,0 +1,45 @@
+{
+  "name": "calendar",
+  "description": "Read and manage events on a user's calendar.",
+  "requested_permissions": ["calendar:read", "calendar:write"],
+  "tools": [
+    {
+      "name": "list_events",
+      "description": "List events in a given time range.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "start": {"type": "string", "format": "date-time"},
+          "end": {"type": "string", "format": "date-time"}
+        },
+        "required": ["start", "end"]
+      },
+      "requires_permission": "calendar:read"
+    },
+    {
+      "name": "create_event",
+      "description": "Create a new calendar event.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "start": {"type": "string", "format": "date-time"},
+          "end": {"type": "string", "format": "date-time"},
+          "attendees": {"type": "array", "items": {"type": "string"}}
+        },
+        "required": ["title", "start", "end"]
+      },
+      "requires_permission": "calendar:write"
+    },
+    {
+      "name": "delete_event",
+      "description": "Delete an existing event by ID.",
+      "input_schema": {
+        "type": "object",
+        "properties": {"event_id": {"type": "string"}},
+        "required": ["event_id"]
+      },
+      "requires_permission": "calendar:write"
+    }
+  ]
+}
