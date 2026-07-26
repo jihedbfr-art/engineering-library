@@ -21,6 +21,9 @@ for why that field carries more weight than it looks like it should.
 | [`telecom-bss-integration-review/`](telecom-bss-integration-review/) | Idempotency gaps, partial-failure handling, and correlation-ID propagation in provisioning/portability flows |
 | [`security-audit-checklist/`](security-audit-checklist/) | Injection, broken access control, unsafe deserialization, crypto misuse — defensive review only, never exploit code |
 | [`dependency-upgrade-reviewer/`](dependency-upgrade-reviewer/) | Breaking-change risk in a version bump that green CI alone doesn't prove safe |
+| [`observability-instrumentation-reviewer/`](observability-instrumentation-reviewer/) | Correlation IDs that don't propagate, metrics with no alert attached, noisy `ERROR` logs, cardinality bombs |
+| [`data-pipeline-reviewer/`](data-pipeline-reviewer/) | Idempotency, backfill safety, schema-drift handling — the failures that show up as silently wrong numbers weeks later |
+| [`cost-optimization-reviewer/`](cost-optimization-reviewer/) | Idle resources, over-provisioning, storage tier mismatch — ranked by saving-to-effort ratio |
 
 ## Scaffolding & generation
 
@@ -36,6 +39,9 @@ for why that field carries more weight than it looks like it should.
 | [`code-refactoring-planner/`](code-refactoring-planner/) | A large refactor broken into small, independently-shippable, behavior-preserving steps |
 | [`performance-profiling-guide/`](performance-profiling-guide/) | Measure-first diagnosis of a real bottleneck, before proposing any fix |
 | [`test-plan-writer/`](test-plan-writer/) | What to test, at which level, before any test code gets written |
+| [`load-testing-plan-writer/`](load-testing-plan-writer/) | Target load, ramp shape, and abort conditions decided before the test runs, not during |
+| [`feature-flag-rollout-planner/`](feature-flag-rollout-planner/) | Staged percentages with a distinct purpose each, plus rollback triggers stated as thresholds |
+| [`oncall-runbook-writer/`](oncall-runbook-writer/) | Per-alert first-three-checks written for someone who's never seen the service before |
 
 ## Writing & reporting
 
@@ -52,7 +58,8 @@ for why that field carries more weight than it looks like it should.
 A deliberate split: a few skills grounded in one specific stack deeply (Spring Boot, Keycloak,
 telecom provisioning — where generic advice would be too shallow to be useful), and most of the
 catalog domain-general (commit messages, ADRs, migrations, test plans, postmortems, refactoring,
-performance, security, dependency review) that apply regardless of what stack a project runs.
+performance, security, dependency review, observability, data pipelines, cost, load testing,
+feature-flag rollouts, on-call runbooks) that apply regardless of what stack a project runs.
 That split mirrors the real shape of a useful skill catalog: some skills need deep, narrow
 expertise; most need a rigorous *process* applied consistently, and the value is in the process
 being followed the same way every time, not in niche knowledge.
