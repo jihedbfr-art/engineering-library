@@ -29,7 +29,7 @@ jsonschema==4.23.0
 # Agent identity & access (11-agent-identity-and-access)
 requests==2.33.0
 pyjwt==2.13.0
-cryptography==43.0.3
+cryptography==48.0.1
 
 # Dev / testing
 pytest==9.0.3
