@@ -15,4 +15,4 @@ actually happened.
 
 ---
 
-**2026-07-25** : premier jour de ce dossier. [Voir le fichier du jour](2026-07-25.md).
+**2026-08-03** : [Voir le fichier du jour](2026-08-03.md).
