@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload & Storage Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 Storage Manager</h1>
+            <p>Gestionnaire de fichiers autonome (100% Java Native & Vanilla JS)</p>
+        </header>
+
+        <section class="upload-zone" id="dropZone">
+            <div class="drop-content">
+                <div class="icon">☁️</div>
+                <h3>Glissez-déposez vos fichiers ici</h3>
+                <p>ou cliquez pour parcourir les fichiers (max 10 Mo)</p>
+                <input type="file" id="fileInput" hidden>
+                <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">Sélectionner un fichier</button>
+            </div>
+            <div id="uploadProgress" class="progress-bar" style="display:none;">
+                <div class="progress-fill"></div>
+            </div>
+        </section>
+
+        <section class="files-list">
+            <h2>Fichiers stockés</h2>
+            <table id="filesTable">
+                <thead>
+                    <tr>
+                        <th>Nom du fichier</th>
+                        <th>Taille</th>
+                        <th>Date de modification</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="filesBody">
+                    <tr><td colspan="4" class="empty">Chargement des fichiers...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
