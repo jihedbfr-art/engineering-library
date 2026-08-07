@@ -6,19 +6,7 @@ on cherche **la prochaine commande à taper**.
 ## Structure d'une entrée
 Symptôme exact · Causes probables (les plus fréquentes d'abord) · Diagnostic pas-à-pas · Correctif. Voir [`_TEMPLATE.md`](_TEMPLATE.md).
 
-## Index
-
-| Symptôme | Fichier |
-|---|---|
-| Kubernetes `CrashLoopBackOff` | [kubernetes-crashloopbackoff.md](kubernetes-crashloopbackoff.md) |
-| `401`/token invalide (Keycloak) | [keycloak-token-invalide.md](keycloak-token-invalide.md) |
-| `LazyInitializationException` | [hibernate-lazyinitializationexception.md](hibernate-lazyinitializationexception.md) |
-| Pool de connexions épuisé | [connexion-pool-epuise.md](connexion-pool-epuise.md) |
-| `deadlock detected` (PostgreSQL) | [deadlock-postgres.md](deadlock-postgres.md) |
-| Spring Boot ne démarre pas | [spring-boot-ne-demarre-pas.md](spring-boot-ne-demarre-pas.md) |
-| Consumer Kafka bloqué (lag figé) | [kafka-consumer-bloque.md](kafka-consumer-bloque.md) |
-| Conteneur Docker `Exited (1)` immédiatement | [docker-conteneur-exit.md](docker-conteneur-exit.md) |
-| Timeout Oracle (`ORA-01013`) | [oracle-timeout.md](oracle-timeout.md) |
-
 ## Backlog
-Ajouter via la skill **ajouter-entree-savoir**.
+Spring Boot ne démarre pas · `Bean not found` · dépendance circulaire · `LazyInitializationException` ·
+JWT invalide · Kafka consumer bloqué · conteneur Docker qui exit · Kubernetes `CrashLoopBackOff` ·
+timeout Oracle · deadlock Postgres. Ajouter via la skill **ajouter-entree-savoir**.
