@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time System Metrics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>⚡ Real-Time System Metrics</h1>
+            <p>Monitoring temps réel (Polling 2s, Chart Canvas natif, 0 dépendances)</p>
+        </header>
+
+        <div class="metrics-grid">
+            <div class="card">
+                <h3>CPU Load</h3>
+                <div class="value" id="cpuValue">-- %</div>
+            </div>
+            <div class="card">
+                <h3>Memory Usage</h3>
+                <div class="value" id="memoryValue">-- MB</div>
+            </div>
+            <div class="card">
+                <h3>Throughput</h3>
+                <div class="value" id="rpsValue">-- req/s</div>
+            </div>
+            <div class="card">
+                <h3>Avg Latency</h3>
+                <div class="value" id="latencyValue">-- ms</div>
+            </div>
+        </div>
+
+        <section class="chart-section">
+            <h2>Historique CPU (%) — 60 derniers points</h2>
+            <canvas id="cpuChart" width="800" height="250"></canvas>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
