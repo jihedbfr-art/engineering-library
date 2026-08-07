@@ -1,0 +1,26 @@
+name: Docs Linting
+
+on:
+  push:
+    paths:
+      - 'knowledge/ai-engineering/**/*.md'
+      - 'knowledge/ai-engineering/scripts/lint_skills.py'
+  pull_request:
+    paths:
+      - 'knowledge/ai-engineering/**/*.md'
+      - 'knowledge/ai-engineering/scripts/lint_skills.py'
+
+jobs:
+  lint-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run linter
+        run: python knowledge/ai-engineering/scripts/lint_skills.py
