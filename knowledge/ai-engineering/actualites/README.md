@@ -15,4 +15,4 @@ actually happened.
 
 ---
 
-**2026-08-03** : [Voir le fichier du jour](2026-08-03.md).
+**2026-08-07** : [Voir le fichier du jour](2026-08-07.md).
