@@ -1,16 +1,30 @@
 ---
-name: code-refactoring-planner
-description: Plan a refactor as a sequence of small, independently-shippable, behavior-preserving steps rather than one large rewrite. Use when asked to "refactor this", "clean up this code", or "plan how to restructure this module" — especially for changes too large to land in one PR safely.
+format: "v2"
+name: "code-refactoring-planner"
+title: "Code Refactoring Planner"
+title_fr: "Planificateur de refactoring de code"
+description: "Plan a refactor as a sequence of small, independently-shippable, behavior-preserving steps rather than one large rewrite too risky to land in a single PR."
+description_fr: "Planifie un refactoring en une suite d'étapes petites, livrables indépendamment et sans changement de comportement, plutôt qu'une grosse réécriture trop risquée pour une seule PR."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Refactoring planner
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 The risk in a refactor isn't the end state — it's the path there. A big-bang rewrite that touches
 everything at once is the hardest kind of change to review, test, and safely revert if something
 goes wrong partway through. This skill's job is turning "refactor X" into an ordered sequence of
 small steps, each one shippable and behavior-preserving on its own.
 
-## Process
+#### Process
 
 1. **Describe the end state first, briefly** — what the code should look like when done, so
    every subsequent step has a target, not just "make it better."
@@ -33,24 +47,24 @@ small steps, each one shippable and behavior-preserving on its own.
    with no test coverage is higher risk — if coverage is missing for the area being touched,
    that's a prerequisite step, not an afterthought.
 
-## Output format
+#### Output format
 
 ```
-## Refactoring plan: <target>
+#### Refactoring plan: <target>
 
-### End state
+##### End state
 <what the code looks like when this plan is complete>
 
-### Steps (ordered, each independently shippable)
+##### Steps (ordered, each independently shippable)
 1. <step> — risk: low/medium — tests needed before: <existing/none/new tests X>
 2. ...
 
-### Explicitly NOT behavior-preserving
+##### Explicitly NOT behavior-preserving
 <any step that would actually change behavior, flagged separately with its own reasoning —
 absent if the whole plan is behavior-preserving, which is the common and preferred case>
 ```
 
-## What NOT to do
+#### What NOT to do
 
 - Don't plan a refactor as one giant step "because splitting it doesn't make sense for this
   case" without first genuinely trying to find the seams — most refactors that feel atomic
@@ -61,3 +75,10 @@ absent if the whole plan is behavior-preserving, which is the common and preferr
   review bar.
 - Don't propose steps that leave the codebase in a broken/non-compiling state between commits —
   each step should be a valid, working state on its own.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

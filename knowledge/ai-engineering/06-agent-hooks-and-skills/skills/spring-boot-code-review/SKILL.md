@@ -1,16 +1,30 @@
 ---
-name: spring-boot-code-review
-description: Review a Spring Boot / JPA diff for the specific bug classes that pass tests and CI but still break in production — transaction self-invocation, silent rollback gaps, N+1 queries, connection/thread leaks, and missing bounds on external calls. Use when reviewing a Java/Spring pull request, before merging a service-layer change, or when asked to "review this Spring Boot code" or "check this PR for issues".
+format: "v2"
+name: "spring-boot-code-review"
+title: "Spring Boot & JPA Code Review"
+title_fr: "Revue de code Spring Boot et JPA"
+description: "Review a Spring Boot / JPA diff for bug classes that pass CI but break in production - transaction self-invocation, silent rollback gaps, N+1 queries, connection leaks."
+description_fr: "Relit un diff Spring Boot / JPA pour les classes de bugs qui passent la CI mais cassent en production — auto-invocation transactionnelle, rollback silencieux manqué, requêtes N+1, fuites de connexions."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Spring Boot code review — the bugs that don't show up in tests
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 Generic code review catches style. This skill catches the bug classes that are structurally
 invisible to a green test suite and a passing build, because they only manifest under real
 concurrency, real transaction boundaries, or a slow/failing dependency — the conditions unit
 tests rarely reproduce.
 
-## What to check, in priority order
+#### What to check, in priority order
 
 1. **`@Transactional` self-invocation.** Flag any call from one method to another
    `@Transactional` method on the *same class* via `this.method(...)` — Spring's proxy is
@@ -44,15 +58,22 @@ tests rarely reproduce.
    from one degraded dependency, not just the endpoint that calls it. Flag this especially on
    endpoints that call an external/third-party service directly.
 
-## How to report findings
+#### How to report findings
 
 For each issue found, report: file:line, which bug class from the list above, the concrete
 failure scenario (not "this could be a problem" — describe the actual input/timing that triggers
 it), and the minimal fix. Skip anything that's purely stylistic — this skill is about
 correctness bugs invisible to CI, not formatting.
 
-## What NOT to flag
+#### What NOT to flag
 
 - Missing `@Transactional` on read-only query methods — not every method needs one.
 - Lazy loading itself — only lazy loading *inside a loop* without batching is the N+1 problem.
 - Long methods, naming, or other style concerns — out of scope for this skill.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

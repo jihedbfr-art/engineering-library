@@ -1,14 +1,28 @@
 ---
-name: api-contract-reviewer
-description: Review a REST (or GraphQL/gRPC) API design or diff for contract-breaking changes, inconsistent error shapes, wrong HTTP semantics, and missing versioning/pagination. Use when reviewing an API design doc, an OpenAPI spec, or a diff that adds/changes endpoints, or when asked to "review this API" or "check for breaking changes".
+format: "v2"
+name: "api-contract-reviewer"
+title: "API Contract Reviewer"
+title_fr: "Revue de contrat d'API REST/gRPC"
+description: "Review a REST, GraphQL or gRPC API design or diff for contract-breaking changes, inconsistent error shapes, wrong HTTP semantics, and missing versioning or pagination."
+description_fr: "Relit une conception ou un diff d'API REST, GraphQL ou gRPC pour détecter les changements cassant le contrat, les formats d'erreur incohérents, la mauvaise sémantique HTTP et l'absence de versioning ou pagination."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# API contract review
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 An API's real cost isn't the endpoint that's wrong today — it's the client that broke silently
 because a "safe-looking" change wasn't. Review for contract stability first, style second.
 
-## What to check, in priority order
+#### What to check, in priority order
 
 1. **Breaking changes disguised as safe ones.** Removing a field, renaming a field, changing a
    field's type, or changing an enum's allowed values are breaking even if "nobody probably uses
@@ -42,16 +56,23 @@ because a "safe-looking" change wasn't. Review for contract stability first, sty
    unauthenticated or over-limit request returns leaves every client guessing, and every
    implementation guessing differently.
 
-## How to report findings
+#### How to report findings
 
 For each issue: is it a **breaking change** (blocks merge until versioned or reworked), an
 **inconsistency** (should fix, not necessarily blocking), or a **missing safeguard** (pagination,
 rate limits — flag before it becomes a real incident, not after). Lead with breaking changes.
 
-## What NOT to flag
+#### What NOT to flag
 
 - Internal/private APIs explicitly marked as having no external consumers and no stability
   guarantee — the contract-stability rules above matter most where clients you don't control
   depend on the contract.
 - Style choices (field naming convention, snake_case vs camelCase) unless they contradict an
   existing, established convention in the same API.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

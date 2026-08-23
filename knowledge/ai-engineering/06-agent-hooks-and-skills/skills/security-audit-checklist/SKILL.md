@@ -1,15 +1,29 @@
 ---
-name: security-audit-checklist
-description: Audit code or a design for common vulnerability classes (injection, broken access control, unsafe deserialization, secrets exposure) using a fixed, defensive checklist. Use when asked to "do a security review", "audit this for vulnerabilities", or before shipping code that handles authentication, user input, or sensitive data. Defensive review only — never generates exploit code or attack instructions.
+format: "v2"
+name: "security-audit-checklist"
+title: "Application Security Audit Checklist"
+title_fr: "Checklist d'audit de sécurité applicative"
+description: "Audit code or a design for common vulnerability classes - injection, broken access control, unsafe deserialization, secrets exposure - using a fixed defensive checklist."
+description_fr: "Audite du code ou une conception pour les classes de vulnérabilités courantes — injection, contrôle d'accès défaillant, désérialisation non sûre, exposition de secrets — via une checklist défensive fixe."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Security audit checklist
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 A systematic pass through the vulnerability classes that account for most real-world security
 incidents, in the order they're worth checking — this skill is for finding and explaining
 defensive gaps, never for producing working exploit code or step-by-step attack instructions.
 
-## Checklist, by class
+#### Checklist, by class
 
 1. **Injection (SQL, command, LDAP, etc.).** Any place user input reaches a query, shell command,
    or interpreter without parameterization. Look specifically for string concatenation/formatting
@@ -43,7 +57,7 @@ defensive gaps, never for producing working exploit code or step-by-step attack 
    security audit of application code that ignores a critically vulnerable pinned dependency
    version is incomplete.
 
-## How to report findings
+#### How to report findings
 
 For each finding: which class from the list above, the specific location, the concrete scenario
 that would trigger it (not just "this could be exploited" — describe the actual attacker
@@ -51,7 +65,7 @@ capability this gap grants), and the defensive fix. Never include a working payl
 describe the vulnerability class and impact, that's sufficient for the fix to be understood and
 applied.
 
-## What NOT to do
+#### What NOT to do
 
 - Never generate working exploit code, attack scripts, or step-by-step instructions for
   compromising a system — describe *why* something is vulnerable and *how to fix it*, not how to
@@ -61,3 +75,10 @@ applied.
 - Don't skip low-glamour findings (a verbose error message, a missing rate limit) in favor of
   more "interesting" ones — the checklist order above reflects real-world incident frequency, not
   technical novelty.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

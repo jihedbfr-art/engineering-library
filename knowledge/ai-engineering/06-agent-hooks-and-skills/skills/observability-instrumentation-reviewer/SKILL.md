@@ -1,16 +1,30 @@
 ---
-name: observability-instrumentation-reviewer
-description: Review a service's logging, metrics, and tracing for real gaps — spans that don't propagate context, metrics with no alerting attached, log lines that can't be correlated to a request. Use when asked to "review our observability", "check if this is properly instrumented", or before a service goes to production without anyone having deliberately looked at what it emits.
+format: "v2"
+name: "observability-instrumentation-reviewer"
+title: "Observability & OpenTelemetry Reviewer"
+title_fr: "Revue d'instrumentation observabilité et OpenTelemetry"
+description: "Review a service's logging, metrics, and tracing for real gaps - spans that lose context, metrics with no alerting, log lines that can't be correlated to a request."
+description_fr: "Relit les logs, métriques et traces d'un service pour trouver les vrais trous — spans qui perdent le contexte, métriques sans alerte associée, lignes de log impossibles à corréler à une requête."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Observability instrumentation reviewer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 Most services aren't under-instrumented in volume — they log plenty. They're under-instrumented in
 the specific way that matters at 3am: nothing ties a log line to the request that caused it, a
 metric exists but no alert reads it, or a trace stops at the service boundary instead of following
 the request into the next hop. This skill looks for those specific gaps, not "more logging."
 
-## What to check, in order of how often it actually bites someone
+#### What to check, in order of how often it actually bites someone
 
 1. **Correlation ID propagation.** Does every log line inside a request's lifecycle carry the same
    request/trace ID, and does that ID survive across service boundaries (HTTP headers, message
@@ -37,7 +51,7 @@ the request into the next hop. This skill looks for those specific gaps, not "mo
    the caller will never know something went wrong. Check that every one of these emits *something*
    (a log line at minimum, a counter increment ideally) rather than swallowing silently.
 
-## What NOT to flag
+#### What NOT to flag
 
 - Don't recommend adding a metric or a log line without saying what decision it would inform —
   "add more logging" without a specific question it answers is the review equivalent of the
@@ -45,8 +59,15 @@ the request into the next hop. This skill looks for those specific gaps, not "mo
 - Don't treat every `DEBUG`-level log as noise to remove; the question is whether `ERROR`/`WARN`
   are disciplined, not whether verbose levels exist at all.
 
-## Output shape
+#### Output shape
 
 A short list, ranked by how often the gap actually causes a slow incident response versus a
 theoretical nice-to-have — a missing correlation ID across a service boundary usually outranks a
 missing metric on an internal cache hit ratio, even though both are real gaps.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

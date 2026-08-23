@@ -1,10 +1,24 @@
 ---
-name: keycloak-spi-scaffold
-description: Scaffold a new Keycloak Service Provider Interface (SPI) module — Authenticator, Event Listener, or User Storage Provider — with the Provider/ProviderFactory pair, the META-INF/services registration file Keycloak actually needs to discover it, and a starting unit test. Use when asked to "create a Keycloak SPI", "add a custom authenticator to Keycloak", or "write a Keycloak provider" for authentication flows, event forwarding, or federating an external user store.
+format: "v2"
+name: "keycloak-spi-scaffold"
+title: "Keycloak SPI Scaffold & Generator"
+title_fr: "Générateur et squelette de Keycloak SPI"
+description: "Scaffold a new Keycloak SPI module - Authenticator, Event Listener, or User Storage Provider - with the Provider/ProviderFactory pair and service registration."
+description_fr: "Génère le squelette d'un nouveau module SPI Keycloak — Authenticator, Event Listener ou User Storage Provider — avec la paire Provider/ProviderFactory et l'enregistrement du service."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Keycloak SPI scaffold
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 Every Keycloak SPI module follows the same three-piece shape regardless of which SPI it
 implements: a `Provider` (the per-request instance doing the work), a `ProviderFactory` (creates
 provider instances, holds shared config), and a `META-INF/services/<FactoryInterface>` file
@@ -13,7 +27,7 @@ the provider at all**, silently. This is the single most common reason a freshly
 "does nothing": the classes compile and the jar deploys, but Keycloak's `ServiceLoader` never
 finds it because the services file is missing, misnamed, or lists the wrong class.
 
-## Which SPI to scaffold
+#### Which SPI to scaffold
 
 Ask which of these three the task actually needs before generating anything — they have
 different base interfaces and different registration points:
@@ -24,7 +38,7 @@ different base interfaces and different registration points:
 | Event listener | `EventListenerProvider` | `EventListenerProviderFactory` | A listener forwarding LOGIN/LOGOUT/etc. events |
 | User storage | `UserStorageProvider` + `UserLookupProvider` (+ `UserQueryMethodsProvider` for search) | `UserStorageProviderFactory` | A federated read-only or read-write user source |
 
-## Scaffold checklist, in order
+#### Scaffold checklist, in order
 
 1. **Provider class** implementing the interface(s) from the table above. Keep it focused on one
    responsibility — an Authenticator that also does event forwarding is two SPIs wearing one
@@ -45,7 +59,7 @@ different base interfaces and different registration points:
    `AuthenticatorConfigModel` for authenticators, or provider-specific config for others) — SPI
    config is easy to wire wrong and silently fall back to defaults, worth documenting explicitly.
 
-## Known traps to avoid when generating the scaffold
+#### Known traps to avoid when generating the scaffold
 
 - Don't generate a User Storage Provider's credential handling using
   `LegacyUserCredentialManager` or similar older-tutorial class names — recent Keycloak versions
@@ -60,8 +74,15 @@ different base interfaces and different registration points:
   all, and `authenticate()` decides pass/fail — don't collapse both into one method, the flow
   engine calls them at different points.
 
-## Output format
+#### Output format
 
 Produce the actual files (Provider, ProviderFactory, the services file, the test) rather than a
 description of what they should contain — this is a scaffold skill, its job is working starting
 code, not an explanation of the SPI system.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

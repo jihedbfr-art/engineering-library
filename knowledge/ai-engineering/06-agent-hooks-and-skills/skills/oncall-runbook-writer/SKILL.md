@@ -1,20 +1,34 @@
 ---
-name: oncall-runbook-writer
-description: Write an on-call runbook for a service — the alerts it can fire, what each one actually means, and the first three diagnostic steps for each. Use when asked to "write a runbook for this service", "document what on-call should do when X pages", or before a new service goes on an on-call rotation without anyone having written down how to respond to its alerts.
+format: "v2"
+name: "oncall-runbook-writer"
+title: "On-Call Runbook Writer"
+title_fr: "Rédacteur de runbooks et procédures astreinte"
+description: "Write an on-call runbook for a service - the alerts it can fire, what each one means, and the first three diagnostic steps for each."
+description_fr: "Rédige un runbook d'astreinte pour un service — les alertes qu'il peut déclencher, ce que chacune signifie réellement, et les trois premiers réflexes de diagnostic pour chacune."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# On-call runbook writer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 A runbook's only real reader is someone half-awake at 3am who has never touched this service
 before and has minutes, not hours, to figure out what's happening. That reader doesn't need
 architecture background or design rationale — they need "this alert means X, check Y first, here's
 how to tell if it's Z or something else." This skill writes for that reader specifically, not for
 someone doing a leisurely read during business hours.
 
-## Structure, per alert
+#### Structure, per alert
 
 ```
-## Alert: <exact alert name as it appears in the paging tool>
+#### Alert: <exact alert name as it appears in the paging tool>
 
 **What it means:** One sentence, plain language, no jargon a first responder from another team
 might not know. Not "elevated p99 latency on the ingestion path" — "requests to the ingestion API
@@ -40,7 +54,7 @@ first-responder problem (a dependency team needs to be paged, a decision needs s
 authority) — stated as a threshold or symptom, not "if it seems bad."
 ```
 
-## What separates a useful runbook from a useless one
+#### What separates a useful runbook from a useless one
 
 The test: could someone who has never seen this service before follow it at 3am and make real
 progress in the first five minutes? If a step assumes context the reader won't have (an internal
@@ -48,7 +62,7 @@ tool name with no link, an abbreviation never expanded, "check the usual place")
 test. Write every step as if handing it to the newest person on the rotation, because eventually it
 will be.
 
-## What NOT to do
+#### What NOT to do
 
 - Don't write a runbook that's really an architecture document with alerts bolted on — cut
   anything that doesn't help someone respond to a page faster; a "why this service exists" section
@@ -59,3 +73,10 @@ will be.
 - Don't skip the "user impact" line even for an alert that seems purely internal (a queue depth
   threshold, a cache hit-rate drop) — someone deciding whether to wake up a second person needs to
   know if this is customer-visible right now or a leading indicator with time to spare.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

@@ -1,16 +1,30 @@
 ---
-name: data-pipeline-reviewer
-description: Review an ETL/ELT pipeline or batch job for idempotency, backfill safety, and schema-drift handling — the failure modes that show up as silently wrong numbers weeks later, not a crash the same day. Use when asked to "review this pipeline", "check this data job before it runs on prod", or when a pipeline is about to start writing to a table other systems depend on.
+format: "v2"
+name: "data-pipeline-reviewer"
+title: "Data Pipeline Reviewer"
+title_fr: "Revue de pipelines de données et ETL"
+description: "Review an ETL/ELT pipeline or batch job for idempotency, backfill safety, and schema-drift handling - failure modes that surface as silently wrong numbers weeks later."
+description_fr: "Relit un pipeline ETL/ELT ou un batch pour vérifier l'idempotence, la sécurité des backfills et la gestion du schema drift — des défaillances qui se traduisent par des chiffres faux et silencieux des semaines plus tard."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Data pipeline reviewer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 A buggy pipeline rarely crashes loudly. It usually just produces numbers that are wrong in a way
 nobody notices until a dashboard looks off weeks later and the root cause is three transformations
 back. This skill looks for the specific failure modes that produce *silently wrong* output, not
 just exceptions.
 
-## What to check
+#### What to check
 
 1. **Idempotency — can this job run twice on the same input without corrupting output?** A job
    that appends rows on every run will double-count on a retry; a job using `INSERT` without an
@@ -41,7 +55,7 @@ just exceptions.
    it's a data quality *report* — check whether a check that fails actually stops the pipeline or
    just gets noted somewhere nobody reads until asked.
 
-## What NOT to flag
+#### What NOT to flag
 
 - Don't demand exactly-once semantics everywhere — at-least-once with a downstream dedup key is a
   legitimate, often simpler design; the review question is whether *some* correct idempotency
@@ -49,8 +63,15 @@ just exceptions.
 - Don't treat every schema addition (a new nullable column) as drift worth blocking — the concern
   is changes that break or silently corrupt existing transformations, not all change.
 
-## Output shape
+#### Output shape
 
 Group findings by which failure mode they represent (idempotency, backfill, schema drift, partial
 failure, late data, gating), since the fix for each category tends to be structurally similar
 across an otherwise unrelated set of findings.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

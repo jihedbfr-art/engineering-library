@@ -1,15 +1,29 @@
 ---
-name: dependency-upgrade-reviewer
-description: Review a dependency version bump (a single library, or a batch from an automated dependency-update tool) for real breaking-change risk, not just "tests still pass". Use when reviewing a dependency upgrade PR, evaluating whether to merge an automated dependency-bot PR, or asked to "check if this upgrade is safe".
+format: "v2"
+name: "dependency-upgrade-reviewer"
+title: "Dependency Upgrade Reviewer"
+title_fr: "Revue de montée en version de dépendances"
+description: "Review a dependency version bump - a single library or an automated batch - for real breaking-change risk, not just whether the tests still pass."
+description_fr: "Relit une montée de version de dépendance — une bibliothèque isolée ou un lot automatisé — pour évaluer le vrai risque de rupture, pas seulement si les tests passent encore."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Dependency upgrade reviewer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 Green CI on a dependency bump proves the existing test suite still passes — it doesn't prove the
 upgrade is safe, because the test suite only covers what it covers. This skill's job is
 evaluating the parts a passing test suite can't tell you about.
 
-## What to check, in priority order
+#### What to check, in priority order
 
 1. **Version jump size and semantic versioning signal.** A patch bump (`1.2.3` → `1.2.4`) carries
    a much stronger "should be safe" signal under semver than a major bump (`1.x` → `2.x`), which
@@ -39,14 +53,14 @@ evaluating the parts a passing test suite can't tell you about.
    hardest category for a test suite to catch unless a test happens to depend on the specific
    default.
 
-## How to report findings
+#### How to report findings
 
 Classify as: **safe to merge** (patch/minor, changelog reviewed, no relevant API usage change),
 **needs manual verification** (major bump or a changed default that affects code in this repo,
 name the specific spot), or **do not merge as-is** (a used API was removed/changed incompatibly,
 or a known vulnerability was introduced transitively).
 
-## What NOT to do
+#### What NOT to do
 
 - Don't treat "CI is green" as sufficient evidence for a major version bump — say explicitly what
   additional verification is needed and why the test suite alone doesn't cover it.
@@ -56,3 +70,10 @@ or a known vulnerability was introduced transitively).
 - Don't approve a batch of unrelated dependency bumps as one unit without checking each one's own
   changelog — bundling low-risk and high-risk upgrades together in one PR is itself worth flagging
   as a process issue, since it makes isolating which upgrade caused a regression harder later.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

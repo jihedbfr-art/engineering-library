@@ -1,16 +1,30 @@
 ---
-name: telecom-bss-integration-review
-description: Review integration code between a BSS/OSS platform and a telecom core network or provisioning system — subscriber activation, number portability, SIM provisioning connectors. Use when reviewing code that talks to a telecom provisioning platform, a portability gateway, or any multi-step subscriber lifecycle flow, or when asked to check "provisioning code", "connector reliability", or "portability flow" for correctness.
+format: "v2"
+name: "telecom-bss-integration-review"
+title: "Telecom BSS & Core 5G Integration Review"
+title_fr: "Revue d'intégration BSS et Core 5G Télécom"
+description: "Review integration code between a BSS/OSS platform and a telecom core network or provisioning system - subscriber activation, portability, SIM provisioning."
+description_fr: "Relit le code d'intégration entre une plateforme BSS/OSS et un réseau cœur télécom ou un système de provisioning — activation d'abonné, portabilité, provisioning de SIM."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Telecom BSS/provisioning integration review
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 Provisioning and portability flows share a specific risk profile that generic API-integration
 review misses: they're multi-step, cross-system, and touch a subscriber's actual service — a
 half-applied step doesn't just fail cleanly, it can leave a real customer without service or
 double-billed. Review for these failure modes specifically.
 
-## What to check, in priority order
+#### What to check, in priority order
 
 1. **Idempotency of every provisioning call.** A connector retry (network blip, timeout) must
    not re-trigger a side effect that isn't safe to repeat — activating a SIM twice, re-submitting
@@ -44,14 +58,14 @@ double-billed. Review for these failure modes specifically.
    successfully" are different states, conflating them is a recurring real-world bug class in
    this domain.
 
-## How to report findings
+#### How to report findings
 
 For each issue, name the specific step in the flow, the concrete scenario that triggers it (a
 timeout mid-sequence, a duplicate retry, a callback that never arrives), and whether it risks a
 customer-visible outcome (double activation, stuck request, silent data loss) versus just a
 logging/observability gap — customer-visible risks are the ones to lead with.
 
-## What NOT to flag
+#### What NOT to flag
 
 - Synchronous calls to genuinely fast, idempotent-by-nature lookups (subscriber status queries)
   don't need the same rigor as state-changing provisioning calls — reserve the checklist above
@@ -59,3 +73,10 @@ logging/observability gap — customer-visible risks are the ones to lead with.
 - Don't flag missing distributed tracing infrastructure as a blocker if correlation IDs are
   already propagated manually through logs — that's a lower-priority observability upgrade, not
   a correctness bug.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

@@ -1,16 +1,30 @@
 ---
-name: documentation-generator
-description: Generate or update documentation (README, API reference, module doc) from code, prioritizing what a new reader actually needs to get productive over exhaustive restatement of the code. Use when asked to "write docs for this", "generate a README", "document this module", or "update the docs to match this change".
+format: "v2"
+name: "documentation-generator"
+title: "Technical Documentation Generator"
+title_fr: "Générateur de documentation technique"
+description: "Generate or update documentation (README, API reference, module doc) from code, prioritizing what a new reader actually needs over exhaustive restatement of the code."
+description_fr: "Génère ou met à jour la documentation (README, référence d'API, doc de module) à partir du code, en priorisant ce dont un nouveau lecteur a réellement besoin plutôt qu'une reformulation exhaustive du code."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Documentation generator
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 The failure mode this skill exists to avoid: documentation that restates the code in prose
 ("this function takes a string and returns a boolean") instead of explaining what a reader
 actually needs and can't get from reading the code themselves — why it exists, when to use it,
 what the non-obvious constraints are.
 
-## What good documentation answers, in order
+#### What good documentation answers, in order
 
 1. **What is this, in one sentence?** Not a feature list — what problem does it solve, for whom.
 2. **How do I use it, fastest path?** A copy-pasteable example that works, before any conceptual
@@ -21,7 +35,7 @@ what the non-obvious constraints are.
 4. **Where does this fit in the bigger picture?** Links to related modules/concepts, not an
    isolated island of documentation nobody can navigate to or from.
 
-## Process
+#### Process
 
 1. Read the actual code, not just its name/signature — the goal is documenting real behavior,
    including edge cases and error handling actually implemented, not the behavior implied by a
@@ -33,7 +47,7 @@ what the non-obvious constraints are.
 4. Add the "why" and gotchas section only where there's real substance — an empty "Notes" section
    with nothing in it is worse than no section at all.
 
-## Format guidance
+#### Format guidance
 
 - Lead with usage, not architecture — architecture/design rationale belongs after the reader
   already knows how to use the thing, or in a separate design-doc-style section.
@@ -43,7 +57,7 @@ what the non-obvious constraints are.
 - State explicitly what the code does NOT do, when that's a common point of confusion — an
   explicit non-goal often saves more reader time than another paragraph of what it does do.
 
-## What NOT to do
+#### What NOT to do
 
 - Don't generate a docstring or README section for every single function/class uniformly —
   trivial, self-explanatory code (a simple getter, an obvious constructor) doesn't need
@@ -52,3 +66,10 @@ what the non-obvious constraints are.
   something is ambiguous from the code alone, say so rather than guessing confidently.
 - Don't write documentation as a wall of prose when a table or short code example would answer
   the same question faster.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

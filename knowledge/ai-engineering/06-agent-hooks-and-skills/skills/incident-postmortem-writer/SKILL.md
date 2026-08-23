@@ -1,16 +1,30 @@
 ---
-name: incident-postmortem-writer
-description: Turn raw incident notes, logs, and a timeline into a structured, blameless postmortem — root cause, impact, timeline, and prevention actions. Use when asked to "write a postmortem", "document this incident", or after an outage/production bug has been diagnosed and needs to be written up for the team.
+format: "v2"
+name: "incident-postmortem-writer"
+title: "Blameless Incident Postmortem Writer"
+title_fr: "Rédacteur de post-mortem d'incident sans blâme"
+description: "Turn raw incident notes, logs, and a timeline into a structured, blameless postmortem - root cause, impact, timeline, and prevention actions."
+description_fr: "Transforme des notes d'incident brutes, des logs et une chronologie en un post-mortem structuré et sans blâme — cause racine, impact, chronologie et actions de prévention."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Blameless postmortem writer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 A postmortem's job is to make the same failure impossible to repeat, not to assign blame. That
 constraint shapes every section below — language that names a person as the cause belongs
 nowhere in the output; language that names a *system condition* that allowed the failure belongs
 everywhere.
 
-## Structure
+#### Structure
 
 1. **One-sentence summary.** What broke, for how long, who/what was affected — written so
    someone who wasn't in the incident understands the stakes immediately, no scrolling required.
@@ -41,7 +55,7 @@ everywhere.
    improvements without a single structural fix usually means the root cause wasn't actually
    addressed.
 
-## Language rules (this is where "blameless" actually gets enforced)
+#### Language rules (this is where "blameless" actually gets enforced)
 
 - Never write "X forgot to..." or "X should have..." — rewrite as a system condition: "the
   deploy process didn't require a migration compatibility check" instead of "the engineer
@@ -53,9 +67,16 @@ everywhere.
   human mistake become a production incident — a human being fallible is not itself the root
   cause of anything; the missing guardrail is.
 
-## What NOT to include
+#### What NOT to include
 
 - Speculation presented as fact — if the root cause isn't fully confirmed from the notes
   provided, say so explicitly ("most likely cause, not yet confirmed: ...") rather than writing
   it with false certainty.
 - Blame, even softened ("unfortunately X happened to be the one who...") — cut it entirely.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

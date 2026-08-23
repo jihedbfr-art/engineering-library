@@ -1,15 +1,29 @@
 ---
-name: performance-profiling-guide
-description: Diagnose a performance problem methodically — measure before guessing, find the actual bottleneck, propose a fix scoped to what was measured. Use when asked to "make this faster", "this is slow", or "profile this code", especially when the instinct is to optimize before measuring.
+format: "v2"
+name: "performance-profiling-guide"
+title: "Java & Application Performance Profiling Guide"
+title_fr: "Guide de profilage et performance Java"
+description: "Diagnose a performance problem methodically - measure before guessing, find the actual bottleneck, propose a fix scoped to what was measured."
+description_fr: "Diagnostique un problème de performance méthodiquement — mesurer avant de deviner, trouver le vrai goulot d'étranglement, proposer un correctif limité à ce qui a été mesuré."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Performance profiling guide
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 The single most common performance-tuning mistake: optimizing the part of the code that looks
 slow instead of the part that measurably is. This skill enforces the order: measure, find the
 actual bottleneck, then and only then propose a change — never the reverse.
 
-## Process
+#### Process
 
 1. **Establish what "slow" means, concretely**, before touching anything. A vague "this is slow"
    needs a number: current latency/throughput, expected/acceptable latency, and under what load
@@ -36,7 +50,7 @@ actual bottleneck, then and only then propose a change — never the reverse.
 5. **State the expected improvement and how to verify it** — re-measure the same metric from
    step 1 after the fix, not a different metric that happens to look better.
 
-## Common root causes, roughly in order of how often they turn out to be the real answer
+#### Common root causes, roughly in order of how often they turn out to be the real answer
 
 - N+1 database queries (see engineering-failures-style write-ups on this pattern — it's the most
   common "mysterious slowness" root cause in database-backed applications)
@@ -47,7 +61,7 @@ actual bottleneck, then and only then propose a change — never the reverse.
   serializers)
 - Lock contention under concurrency (looks fine in single-request testing, degrades under load)
 
-## What NOT to do
+#### What NOT to do
 
 - Don't recommend a rewrite in a different language/framework as a first response to a
   performance problem — that's almost always disproportionate to the actual bottleneck, and
@@ -56,3 +70,10 @@ actual bottleneck, then and only then propose a change — never the reverse.
   spent there doesn't move the metric that actually matters.
 - Don't declare victory without re-measuring — "this should be faster now" is a hypothesis, not
   a result.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

@@ -1,15 +1,29 @@
 ---
-name: test-plan-writer
-description: Design a test plan for a feature or change — what to test, at which level (unit/integration/end-to-end), and which edge cases matter most. Use when asked to "write a test plan", "what should we test for this feature", or before implementing tests for a non-trivial change.
+format: "v2"
+name: "test-plan-writer"
+title: "Integration & Unit Test Plan Writer"
+title_fr: "Rédacteur de plans de tests unitaires et intégration"
+description: "Design a test plan for a feature or change - what to test, at which level, and which edge cases matter most."
+description_fr: "Conçoit un plan de test pour une fonctionnalité ou un changement — quoi tester, à quel niveau, et quels cas limites comptent le plus."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Test plan writer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 The point of a test plan is deciding *what's worth testing and at which level* before writing
 any test code — skipping this step is how a feature ends up with either untested critical paths
 or a pile of low-value tests that mostly re-verify the framework works.
 
-## Process
+#### Process
 
 1. **Identify the critical paths first.** What must work for this feature to deliver its actual
    value? Start there, not with the easiest thing to test — an easy-to-test getter/setter and a
@@ -36,22 +50,22 @@ or a pile of low-value tests that mostly re-verify the framework works.
 4. **State what's explicitly out of scope**, and why — a test plan that doesn't say what it's
    NOT covering leaves that decision implicit and easy to accidentally violate later.
 
-## Format
+#### Format
 
 ```
-## Test plan: <feature/change>
+#### Test plan: <feature/change>
 
-### Critical paths (test first, most coverage)
+##### Critical paths (test first, most coverage)
 - <path> — <level: unit/integration/e2e> — <why this level>
 
-### Edge cases
+##### Edge cases
 - <case> — <expected behavior>
 
-### Explicitly out of scope
+##### Explicitly out of scope
 - <what's not covered> — <why>
 ```
 
-## What NOT to do
+#### What NOT to do
 
 - Don't default everything to end-to-end tests because they're "more realistic" — that reasoning
   produces a slow, flaky suite; push logic-heavy verification down to unit level whenever the
@@ -60,3 +74,10 @@ or a pile of low-value tests that mostly re-verify the framework works.
   incomplete without saying what should actually happen on empty input.
 - Don't treat 100% coverage as the goal — the goal is confidence in the paths that matter;
   chasing coverage on trivial code (getters, framework boilerplate) is often wasted effort.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

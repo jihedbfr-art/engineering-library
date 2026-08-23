@@ -1,16 +1,30 @@
 ---
-name: cost-optimization-reviewer
-description: Review infrastructure or cloud spend for real waste — over-provisioned resources, orphaned/idle resources still billing, and inefficient architecture choices — ranked by savings versus effort. Use when asked to "review our cloud costs", "find waste in this infrastructure", or when a spend number needs explaining before a budget conversation.
+format: "v2"
+name: "cost-optimization-reviewer"
+title: "Cloud & Resource Cost Optimization Reviewer"
+title_fr: "Revue d'optimisation des coûts cloud et ressources"
+description: "Review infrastructure or cloud spend for real waste - over-provisioned resources, orphaned resources still billing, inefficient choices - ranked by savings versus effort."
+description_fr: "Analyse les dépenses cloud ou d'infrastructure pour repérer le vrai gaspillage — ressources surdimensionnées, ressources orphelines encore facturées, choix inefficaces — classé par économies rapportées à l'effort."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Cost optimization reviewer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 Cost reviews tend to produce either a wall of small suggestions nobody prioritizes, or one big
 scary number with no path to acting on it. This skill produces a short, ranked list instead —
 concrete findings, each with an estimated saving and an estimated effort, so the reader can
 actually decide what to do first.
 
-## Where waste actually hides, most to least common
+#### Where waste actually hides, most to least common
 
 1. **Idle or orphaned resources still billing.** Unattached storage volumes from terminated
    instances, load balancers with no healthy targets behind them, snapshots kept indefinitely with
@@ -37,7 +51,7 @@ actually decide what to do first.
    this library — check whether routing, caching, or tier selection is actually being applied
    before treating it as a pure infrastructure cost problem.
 
-## Output shape
+#### Output shape
 
 ```
 | Finding | Estimated monthly saving | Effort | Risk of the fix |
@@ -48,7 +62,7 @@ Ranked by saving-to-effort ratio, not raw saving size — a $200/month fix that 
 belongs above a $2000/month fix that needs a quarter-long re-architecture, even though the second
 number is bigger, because the first one actually gets done.
 
-## What NOT to do
+#### What NOT to do
 
 - Don't recommend downsizing or deleting anything without checking utilization over a real window
   first — a "waste" finding that turns out to be genuinely needed capacity, acted on without
@@ -56,3 +70,10 @@ number is bigger, because the first one actually gets done.
 - Don't present savings estimates as precise numbers pulled from nowhere — state the assumption
   behind each estimate (current on-demand rate, observed utilization window) so the reader can
   sanity-check it against their own bill.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

@@ -1,16 +1,30 @@
 ---
-name: load-testing-plan-writer
-description: Write a load-testing plan for a service or endpoint before a launch, migration, or expected traffic spike — target numbers, ramp shape, what to measure, and the abort conditions. Use when asked to "plan a load test", "make sure this can handle Black Friday traffic", or before any change that changes a system's expected concurrency or throughput.
+format: "v2"
+name: "load-testing-plan-writer"
+title: "Load & Performance Testing Plan Writer"
+title_fr: "Rédacteur de plan de tests de charge et performance"
+description: "Write a load-testing plan for a service before a launch, migration, or traffic spike - target numbers, ramp shape, what to measure, and abort conditions."
+description_fr: "Rédige un plan de test de charge pour un service avant un lancement, une migration ou un pic de trafic — objectifs chiffrés, forme de la montée en charge, ce qu'il faut mesurer et les conditions d'arrêt."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Load-testing plan writer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 A load test without a plan produces a number nobody can interpret — "it handled 500 req/s" means
 nothing without knowing what 500 req/s represents (peak? average? 10x headroom?) and what broke
 first when it stopped handling more. This skill turns "we should load test this" into a plan
 someone can actually execute and someone else can actually judge the results of.
 
-## What the plan needs, and why each part earns its place
+#### What the plan needs, and why each part earns its place
 
 **Target load, derived from a real number, not a round one.** Where does the number come from —
 current peak traffic times a safety multiplier, a specific projected event (launch, marketing
@@ -41,30 +55,30 @@ staging environment at some fraction of prod capacity, or a synthetic isolated e
 from a staging environment at 20% of production's database instance size don't scale linearly —
 say so in the plan instead of letting the final report imply a false confidence.
 
-## Structure to produce
+#### Structure to produce
 
 ```
-## Goal
+#### Goal
 What decision does this test inform? ("Can we handle 3x current peak before Black Friday" is a
 goal; "load test the checkout service" is a task description, not a goal.)
 
-## Target load
+#### Target load
 Number, source of the number, ramp shape (step vs. gradual, and why).
 
-## What to measure
+#### What to measure
 Per-layer: app, cache, database, downstream dependencies. p95/p99, not just average.
 
-## Abort conditions
+#### Abort conditions
 Specific thresholds, decided now.
 
-## Environment
+#### Environment
 What's actually being tested against, and how that limits interpreting the results.
 
-## Pass/fail criteria
+#### Pass/fail criteria
 Stated before the test runs, not fitted to whatever number comes out.
 ```
 
-## What NOT to do
+#### What NOT to do
 
 - Don't write a plan that only tests the happy path — include at least one failure-injection
   scenario (a downstream dependency going slow or unavailable mid-test) if the system has any
@@ -72,3 +86,10 @@ Stated before the test runs, not fitted to whatever number comes out.
   are different guarantees.
 - Don't let the plan imply a single load test proves the system is "ready" — one run under one set
   of conditions is one data point, say that plainly rather than overselling the conclusion.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.

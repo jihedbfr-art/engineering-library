@@ -1,15 +1,29 @@
 ---
-name: changelog-writer
-description: Write a changelog entry from a set of commits or merged PRs, grouped by user-facing impact rather than by commit order, in plain language a non-engineer user could understand. Use when asked to "write a changelog", "prepare release notes", or "summarize what changed in this release".
+format: "v2"
+name: "changelog-writer"
+title: "Changelog Writer"
+title_fr: "Générateur de Changelog et Notes de Version"
+description: "Write a changelog entry from a set of commits or merged PRs, grouped by user-facing impact rather than commit order, in plain language non-engineers can understand."
+description_fr: "Rédige une entrée de changelog à partir de commits ou de PR fusionnées, regroupée par impact utilisateur plutôt que par ordre des commits, dans un langage clair pour les non-développeurs."
+domain: "skills"
+tags: [cybersecurity, engineering, best-practices]
+maturity: "stable"
+audience: ["backend-engineer", "security-engineer", "coding-agent"]
+requires: ["bash", "git"]
+updated: "2026-08-08"
 ---
 
-# Changelog writer
+## Prerequisites
+- Repository codebase checked out locally.
+- Access to Java 17+, Spring Boot 3+, or target framework environment.
+- Required build tools (Maven/Gradle) installed.
 
+## Usage
 A changelog is for the person consuming the software, not for the team that built it — the
 audience test that shapes every rule below. A list of commit messages is not a changelog; it's a
 git log with different formatting.
 
-## Process
+#### Process
 
 1. **Filter for user-facing impact.** Internal refactors, dependency bumps with no behavior
    change, and test additions generally don't belong in a user-facing changelog — unless the
@@ -35,25 +49,25 @@ git log with different formatting.
 4. **Flag breaking changes unmistakably**, separate from routine changes — a breaking change
    buried in a "Changed" list among minor tweaks is a support-ticket generator waiting to happen.
 
-## Format
+#### Format
 
 ```markdown
-## [version] - YYYY-MM-DD
+#### [version] - YYYY-MM-DD
 
-### Added
+##### Added
 - <user-facing capability, plain language>
 
-### Fixed
+##### Fixed
 - <user-facing symptom that's resolved, plain language>
 
-### Changed
+##### Changed
 - <what's different, and what a user might need to adjust>
 
-### ⚠️ Breaking Changes
+##### ⚠️ Breaking Changes
 - <what breaks, what to do instead>
 ```
 
-## What NOT to do
+#### What NOT to do
 
 - Don't include internal-only changes (test coverage, CI config, code style) in a user-facing
   changelog — they add noise without value to the intended reader.
@@ -62,3 +76,10 @@ git log with different formatting.
   changelog entry explains *what changed for you* to a user. Different audience, different
   wording, even for the same underlying change.
 - Don't bury a breaking change in prose — it needs its own clearly marked section every time.
+
+## Inputs
+- Source code diff or repository path under evaluation.
+- Relevant documentation, configuration files, or issue description.
+
+## Outputs
+- Structured review findings, action items, or generated markdown artifacts.
