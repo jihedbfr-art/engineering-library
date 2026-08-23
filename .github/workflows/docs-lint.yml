@@ -1,14 +1,9 @@
-name: Docs Linting
+name: Docs & Skill Linting
 
 on:
   push:
-    paths:
-      - 'knowledge/ai-engineering/**/*.md'
-      - 'knowledge/ai-engineering/scripts/lint_skills.py'
+    branches: [main]
   pull_request:
-    paths:
-      - 'knowledge/ai-engineering/**/*.md'
-      - 'knowledge/ai-engineering/scripts/lint_skills.py'
 
 jobs:
   lint-docs:
@@ -22,5 +17,12 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run linter
-        run: python knowledge/ai-engineering/scripts/lint_skills.py
+      - name: Frontmatter & Skill Structure Lint
+        run: python tools/lint_skills.py .
+
+      - name: Generated READMEs Freshness Check
+        run: python tools/render_skill_readmes.py . --check
+
+      - name: Index & Catalog Freshness Check
+        run: python tools/build_index.py . --check
+
