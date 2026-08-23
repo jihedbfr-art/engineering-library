@@ -1,0 +1,347 @@
+[
+  {
+    "name": "adr-writer",
+    "title": "Architectural Decision Record (ADR) Writer",
+    "title_fr": "Rédacteur d'ADR (Architectural Decision Record)",
+    "description": "Write an Architecture Decision Record documenting a technical decision, the alternatives considered, and the tradeoffs accepted, a durable record of why the choice was made.",
+    "description_fr": "Rédige une Architecture Decision Record documentant une décision technique, les alternatives envisagées et les compromis acceptés, pour garder une trace durable du pourquoi.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/adr-writer/SKILL.md"
+  },
+  {
+    "name": "api-contract-reviewer",
+    "title": "API Contract Reviewer",
+    "title_fr": "Revue de contrat d'API REST/gRPC",
+    "description": "Review a REST, GraphQL or gRPC API design or diff for contract-breaking changes, inconsistent error shapes, wrong HTTP semantics, and missing versioning or pagination.",
+    "description_fr": "Relit une conception ou un diff d'API REST, GraphQL ou gRPC pour détecter les changements cassant le contrat, les formats d'erreur incohérents, la mauvaise sémantique HTTP et l'absence de versioning ou pagination.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/api-contract-reviewer/SKILL.md"
+  },
+  {
+    "name": "changelog-writer",
+    "title": "Changelog Writer",
+    "title_fr": "Générateur de Changelog et Notes de Version",
+    "description": "Write a changelog entry from a set of commits or merged PRs, grouped by user-facing impact rather than commit order, in plain language non-engineers can understand.",
+    "description_fr": "Rédige une entrée de changelog à partir de commits ou de PR fusionnées, regroupée par impact utilisateur plutôt que par ordre des commits, dans un langage clair pour les non-développeurs.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/changelog-writer/SKILL.md"
+  },
+  {
+    "name": "code-refactoring-planner",
+    "title": "Code Refactoring Planner",
+    "title_fr": "Planificateur de refactoring de code",
+    "description": "Plan a refactor as a sequence of small, independently-shippable, behavior-preserving steps rather than one large rewrite too risky to land in a single PR.",
+    "description_fr": "Planifie un refactoring en une suite d'étapes petites, livrables indépendamment et sans changement de comportement, plutôt qu'une grosse réécriture trop risquée pour une seule PR.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/code-refactoring-planner/SKILL.md"
+  },
+  {
+    "name": "cost-optimization-reviewer",
+    "title": "Cloud & Resource Cost Optimization Reviewer",
+    "title_fr": "Revue d'optimisation des coûts cloud et ressources",
+    "description": "Review infrastructure or cloud spend for real waste - over-provisioned resources, orphaned resources still billing, inefficient choices - ranked by savings versus effort.",
+    "description_fr": "Analyse les dépenses cloud ou d'infrastructure pour repérer le vrai gaspillage — ressources surdimensionnées, ressources orphelines encore facturées, choix inefficaces — classé par économies rapportées à l'effort.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/cost-optimization-reviewer/SKILL.md"
+  },
+  {
+    "name": "data-pipeline-reviewer",
+    "title": "Data Pipeline Reviewer",
+    "title_fr": "Revue de pipelines de données et ETL",
+    "description": "Review an ETL/ELT pipeline or batch job for idempotency, backfill safety, and schema-drift handling - failure modes that surface as silently wrong numbers weeks later.",
+    "description_fr": "Relit un pipeline ETL/ELT ou un batch pour vérifier l'idempotence, la sécurité des backfills et la gestion du schema drift — des défaillances qui se traduisent par des chiffres faux et silencieux des semaines plus tard.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/data-pipeline-reviewer/SKILL.md"
+  },
+  {
+    "name": "database-migration-reviewer",
+    "title": "Database Migration Reviewer",
+    "title_fr": "Revue de migrations de base de données (Liquibase/Flyway)",
+    "description": "Review a database schema migration for rolling-deploy safety, lock duration on large tables, and reversibility before it ships to production.",
+    "description_fr": "Relit une migration de schéma de base de données pour vérifier la sécurité en déploiement progressif, la durée des locks sur les grandes tables et la réversibilité avant la mise en production.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/database-migration-reviewer/SKILL.md"
+  },
+  {
+    "name": "dependency-upgrade-reviewer",
+    "title": "Dependency Upgrade Reviewer",
+    "title_fr": "Revue de montée en version de dépendances",
+    "description": "Review a dependency version bump - a single library or an automated batch - for real breaking-change risk, not just whether the tests still pass.",
+    "description_fr": "Relit une montée de version de dépendance — une bibliothèque isolée ou un lot automatisé — pour évaluer le vrai risque de rupture, pas seulement si les tests passent encore.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/dependency-upgrade-reviewer/SKILL.md"
+  },
+  {
+    "name": "documentation-generator",
+    "title": "Technical Documentation Generator",
+    "title_fr": "Générateur de documentation technique",
+    "description": "Generate or update documentation (README, API reference, module doc) from code, prioritizing what a new reader actually needs over exhaustive restatement of the code.",
+    "description_fr": "Génère ou met à jour la documentation (README, référence d'API, doc de module) à partir du code, en priorisant ce dont un nouveau lecteur a réellement besoin plutôt qu'une reformulation exhaustive du code.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/documentation-generator/SKILL.md"
+  },
+  {
+    "name": "feature-flag-rollout-planner",
+    "title": "Feature Flag Rollout Planner",
+    "title_fr": "Planificateur de déploiement par Feature Flags",
+    "description": "Plan a staged feature-flag rollout with real percentage steps, what to watch at each step, and explicit rollback triggers before flipping a risky flag.",
+    "description_fr": "Planifie un déploiement progressif par feature flag avec de vrais paliers de pourcentage, ce qu'il faut surveiller à chaque étape et des déclencheurs de rollback explicites avant d'activer un flag risqué.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/feature-flag-rollout-planner/SKILL.md"
+  },
+  {
+    "name": "git-commit-message-writer",
+    "title": "Conventional Git Commit Message Writer",
+    "title_fr": "Rédacteur de messages de commit Git conventionnels",
+    "description": "Write a git commit message from a diff that explains why the change was made, not just what changed.",
+    "description_fr": "Rédige un message de commit Git à partir d'un diff, en expliquant pourquoi le changement a été fait, pas seulement ce qui a changé.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/git-commit-message-writer/SKILL.md"
+  },
+  {
+    "name": "incident-postmortem-writer",
+    "title": "Blameless Incident Postmortem Writer",
+    "title_fr": "Rédacteur de post-mortem d'incident sans blâme",
+    "description": "Turn raw incident notes, logs, and a timeline into a structured, blameless postmortem - root cause, impact, timeline, and prevention actions.",
+    "description_fr": "Transforme des notes d'incident brutes, des logs et une chronologie en un post-mortem structuré et sans blâme — cause racine, impact, chronologie et actions de prévention.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/incident-postmortem-writer/SKILL.md"
+  },
+  {
+    "name": "keycloak-spi-scaffold",
+    "title": "Keycloak SPI Scaffold & Generator",
+    "title_fr": "Générateur et squelette de Keycloak SPI",
+    "description": "Scaffold a new Keycloak SPI module - Authenticator, Event Listener, or User Storage Provider - with the Provider/ProviderFactory pair and service registration.",
+    "description_fr": "Génère le squelette d'un nouveau module SPI Keycloak — Authenticator, Event Listener ou User Storage Provider — avec la paire Provider/ProviderFactory et l'enregistrement du service.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/keycloak-spi-scaffold/SKILL.md"
+  },
+  {
+    "name": "load-testing-plan-writer",
+    "title": "Load & Performance Testing Plan Writer",
+    "title_fr": "Rédacteur de plan de tests de charge et performance",
+    "description": "Write a load-testing plan for a service before a launch, migration, or traffic spike - target numbers, ramp shape, what to measure, and abort conditions.",
+    "description_fr": "Rédige un plan de test de charge pour un service avant un lancement, une migration ou un pic de trafic — objectifs chiffrés, forme de la montée en charge, ce qu'il faut mesurer et les conditions d'arrêt.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/load-testing-plan-writer/SKILL.md"
+  },
+  {
+    "name": "mcp-python-server-fastapi",
+    "title": "FastAPI MCP Python Server Generator",
+    "title_fr": "Générateur de serveur MCP Python avec FastAPI",
+    "description": "Template and instructions for deploying a custom Model Context Protocol (MCP) server using Python and FastAPI.",
+    "description_fr": "Modèle et instructions pour déployer un serveur Model Context Protocol (MCP) personnalisé en Python avec FastAPI.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/mcp-python-server-fastapi/SKILL.md"
+  },
+  {
+    "name": "observability-instrumentation-reviewer",
+    "title": "Observability & OpenTelemetry Reviewer",
+    "title_fr": "Revue d'instrumentation observabilité et OpenTelemetry",
+    "description": "Review a service's logging, metrics, and tracing for real gaps - spans that lose context, metrics with no alerting, log lines that can't be correlated to a request.",
+    "description_fr": "Relit les logs, métriques et traces d'un service pour trouver les vrais trous — spans qui perdent le contexte, métriques sans alerte associée, lignes de log impossibles à corréler à une requête.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/observability-instrumentation-reviewer/SKILL.md"
+  },
+  {
+    "name": "oncall-runbook-writer",
+    "title": "On-Call Runbook Writer",
+    "title_fr": "Rédacteur de runbooks et procédures astreinte",
+    "description": "Write an on-call runbook for a service - the alerts it can fire, what each one means, and the first three diagnostic steps for each.",
+    "description_fr": "Rédige un runbook d'astreinte pour un service — les alertes qu'il peut déclencher, ce que chacune signifie réellement, et les trois premiers réflexes de diagnostic pour chacune.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/oncall-runbook-writer/SKILL.md"
+  },
+  {
+    "name": "performance-profiling-guide",
+    "title": "Java & Application Performance Profiling Guide",
+    "title_fr": "Guide de profilage et performance Java",
+    "description": "Diagnose a performance problem methodically - measure before guessing, find the actual bottleneck, propose a fix scoped to what was measured.",
+    "description_fr": "Diagnostique un problème de performance méthodiquement — mesurer avant de deviner, trouver le vrai goulot d'étranglement, proposer un correctif limité à ce qui a été mesuré.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/performance-profiling-guide/SKILL.md"
+  },
+  {
+    "name": "rag-eval-report",
+    "title": "RAG Evaluation & Quality Report Writer",
+    "title_fr": "Rapport d'évaluation et qualité RAG",
+    "description": "Turn raw retrieval/generation eval output into a structured report that separates retrieval failures from generation failures and gives a concrete next action.",
+    "description_fr": "Transforme les résultats bruts d'une évaluation retrieval/génération en un rapport structuré qui sépare les échecs de récupération des échecs de génération et propose une action concrète.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/rag-eval-report/SKILL.md"
+  },
+  {
+    "name": "security-audit-checklist",
+    "title": "Application Security Audit Checklist",
+    "title_fr": "Checklist d'audit de sécurité applicative",
+    "description": "Audit code or a design for common vulnerability classes - injection, broken access control, unsafe deserialization, secrets exposure - using a fixed defensive checklist.",
+    "description_fr": "Audite du code ou une conception pour les classes de vulnérabilités courantes — injection, contrôle d'accès défaillant, désérialisation non sûre, exposition de secrets — via une checklist défensive fixe.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/security-audit-checklist/SKILL.md"
+  },
+  {
+    "name": "spring-boot-code-review",
+    "title": "Spring Boot & JPA Code Review",
+    "title_fr": "Revue de code Spring Boot et JPA",
+    "description": "Review a Spring Boot / JPA diff for bug classes that pass CI but break in production - transaction self-invocation, silent rollback gaps, N+1 queries, connection leaks.",
+    "description_fr": "Relit un diff Spring Boot / JPA pour les classes de bugs qui passent la CI mais cassent en production — auto-invocation transactionnelle, rollback silencieux manqué, requêtes N+1, fuites de connexions.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/spring-boot-code-review/SKILL.md"
+  },
+  {
+    "name": "telecom-bss-integration-review",
+    "title": "Telecom BSS & Core 5G Integration Review",
+    "title_fr": "Revue d'intégration BSS et Core 5G Télécom",
+    "description": "Review integration code between a BSS/OSS platform and a telecom core network or provisioning system - subscriber activation, portability, SIM provisioning.",
+    "description_fr": "Relit le code d'intégration entre une plateforme BSS/OSS et un réseau cœur télécom ou un système de provisioning — activation d'abonné, portabilité, provisioning de SIM.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/telecom-bss-integration-review/SKILL.md"
+  },
+  {
+    "name": "test-plan-writer",
+    "title": "Integration & Unit Test Plan Writer",
+    "title_fr": "Rédacteur de plans de tests unitaires et intégration",
+    "description": "Design a test plan for a feature or change - what to test, at which level, and which edge cases matter most.",
+    "description_fr": "Conçoit un plan de test pour une fonctionnalité ou un changement — quoi tester, à quel niveau, et quels cas limites comptent le plus.",
+    "domain": "skills",
+    "tags": [
+      "cybersecurity",
+      "engineering",
+      "best-practices"
+    ],
+    "maturity": "stable",
+    "path": "knowledge/ai-engineering/06-agent-hooks-and-skills/skills/test-plan-writer/SKILL.md"
+  }
+]
