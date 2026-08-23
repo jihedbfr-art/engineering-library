@@ -1,0 +1,30 @@
+<!-- GENERATED — do not edit -->
+{% include 'header.humain.html.j2' %}
+
+{% if lang == 'fr' %}
+## Description
+{{ description_fr }}
+
+## Domaine & Metadata
+- **Domaine :** `{{ domain }}`
+- **Maturité :** `{{ maturity }}`
+- **Public visé :** `{{ audience | join(', ') }}`
+- **Prérequis techniques :** `{{ requires | join(', ') }}`
+- **Dernière mise à jour :** {{ updated }}
+
+## Instructions Agent
+Le fichier canonique consommable par un agent IA (`Claude Code`, `Antigravity`, `Cursor`) est disponible dans [SKILL.md](./SKILL.md).
+{% else %}
+## Description
+{{ description }}
+
+## Domain & Metadata
+- **Domain:** `{{ domain }}`
+- **Maturity:** `{{ maturity }}`
+- **Audience:** `{{ audience | join(', ') }}`
+- **Requirements:** `{{ requires | join(', ') }}`
+- **Last Updated:** {{ updated }}
+
+## Agent Instructions
+The canonical agent-executable specification is available in [SKILL.md](./SKILL.md).
+{% endif %}

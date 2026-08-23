@@ -1,0 +1,33 @@
+{% if lang == 'fr' %}
+<div align="center">
+  <img src="{{ logo_relative_path }}" alt="JihedAiLabs" width="{{ logo_width | default(120) }}"/>
+</div>
+
+# {{ title_fr }}
+
+<div align="center">
+
+**Un projet <a href="https://github.com/jihedbfr-art">JihedAiLabs</a>** — {{ description_fr }}
+
+<a href="./README.md">English version</a>
+
+</div>
+
+---
+{% else %}
+<div align="center">
+  <img src="{{ logo_relative_path }}" alt="JihedAiLabs" width="{{ logo_width | default(120) }}"/>
+</div>
+
+# {{ title }}
+
+<div align="center">
+
+**A <a href="https://github.com/jihedbfr-art">JihedAiLabs</a> project** — {{ description }}
+
+<a href="./README.fr.md">Version française</a>
+
+</div>
+
+---
+{% endif %}
