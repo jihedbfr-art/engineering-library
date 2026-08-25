@@ -10,7 +10,16 @@ if hasattr(sys.stdout, 'reconfigure'):
 try:
     import yaml
 except ImportError:
-    yaml = None
+    # There used to be a naive line-based fallback here. It parsed
+    # `audience: ["a", "b"]` as the literal string instead of a list, so the
+    # renderer emitted `["a", "b"]` where the PyYAML path emits `a, b`. Every
+    # generated README then looked stale to --check, which is exactly what
+    # happened on CI once this script started running there without PyYAML
+    # installed. A fallback that changes the output is not a fallback.
+    sys.exit(
+        "PyYAML is required to render skill READMEs (pip install pyyaml).\n"
+        "Refusing to run without it: the output would differ from the committed files."
+    )
 
 def parse_frontmatter(content):
     if not content.startswith("---"):
@@ -19,19 +28,11 @@ def parse_frontmatter(content):
     if len(parts) < 3:
         return {}
     yaml_text = parts[1]
-    
-    data = {}
-    if yaml is not None:
-        try:
-            data = yaml.safe_load(yaml_text) or {}
-        except Exception:
-            pass
-    if not data:
-        for line in yaml_text.strip().splitlines():
-            if ":" in line:
-                k, v = line.split(":", 1)
-                data[k.strip()] = v.strip().strip('"').strip("'")
-    return data
+
+    try:
+        return yaml.safe_load(yaml_text) or {}
+    except Exception:
+        return {}
 
 def find_logo_relative_path(skill_dir):
     # Ascend until assets/brand/jihedailabs-logo.{svg,png} is found, or compute a
