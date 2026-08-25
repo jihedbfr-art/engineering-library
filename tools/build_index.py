@@ -10,7 +10,13 @@ if hasattr(sys.stdout, 'reconfigure'):
 try:
     import yaml
 except ImportError:
-    yaml = None
+    # The line-based fallback that used to live here parsed `tags: [a, b]` as a
+    # string instead of a list, so the index it produced disagreed with the one
+    # generated where PyYAML is installed. Same trap as in render_skill_readmes.py.
+    sys.exit(
+        "PyYAML is required to build the skill index (pip install pyyaml).\n"
+        "Refusing to run without it: the output would differ from the committed files."
+    )
 
 def parse_frontmatter(content):
     if not content.startswith("---"):
@@ -19,19 +25,11 @@ def parse_frontmatter(content):
     if len(parts) < 3:
         return {}
     yaml_text = parts[1]
-    
-    data = {}
-    if yaml is not None:
-        try:
-            data = yaml.safe_load(yaml_text) or {}
-        except Exception:
-            pass
-    if not data:
-        for line in yaml_text.strip().splitlines():
-            if ":" in line:
-                k, v = line.split(":", 1)
-                data[k.strip()] = v.strip().strip('"').strip("'")
-    return data
+
+    try:
+        return yaml.safe_load(yaml_text) or {}
+    except Exception:
+        return {}
 
 def build_index(root_path):
     skills_index = []
@@ -65,10 +63,17 @@ def build_index(root_path):
                     "path": f"{rel_dir}/SKILL.md"
                 }
                 skills_index.append(skill_entry)
-
-                llms_txt_lines.append(f"- [{skill_entry['name']}]({skill_entry['path']}): {skill_entry['description']}")
             except Exception as e:
                 print(f"Error indexing {skill_path}: {e}")
+
+    # os.walk yields directories in filesystem order, which is alphabetical on
+    # NTFS but arbitrary on ext4. Without this sort the index is generated in a
+    # different order on Windows and on Linux CI, and --check reports drift that
+    # nobody can reproduce locally.
+    skills_index.sort(key=lambda entry: entry["path"])
+
+    for skill_entry in skills_index:
+        llms_txt_lines.append(f"- [{skill_entry['name']}]({skill_entry['path']}): {skill_entry['description']}")
 
     index_json_path = os.path.join(root_path, "skills-index.json")
     llms_txt_path = os.path.join(root_path, "llms.txt")
