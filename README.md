@@ -6,6 +6,8 @@
 [![Build](https://github.com/jihedbfr-art/engineering-library/actions/workflows/build.yml/badge.svg)](https://github.com/jihedbfr-art/engineering-library/actions/workflows/build.yml)
 [![CodeQL](https://github.com/jihedbfr-art/engineering-library/actions/workflows/codeql.yml/badge.svg)](https://github.com/jihedbfr-art/engineering-library/actions/workflows/codeql.yml)
 
+[Version française](./README.fr.md)
+
 Java/Spring engineering notes built on top of 10+ years in telecom BSS and network provisioning,
 before I moved into microservices architecture. This isn't a general-purpose dev encyclopedia —
 it used to try to be one and it was worse for it. What's left is what I can actually back up in
