@@ -7,6 +7,11 @@ openai==1.54.0
 ollama==0.4.4
 
 # RAG (02-rag-architectures)
+# GHSA-36p7-vc44-83pf / GHSA-2wm9-hf6c-p5cr / GHSA-xph7-9rjv-w5fr target chromadb's
+# HttpClient multi-tenant server (RBAC bypass, code injection). This codebase only
+# uses PersistentClient/EphemeralClient (embedded, no server) — not applicable.
+# No patched version exists upstream as of 2026-08-24; re-check before switching
+# to HttpClient.
 chromadb==0.5.20
 rank-bm25==0.2.2
 sentence-transformers==3.3.1
