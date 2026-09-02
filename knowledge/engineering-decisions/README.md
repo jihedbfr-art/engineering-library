@@ -16,6 +16,9 @@ quotidien d'un architecte. Chaque fichier répond à **une** question : « Pourq
 |---|---|---|
 | 0001 | [Pourquoi Keycloak plutôt qu'un JWT maison](0001-pourquoi-keycloak.md) | Accepté |
 | 0002 | [Pourquoi PostgreSQL](0002-pourquoi-postgresql.md) | Accepté |
+| 0003 | [Pourquoi Transactional Outbox Pattern](0003-transactional-outbox-vs-dual-writes.md) | Accepté |
+| 0004 | [Pourquoi Saga Orchestration (Camunda)](0004-saga-choreography-vs-orchestration-telecom.md) | Accepté |
+| 0005 | [Pourquoi Apache Kafka vs RabbitMQ](0005-kafka-vs-rabbitmq-for-bss.md) | Accepté |
 
 ## Questions à documenter (backlog)
 Pourquoi Kafka · Pourquoi Redis · Pourquoi REST vs GraphQL · Pourquoi Docker · Pourquoi Eureka ·
