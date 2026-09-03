@@ -1,0 +1,5 @@
+# 1. Enterprise Social Publisher MCP Gateway
+
+L'automatisation de la publication sur les réseaux sociaux via des modèles d'IA présente un risque réputationnel majeur si elle n'est pas strictement gouvernée. Contrairement aux scripts isolés, ce projet propose une passerelle MCP de classe entreprise développée en Spring Boot 3.
+
+Le serveur expose des outils standards (`generate_copy`, `schedule_campaign`, `publish_post`) pour la gestion de plateformes multiples. L'architecture intègre un hook de décision `policy.ask_user` configuré via le SDK Antigravity. Lorsqu'un agent décide d'invoquer `publish_post`, le flux d'exécution est mis en pause, exigeant l'intervention d'un valideur humain (Human-in-the-loop). Une fois l'approbation obtenue, la requête transite par une passerelle API qui exécute un échange de jetons RFC 8693 avec Keycloak. Le jeton OBO résultant est transmis aux API des réseaux sociaux, garantissant que l'action est tracée jusqu'à l'utilisateur ayant validé le contenu, éliminant ainsi le risque d'escalade de privilèges (MCP02:2025).
