@@ -1,0 +1,5 @@
+# 2. Telecom BSS Provisioning Saga Swarm
+
+Dans le domaine de la facturation et du provisionnement 5G, les transactions sont distribuées et nécessitent des mécanismes stricts de compensation en cas d'échec. Ce projet réinvente le patron de conception Saga en utilisant un essaim de sous-agents (Agent Swarm) orchestré par Antigravity.
+
+Un agent coordinateur (Orchestrator Agent) décompose une demande complexe d'activation de ligne. Il lance asynchrone des sous-agents spécialisés (CRM Agent, Billing Agent, Network Agent), chacun disposant d'une vue isolée du contexte et de connexions à des serveurs MCP distincts. Les communications inter-services reposent sur Kafka avec le patron Transactional Outbox pour garantir la livraison des messages. Si le Network Agent échoue en raison d'une indisponibilité matérielle, l'orchestrateur intercepte l'erreur via le hook `OnToolErrorHook` et invoque dynamiquement un workflow de compensation Camunda BPMN pour annuler les écritures dans le CRM et le système de facturation.
