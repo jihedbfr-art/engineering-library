@@ -20,6 +20,9 @@ chaque fichier est **une** entrée autonome qui suit le `_TEMPLATE.md` de son do
 | [engineering-checklists](engineering-checklists/) | Avant merge / prod / migration / release | squelette + 1 exemple |
 | [code-review-guide](code-review-guide/) | Comment reviewer : smells, anti-patterns, perf, tests, sécurité | squelette |
 | [engineering-cookbook](engineering-cookbook/) | « Je veux faire X » → recette prête à l'emploi | squelette + 1 exemple |
+| [cybersecurity](cybersecurity/) | Fondamentaux, blue team, pentest, sécurité web, parcours d'apprentissage | squelette + exemples |
+| [telecom](telecom/) | BSS/OSS, 5G, portabilité, provisioning, IMS/VoLTE, opérateurs, vendeurs | squelette + exemples |
+| [practices](practices/) | Agile, workflows Git, tests | squelette + exemples |
 
 ## Règle d'or
 
