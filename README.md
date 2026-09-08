@@ -1,7 +1,7 @@
 # Engineering Library
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![Knowledge domains](https://img.shields.io/badge/knowledge%20domains-12-informational)
+![Knowledge domains](https://img.shields.io/badge/knowledge%20domains-16-informational)
 ![Stack](https://img.shields.io/badge/stack-Java%20%2F%20Spring%20%2F%20Angular-brightgreen)
 [![Build](https://github.com/jihedbfr-art/engineering-library/actions/workflows/build.yml/badge.svg)](https://github.com/jihedbfr-art/engineering-library/actions/workflows/build.yml)
 [![CodeQL](https://github.com/jihedbfr-art/engineering-library/actions/workflows/codeql.yml/badge.svg)](https://github.com/jihedbfr-art/engineering-library/actions/workflows/codeql.yml)
