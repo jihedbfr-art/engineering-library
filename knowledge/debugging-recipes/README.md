@@ -1,12 +1,17 @@
 # debugging-recipes
 
-« Ça ne marche pas » → une checklist de diagnostic ciblée par symptôme. On ne cherche pas la théorie,
-on cherche **la prochaine commande à taper**.
+[Version française](README.fr.md)
 
-## Structure d'une entrée
-Symptôme exact · Causes probables (les plus fréquentes d'abord) · Diagnostic pas-à-pas · Correctif. Voir [`_TEMPLATE.md`](_TEMPLATE.md).
+"It does not work" becomes a checklist tied to the symptom. The aim is to identify the next useful command or test, rather than repeat general theory.
+
+## Entry format
+
+Exact symptom · likely causes, starting with the common ones · step-by-step diagnosis · fix. See [`_TEMPLATE.md`](_TEMPLATE.md).
 
 ## Backlog
-Spring Boot ne démarre pas · `Bean not found` · dépendance circulaire · `LazyInitializationException` ·
-JWT invalide · Kafka consumer bloqué · conteneur Docker qui exit · Kubernetes `CrashLoopBackOff` ·
-timeout Oracle · deadlock Postgres. Ajouter via la skill **ajouter-entree-savoir**.
+
+Spring Boot startup failure · missing bean · circular dependency · `LazyInitializationException` · invalid JWT · stuck Kafka consumer · exiting Docker container · Kubernetes `CrashLoopBackOff` · Oracle timeout · PostgreSQL deadlock. Add entries through the **ajouter-entree-savoir** skill.
+
+## Added recipe
+
+- [MCP tool call loses the authenticated user](mcp-tool-security-context.md) — separate HTTP rejection, missing roles, and Reactor context loss; test the MCP route and two simultaneous clients. [Français](mcp-tool-security-context.fr.md).
