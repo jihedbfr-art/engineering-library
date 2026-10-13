@@ -52,6 +52,6 @@ Do not copy a security context into a global variable or infer identity from a t
 
 Check the actual MCP transport paths and the Spring AI version in use. In the reference setup, the SSE endpoint is `/sse` and messages use `/mcp/message`; a POST to `/mcp` returns `404`. A passing five-test integration suite in that setup covered sequential and one simultaneous reader/admin pair. It was not a load test.
 
-Reference implementation: [mcp-keycloak-guard](https://github.com/jihedbfr-art/mcp-keycloak-guard). The diagnosis above comes from its local integration tests; verify the relevant commits are published before treating the linked default branch as an implementation example.
+Reference implementation: [MCP Guard security context configuration](https://github.com/jihedbfr-art/mcp-keycloak-guard/blob/177fdef/src/main/java/dev/jihed/mcpguard/config/SecurityContextPropagationConfig.java). The linked commit is published in [PR #1](https://github.com/jihedbfr-art/mcp-keycloak-guard/pull/1); it has not been merged into the default branch.
 
 Official references: [Spring AI 1.0 MCP server transport](https://docs.spring.io/spring-ai/reference/1.0/api/mcp/mcp-server-boot-starter-docs.html) and [Reactor context propagation](https://projectreactor.io/docs/core/release/reference/advanced-contextPropagation.html).
