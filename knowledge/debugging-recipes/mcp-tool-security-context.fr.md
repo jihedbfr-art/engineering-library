@@ -29,6 +29,23 @@ Vérifier le rapport de test et les quatre observations : SSE anonyme refusé, o
 
 Le serveur de référence testé enregistre un `ThreadLocalAccessor` Micrometer pour `SecurityContextHolder` et active la propagation automatique du contexte Reactor avant l'exécution des callbacks. Les méthodes protégées conservent `@PreAuthorize` : chaque outil contrôle toujours les rôles de l'appelant. Après la correction, retester le trajet MCP complet, surtout deux clients simultanés de rôles différents.
 
+La configuration correspondante dans ce projet Spring AI 1.0.0 est :
+
+```java
+@PostConstruct
+void enableSecurityContextPropagation() {
+  ContextRegistry.getInstance()
+      .registerThreadLocalAccessor(
+          "spring.security.context",
+          SecurityContextHolder::getContext,
+          SecurityContextHolder::setContext,
+          SecurityContextHolder::clearContext);
+  Hooks.enableAutomaticContextPropagation();
+}
+```
+
+Enregistrer l'accesseur et le hook au démarrage, avant les nouveaux abonnements Reactor. Conserver le test d'intégration avec le client MCP : cet extrait seul ne prouve pas que le contexte atteint le callback dans une autre application.
+
 Ne pas placer le contexte de sécurité dans une variable globale et ne pas déduire l'identité d'un argument d'outil. Le contexte appartient à la requête authentifiée. Si le jeton ou la conversion des rôles est en cause, corriger cette frontière plutôt que d'ajouter une propagation.
 
 ## Si cela ne suffit pas
@@ -36,3 +53,5 @@ Ne pas placer le contexte de sécurité dans une variable globale et ne pas déd
 Vérifier les chemins du transport MCP réellement utilisé et la version de Spring AI. Dans la configuration de référence, SSE utilise `/sse` et les messages `/mcp/message` ; un POST vers `/mcp` renvoie `404`. Les cinq tests d'intégration passants de cette configuration couvraient des appels successifs et une paire lecteur/admin simultanée. Ce n'était pas un test de charge.
 
 Implémentation de référence : [mcp-keycloak-guard](https://github.com/jihedbfr-art/mcp-keycloak-guard). Ce diagnostic repose sur ses tests d'intégration locaux ; vérifier que les commits concernés sont publiés avant de considérer la branche distante comme exemple d'implémentation.
+
+Références officielles : [transport du serveur MCP Spring AI 1.0](https://docs.spring.io/spring-ai/reference/1.0/api/mcp/mcp-server-boot-starter-docs.html) et [propagation de contexte Reactor](https://projectreactor.io/docs/core/release/reference/advanced-contextPropagation.html).

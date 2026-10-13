@@ -29,6 +29,23 @@ Inspect the test report and assert all four observations: anonymous SSE rejected
 
 The tested reference server registers a Micrometer `ThreadLocalAccessor` for `SecurityContextHolder` and enables Reactor automatic context propagation before tool callbacks run. Its protected methods keep `@PreAuthorize`; the tool still checks the current caller's roles. Test the whole MCP route again after the change, especially two simultaneous clients with different roles.
 
+The relevant configuration in that Spring AI 1.0.0 setup is:
+
+```java
+@PostConstruct
+void enableSecurityContextPropagation() {
+  ContextRegistry.getInstance()
+      .registerThreadLocalAccessor(
+          "spring.security.context",
+          SecurityContextHolder::getContext,
+          SecurityContextHolder::setContext,
+          SecurityContextHolder::clearContext);
+  Hooks.enableAutomaticContextPropagation();
+}
+```
+
+Register the accessor and hook at startup, before new Reactor subscriptions are made. Keep the MCP client integration test: this configuration snippet by itself is not proof that the caller's context reaches the callback in another application.
+
 Do not copy a security context into a global variable or infer identity from a tool argument. The context belongs to the authenticated request. If the token or role mapping is wrong, repair that boundary instead of adding propagation.
 
 ## If it still fails
@@ -36,3 +53,5 @@ Do not copy a security context into a global variable or infer identity from a t
 Check the actual MCP transport paths and the Spring AI version in use. In the reference setup, the SSE endpoint is `/sse` and messages use `/mcp/message`; a POST to `/mcp` returns `404`. A passing five-test integration suite in that setup covered sequential and one simultaneous reader/admin pair. It was not a load test.
 
 Reference implementation: [mcp-keycloak-guard](https://github.com/jihedbfr-art/mcp-keycloak-guard). The diagnosis above comes from its local integration tests; verify the relevant commits are published before treating the linked default branch as an implementation example.
+
+Official references: [Spring AI 1.0 MCP server transport](https://docs.spring.io/spring-ai/reference/1.0/api/mcp/mcp-server-boot-starter-docs.html) and [Reactor context propagation](https://projectreactor.io/docs/core/release/reference/advanced-contextPropagation.html).
