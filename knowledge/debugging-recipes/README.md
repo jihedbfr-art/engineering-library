@@ -1,12 +1,25 @@
 # debugging-recipes
 
-« Ça ne marche pas » → une checklist de diagnostic ciblée par symptôme. On ne cherche pas la théorie,
-on cherche **la prochaine commande à taper**.
+[Version française](README.fr.md)
 
-## Structure d'une entrée
-Symptôme exact · Causes probables (les plus fréquentes d'abord) · Diagnostic pas-à-pas · Correctif. Voir [`_TEMPLATE.md`](_TEMPLATE.md).
+Start with the observed symptom, then follow a focused procedure to locate and fix its cause.
+
+## Entry structure
+
+Exact symptom, likely causes in order of frequency, diagnosis commands and fix. See [`_TEMPLATE.md`](_TEMPLATE.md).
+
+## Verified cases
+
+- [Malformed Keycloak role claims](keycloak-role-claims/README.md): synthetic inputs, regression tests and the scope of the combined fix.
 
 ## Backlog
-Spring Boot ne démarre pas · `Bean not found` · dépendance circulaire · `LazyInitializationException` ·
-JWT invalide · Kafka consumer bloqué · conteneur Docker qui exit · Kubernetes `CrashLoopBackOff` ·
-timeout Oracle · deadlock Postgres. Ajouter via la skill **ajouter-entree-savoir**.
+
+Spring Boot startup failure, `Bean not found`, circular dependencies, `LazyInitializationException`, invalid JWTs, blocked Kafka consumers, exiting Docker containers, Kubernetes `CrashLoopBackOff`, Oracle timeouts and Postgres deadlocks. Add entries through **ajouter-entree-savoir**.
+
+---
+
+<div align="center">
+  <img src="../../assets/brand/jihedailabs-logo.svg" alt="JihedAiLabs" width="120">
+  <br>
+  <sub>A <a href="https://github.com/jihedbfr-art"><b>JihedAiLabs</b></a> project</sub>
+</div>
