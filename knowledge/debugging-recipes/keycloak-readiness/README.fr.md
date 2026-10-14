@@ -1,0 +1,44 @@
+# Keycloak répond, mais sa sonde Docker échoue
+
+[English version](README.md)
+
+Cas observé avec l'image `quay.io/keycloak/keycloak:26.0` de la démo MCP Guard : le endpoint de découverte du realm répondait HTTP 200, alors que `/health/ready` sur le port 8080 répondait 404. Le processus en cours et la sonde de disponibilité ne vérifiaient pas la même chose.
+
+## Diagnostiquer avant de redémarrer
+
+```bash
+docker compose -f docker/docker-compose.yml ps
+docker compose -f docker/docker-compose.yml logs --tail 60 keycloak
+```
+
+Lire le port, le chemin et la réponse attendue par la sonde. Vérifier si `KC_HEALTH_ENABLED` est activé. Ne pas déduire la disponibilité de la seule ouverture du port applicatif. Éviter de copier tout l'environnement du conteneur dans un ticket : il peut contenir des identifiants.
+
+## Correctif vérifié dans ce cas
+
+Activer `KC_HEALTH_ENABLED=true` et interroger le endpoint de gestion dans le conteneur :
+
+```bash
+{ printf 'HEAD /health/ready HTTP/1.0\r\n\r\n' >&0; grep 'HTTP/1.0 200'; } 0<>/dev/tcp/localhost/9000
+```
+
+Cette commande Bash s'exécute dans le conteneur Keycloak, pas sur l'hôte. Elle ne nécessite ni curl dans l'image ni publication du port hôte 9000. Le chemin et le port doivent correspondre à la configuration déployée. Le [guide de santé de l'éditeur](https://www.keycloak.org/observability/health) décrit les options et la sonde.
+
+Le [correctif proposé exact](https://github.com/jihedbfr-art/mcp-keycloak-guard/commit/d05ce06) comprend le healthcheck Compose et un guide bilingue. Dans un nouveau clone de la démo positionné sur ce commit, attendre la disponibilité avec :
+
+```bash
+docker compose -f docker/docker-compose.yml up -d --wait --wait-timeout 180
+```
+
+## Preuves et limites
+
+Le 14 octobre 2026, la sonde d'origine échouait avec le code de sortie 1. Après correction, l'attente Compose s'est terminée avec succès et plusieurs sondes consécutives ont répondu HTTP 200. Le test utilisait un projet Compose isolé sans port hôte publié ; son conteneur et son réseau ont ensuite été supprimés.
+
+Ce résultat démontre la disponibilité de la configuration de démo testée. Il ne teste ni les rôles utilisateur ni l'appel d'un outil MCP. Conserver séparément les preuves de santé HTTP, d'authentification et d'autorisation des outils. La [PR](https://github.com/jihedbfr-art/mcp-keycloak-guard/pull/2) est une correction proposée, pas une release.
+
+---
+
+<div align="center">
+  <img src="../../../assets/brand/jihedailabs-logo.svg" alt="JihedAiLabs" width="120">
+  <br>
+  <sub>Un projet <a href="https://github.com/jihedbfr-art"><b>JihedAiLabs</b></a></sub>
+</div>

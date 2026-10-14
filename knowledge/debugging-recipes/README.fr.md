@@ -11,6 +11,7 @@ Symptôme exact, causes probables par ordre de fréquence, commandes de diagnost
 ## Cas vérifiés
 
 - [Claims de rôles Keycloak malformés](keycloak-role-claims/README.fr.md) : entrées synthétiques, tests de régression et portée du correctif combiné.
+- [Disponibilité Docker de Keycloak](keycloak-readiness/README.fr.md) : un realm répond HTTP 200 alors que la sonde échoue en 404 ; diagnostiquer le endpoint de gestion avant de redémarrer.
 
 ## Backlog
 

@@ -11,6 +11,7 @@ Exact symptom, likely causes in order of frequency, diagnosis commands and fix. 
 ## Verified cases
 
 - [Malformed Keycloak role claims](keycloak-role-claims/README.md): synthetic inputs, regression tests and the scope of the combined fix.
+- [Keycloak Docker readiness](keycloak-readiness/README.md): a realm returns HTTP 200 while a healthcheck fails with 404; diagnose the management endpoint before restarting.
 
 ## Backlog
 
