@@ -36,26 +36,21 @@ Avant le premier correctif, le convertisseur accordait `ROLE_123`, `ROLE_TRUE`, 
 
 Avant le second correctif, la conversion levait une `IllegalArgumentException` sur `realm_access`. L'assertion doit exiger une collection d'autorités vide, sans exception. Ajouter un autre test avec un `realm_access` malformé et un rôle resource valide : `ROLE_EDITOR` doit être conservé.
 
-## Vérifier les corrections proposées
+## Vérifier les corrections
 
-Utiliser un nouveau clone. Les versions ci-dessous sont les références du code examiné, pas des tags de release.
+Les deux correctifs sont fusionnés dans la branche `main` du toolkit. Dans un nouveau clone :
 
 ```bash
 git clone https://github.com/jihedbfr-art/spring-keycloak-toolkit.git
 cd spring-keycloak-toolkit
-git checkout 6026018
-mvn -q -Dtest=KeycloakRealmRoleConverterTest test
-git checkout 920441e
 mvn -q -Dtest=KeycloakRealmRoleConverterTest test
 ```
 
-La [PR #10](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/10) filtre les entrées des listes de rôles. La [PR #11](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/11) vérifie la structure des objets d'accès et supprime le cast non vérifié de la map client. Chaque test de régression échouait avant sa correction.
-
-Ces versions appartiennent à deux branches distinctes. Pour les combiner, conserver les trois tests `ignoresNonStringAndBlankRoleValues`, `ignoresMalformedAccessClaims` et `keepsValidResourceRolesWhenRealmClaimIsMalformed`. Résoudre les ajouts concurrents des README et des tests sans perdre l'un des comportements, puis exécuter `mvn -q verify` sur l'arbre final.
+La [PR #10](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/10) filtre les entrées des listes de rôles. La [PR #11](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/11) vérifie la structure des objets d'accès et supprime le cast non vérifié de la map client. Chaque test de régression échouait avant sa correction. La classe de test conserve les trois : `ignoresNonStringAndBlankRoleValues`, `ignoresMalformedAccessClaims` et `keepsValidResourceRolesWhenRealmClaimIsMalformed`. Exécuter `mvn -q verify` sur l'arbre complet ; les tests Keycloak demandent Docker.
 
 ## Preuves et limites
 
-Le 14 octobre 2026, les deux correctifs de code combinés ont passé 25 tests locaux, dont l'intégration Keycloak 26.7.1 sous Docker, avec Spring Boot 4.1.0 et Java 17. Le seuil JaCoCo du build a passé. Chacune des deux PR a passé cinq jobs distants de compatibilité. Le test local combiné couvre une seule combinaison Java/Spring ; il ne constitue ni une matrice complète combinée ni une validation de production.
+Le 14 octobre 2026, les deux correctifs de code combinés ont passé 25 tests locaux, dont l'intégration Keycloak 26.7.1 sous Docker, avec Spring Boot 4.1.0 et Java 17. Le seuil JaCoCo du build a passé. Chacune des deux PR a passé cinq jobs distants de compatibilité. Le test local combiné couvre une seule combinaison Java/Spring ; il ne constitue ni une matrice complète combinée ni une validation de production. Après la fusion des deux correctifs le 15 octobre 2026, l'arbre combiné a exécuté 27 tests locaux, dont cinq sous Docker, et sa dernière version a réussi les cinq jobs de compatibilité distants.
 
 Changements exacts : [filtrage des valeurs de rôles](https://github.com/jihedbfr-art/spring-keycloak-toolkit/commit/6026018), [contrôle des objets d'accès](https://github.com/jihedbfr-art/spring-keycloak-toolkit/commit/7055489).
 

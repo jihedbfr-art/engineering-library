@@ -36,26 +36,21 @@ Before the first fix, the converter granted `ROLE_123`, `ROLE_TRUE`, `ROLE_NULL`
 
 Before the second fix, conversion raised `IllegalArgumentException` on `realm_access`. The assertion should require an empty authority collection with no exception. Add another test with malformed `realm_access` and a valid resource role: `ROLE_EDITOR` must still be returned.
 
-## Check the proposed corrections
+## Check the corrections
 
-Use a new checkout. The snapshots below are the reviewed code references, not release tags.
+Both fixes are merged into the toolkit's `main` branch. In a new checkout:
 
 ```bash
 git clone https://github.com/jihedbfr-art/spring-keycloak-toolkit.git
 cd spring-keycloak-toolkit
-git checkout 6026018
-mvn -q -Dtest=KeycloakRealmRoleConverterTest test
-git checkout 920441e
 mvn -q -Dtest=KeycloakRealmRoleConverterTest test
 ```
 
-[PR #10](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/10) filters role entries. [PR #11](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/11) checks access-object shape and removes the unchecked client-map cast. Each regression test failed before its correction.
-
-These snapshots are separate branches. When combining them, retain the three tests `ignoresNonStringAndBlankRoleValues`, `ignoresMalformedAccessClaims` and `keepsValidResourceRolesWhenRealmClaimIsMalformed`. Resolve overlapping README and test additions without dropping either behavior, then run `mvn -q verify` on the final tree.
+[PR #10](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/10) filters role entries. [PR #11](https://github.com/jihedbfr-art/spring-keycloak-toolkit/pull/11) checks access-object shape and removes the unchecked client-map cast. Each regression test failed before its correction. The test class keeps all three: `ignoresNonStringAndBlankRoleValues`, `ignoresMalformedAccessClaims` and `keepsValidResourceRolesWhenRealmClaimIsMalformed`. Run `mvn -q verify` for the whole tree; it needs Docker for the Keycloak tests.
 
 ## Evidence and limits
 
-On 14 October 2026, both code corrections together passed 25 local tests, including Keycloak 26.7.1 under Docker, with Spring Boot 4.1.0 and Java 17. The build's JaCoCo gate passed. The two separate PRs each passed five remote compatibility jobs. The combined local test covered one Java/Spring combination; it is not a full combined compatibility matrix or a production validation.
+On 14 October 2026, both code corrections together passed 25 local tests, including Keycloak 26.7.1 under Docker, with Spring Boot 4.1.0 and Java 17. The build's JaCoCo gate passed. The two separate PRs each passed five remote compatibility jobs. The combined local test covered one Java/Spring combination; it is not a full combined compatibility matrix or a production validation. After both fixes were merged on 15 October 2026, the combined tree ran 27 local tests, five of them under Docker, and its final head passed the five remote compatibility jobs.
 
 Exact changes: [role-value filtering](https://github.com/jihedbfr-art/spring-keycloak-toolkit/commit/6026018), [access-object checking](https://github.com/jihedbfr-art/spring-keycloak-toolkit/commit/7055489).
 
