@@ -52,6 +52,6 @@ Ne pas placer le contexte de sécurité dans une variable globale et ne pas déd
 
 Vérifier les chemins du transport MCP réellement utilisé et la version de Spring AI. Dans la configuration de référence, SSE utilise `/sse` et les messages `/mcp/message` ; un POST vers `/mcp` renvoie `404`. Les cinq tests d'intégration passants de cette configuration couvraient des appels successifs et une paire lecteur/admin simultanée. Ce n'était pas un test de charge.
 
-Implémentation de référence : [configuration du contexte de sécurité de MCP Guard](https://github.com/jihedbfr-art/mcp-keycloak-guard/blob/177fdef/src/main/java/dev/jihed/mcpguard/config/SecurityContextPropagationConfig.java). Le commit lié est publié dans la [PR nº 1](https://github.com/jihedbfr-art/mcp-keycloak-guard/pull/1) ; il n'est pas encore intégré à la branche principale.
+Implémentation de référence : [configuration du contexte de sécurité de MCP Guard](https://github.com/jihedbfr-art/mcp-keycloak-guard/blob/main/src/main/java/dev/jihed/mcpguard/config/SecurityContextPropagationConfig.java), ajoutée par la [PR nº 1](https://github.com/jihedbfr-art/mcp-keycloak-guard/pull/1), fusionnée dans la branche principale.
 
 Références officielles : [transport du serveur MCP Spring AI 1.0](https://docs.spring.io/spring-ai/reference/1.0/api/mcp/mcp-server-boot-starter-docs.html) et [propagation de contexte Reactor](https://projectreactor.io/docs/core/release/reference/advanced-contextPropagation.html).

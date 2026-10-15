@@ -1,18 +1,28 @@
-# debugging-recipes
+# Recettes de diagnostic
 
 [English version](README.md)
 
-« Ça ne marche pas » → une checklist de diagnostic ciblée par symptôme. On ne cherche pas la théorie,
-on cherche **la prochaine commande à taper**.
+Partir du symptôme observé, puis suivre une procédure ciblée pour trouver et corriger sa cause.
 
 ## Structure d'une entrée
-Symptôme exact · Causes probables (les plus fréquentes d'abord) · Diagnostic pas-à-pas · Correctif. Voir [`_TEMPLATE.md`](_TEMPLATE.md).
+
+Symptôme exact, causes probables par ordre de fréquence, commandes de diagnostic et correctif. Voir [`_TEMPLATE.md`](_TEMPLATE.md).
+
+## Cas vérifiés
+
+- [Claims de rôles Keycloak malformés](keycloak-role-claims/README.fr.md) : entrées synthétiques, tests de régression et portée du correctif combiné.
+- [Disponibilité Docker de Keycloak](keycloak-readiness/README.fr.md) : un realm répond HTTP 200 alors que la sonde échoue en 404 ; diagnostiquer le endpoint de gestion avant de redémarrer.
+- [Image de test introuvable](image-testconteneurs-introuvable.md) : distinguer erreur de registre et échec applicatif, puis vérifier le comportement du substitut.
+- [Perte du contexte de sécurité lors d'un appel d'outil MCP](mcp-tool-security-context.fr.md) : distinguer le refus HTTP, le rôle absent et la perte du contexte sur un worker Reactor ; tester le trajet MCP et deux clients simultanés.
 
 ## Backlog
-Spring Boot ne démarre pas · `Bean not found` · dépendance circulaire · `LazyInitializationException` ·
-JWT invalide · Kafka consumer bloqué · conteneur Docker qui exit · Kubernetes `CrashLoopBackOff` ·
-timeout Oracle · deadlock Postgres. Ajouter via la skill **ajouter-entree-savoir**.
 
-## Recette ajoutée
+Spring Boot ne démarre pas, `Bean not found`, dépendance circulaire, `LazyInitializationException`, JWT invalide, consumer Kafka bloqué, conteneur Docker qui s'arrête, Kubernetes `CrashLoopBackOff`, timeout Oracle et deadlock Postgres. Ajouter les entrées via **ajouter-entree-savoir**.
 
-- [Perte du contexte de sécurité lors d'un appel d'outil MCP](mcp-tool-security-context.fr.md) — distinguer le refus HTTP, le rôle absent et la perte du contexte sur un worker Reactor ; tester le trajet MCP et deux clients simultanés. [English](mcp-tool-security-context.md).
+---
+
+<div align="center">
+  <img src="../../assets/brand/jihedailabs-logo.svg" alt="JihedAiLabs" width="120">
+  <br>
+  <sub>Un projet <a href="https://github.com/jihedbfr-art"><b>JihedAiLabs</b></a></sub>
+</div>

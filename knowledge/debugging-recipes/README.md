@@ -2,20 +2,27 @@
 
 [Version française](README.fr.md)
 
-"It does not work" becomes a checklist tied to the symptom. The aim is to identify the next useful command or test, rather than repeat general theory.
+Start with the observed symptom, then follow a focused procedure to locate and fix its cause.
 
-## Entry format
+## Entry structure
 
-Exact symptom · likely causes, starting with the common ones · step-by-step diagnosis · fix. See [`_TEMPLATE.md`](_TEMPLATE.md).
+Exact symptom, likely causes in order of frequency, diagnosis commands and fix. See [`_TEMPLATE.md`](_TEMPLATE.md).
 
-## Cas documentés récemment
+## Verified cases
 
-- [Image de test introuvable avant les assertions](image-testconteneurs-introuvable.md) · [English](test-container-image-unavailable.md) : distinguer erreur de registre et échec applicatif, puis vérifier le comportement du substitut.
+- [Malformed Keycloak role claims](keycloak-role-claims/README.md): synthetic inputs, regression tests and the scope of the combined fix.
+- [Keycloak Docker readiness](keycloak-readiness/README.md): a realm returns HTTP 200 while a healthcheck fails with 404; diagnose the management endpoint before restarting.
+- [Test container image unavailable](test-container-image-unavailable.md): distinguish registry failures from application failures, then check the substitute's behavior.
+- [MCP tool call loses the authenticated user](mcp-tool-security-context.md): separate HTTP rejection, missing roles and Reactor context loss; test the MCP route and two simultaneous clients.
 
 ## Backlog
 
-Spring Boot startup failure · missing bean · circular dependency · `LazyInitializationException` · invalid JWT · stuck Kafka consumer · exiting Docker container · Kubernetes `CrashLoopBackOff` · Oracle timeout · PostgreSQL deadlock. Add entries through the **ajouter-entree-savoir** skill.
+Spring Boot startup failure, `Bean not found`, circular dependencies, `LazyInitializationException`, invalid JWTs, blocked Kafka consumers, exiting Docker containers, Kubernetes `CrashLoopBackOff`, Oracle timeouts and Postgres deadlocks. Add entries through **ajouter-entree-savoir**.
 
-## Added recipe
+---
 
-- [MCP tool call loses the authenticated user](mcp-tool-security-context.md) — separate HTTP rejection, missing roles, and Reactor context loss; test the MCP route and two simultaneous clients. [Français](mcp-tool-security-context.fr.md).
+<div align="center">
+  <img src="../../assets/brand/jihedailabs-logo.svg" alt="JihedAiLabs" width="120">
+  <br>
+  <sub>A <a href="https://github.com/jihedbfr-art"><b>JihedAiLabs</b></a> project</sub>
+</div>
