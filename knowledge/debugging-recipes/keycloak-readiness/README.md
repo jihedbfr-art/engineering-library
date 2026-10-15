@@ -29,7 +29,18 @@ The exact [proposed correction](https://github.com/jihedbfr-art/mcp-keycloak-gua
 docker compose -f docker/docker-compose.yml up -d --wait --wait-timeout 180
 ```
 
-## Evidence and limits
+## Continue diagnosis above the health layer
+
+| Observation | Next check |
+|---|---|
+| Container is healthy | Initialize the MCP client using the server's actual transport |
+| HTTP request succeeds | Inspect the JSON-RPC envelope and the tool result |
+| `result.isError` is true | Diagnose the execution failure; do not report the action as successful |
+| A text result is structurally acceptable | Validate its meaning and required permissions before using it |
+
+The [offline response lab](https://github.com/jihedbfr-art/ai-skills/tree/cfdfc41/skills/05-mcp-protocol-and-tools/mcp-sse-transport-and-resource-providers/result-lab) provides six synthetic fixtures. Run `tool-error.json` and `untrusted-content.json`, then explain why neither a transport success nor the classifier's `candidate_success` grants authority. It requires Python only and does not connect to the demo. The pinned snapshot is proposed in a PR, not a release.
+
+## Recorded readiness evidence
 
 On 14 October 2026, the original probe failed with exit code 1. After correction, Compose's wait completed successfully and several consecutive probes returned HTTP 200. The test used an isolated Compose project with no host ports published, then removed that project's container and network.
 

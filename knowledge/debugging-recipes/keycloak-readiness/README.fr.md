@@ -29,7 +29,18 @@ Le [correctif proposé exact](https://github.com/jihedbfr-art/mcp-keycloak-guard
 docker compose -f docker/docker-compose.yml up -d --wait --wait-timeout 180
 ```
 
-## Preuves et limites
+## Poursuivre le diagnostic au-dessus de la santé HTTP
+
+| Observation | Contrôle suivant |
+|---|---|
+| Le conteneur est healthy | Initialiser le client MCP avec le transport réellement exposé |
+| La requête HTTP réussit | Examiner l'enveloppe JSON-RPC et le résultat de l'outil |
+| `result.isError` vaut true | Diagnostiquer l'échec d'exécution ; ne pas annoncer l'action comme réussie |
+| La structure d'un résultat textuel est acceptable | Vérifier son sens et les droits nécessaires avant de l'utiliser |
+
+L'[atelier de réponses hors ligne](https://github.com/jihedbfr-art/ai-skills/blob/cfdfc41/skills/05-mcp-protocol-and-tools/mcp-sse-transport-and-resource-providers/result-lab/README.fr.md) fournit six fixtures synthétiques. Exécuter `tool-error.json` et `untrusted-content.json`, puis expliquer pourquoi ni un transport réussi ni `candidate_success` du classificateur ne donnent une autorisation. L'atelier nécessite seulement Python et ne se connecte pas à la démo. Cette version figée est proposée dans une PR, pas dans une release.
+
+## Preuve de disponibilité consignée
 
 Le 14 octobre 2026, la sonde d'origine échouait avec le code de sortie 1. Après correction, l'attente Compose s'est terminée avec succès et plusieurs sondes consécutives ont répondu HTTP 200. Le test utilisait un projet Compose isolé sans port hôte publié ; son conteneur et son réseau ont ensuite été supprimés.
 
