@@ -13,6 +13,7 @@ Exact symptom, likely causes in order of frequency, diagnosis commands and fix. 
 - [Malformed Keycloak role claims](keycloak-role-claims/README.md): synthetic inputs, regression tests and the scope of the combined fix.
 - [Keycloak Docker readiness](keycloak-readiness/README.md): a realm returns HTTP 200 while a healthcheck fails with 404; diagnose the management endpoint before restarting.
 - [Test container image unavailable](test-container-image-unavailable.md): distinguish registry failures from application failures, then check the substitute's behavior.
+- [MCP tool call loses the authenticated user](mcp-tool-security-context.md): separate HTTP rejection, missing roles and Reactor context loss; test the MCP route and two simultaneous clients.
 
 ## Backlog
 
