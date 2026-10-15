@@ -23,7 +23,7 @@ Enable `KC_HEALTH_ENABLED=true` and probe the management endpoint inside the con
 
 This is a Bash command run inside the Keycloak container, not on the host. It needs neither curl in the image nor a published host port 9000. Paths and ports must match the deployed configuration. The [publisher's health guide](https://www.keycloak.org/observability/health) explains the options and probe.
 
-The exact [proposed correction](https://github.com/jihedbfr-art/mcp-keycloak-guard/commit/d05ce06) includes a Compose healthcheck and a bilingual run guide. In a new demo checkout at that commit, wait for readiness with:
+The [correction](https://github.com/jihedbfr-art/mcp-keycloak-guard/pull/2) is merged into the demo's `main` branch. It includes a Compose healthcheck and a bilingual run guide. In a new demo checkout, wait for readiness with:
 
 ```bash
 docker compose -f docker/docker-compose.yml up -d --wait --wait-timeout 180
@@ -38,13 +38,13 @@ docker compose -f docker/docker-compose.yml up -d --wait --wait-timeout 180
 | `result.isError` is true | Diagnose the execution failure; do not report the action as successful |
 | A text result is structurally acceptable | Validate its meaning and required permissions before using it |
 
-The [offline response lab](https://github.com/jihedbfr-art/ai-skills/tree/cfdfc41/skills/05-mcp-protocol-and-tools/mcp-sse-transport-and-resource-providers/result-lab) provides six synthetic fixtures. Run `tool-error.json` and `untrusted-content.json`, then explain why neither a transport success nor the classifier's `candidate_success` grants authority. It requires Python only and does not connect to the demo. The pinned snapshot is proposed in a PR, not a release.
+The [offline response lab](https://github.com/jihedbfr-art/ai-skills/tree/cfdfc41/skills/05-mcp-protocol-and-tools/mcp-sse-transport-and-resource-providers/result-lab) provides six synthetic fixtures. Run `tool-error.json` and `untrusted-content.json`, then explain why neither a transport success nor the classifier's `candidate_success` grants authority. It requires Python only and does not connect to the demo. The link is pinned to a commit of the lab's pull request, which is now merged into `main`; it is not a tagged release.
 
 ## Recorded readiness evidence
 
 On 14 October 2026, the original probe failed with exit code 1. After correction, Compose's wait completed successfully and several consecutive probes returned HTTP 200. The test used an isolated Compose project with no host ports published, then removed that project's container and network.
 
-This demonstrates readiness for the tested demo configuration. It does not test user roles or an MCP tool call. Keep the HTTP health result, authentication result and tool authorization result as separate evidence. The [PR](https://github.com/jihedbfr-art/mcp-keycloak-guard/pull/2) is a proposed change, not a release.
+This demonstrates readiness for the tested demo configuration. It does not test user roles or an MCP tool call. Keep the HTTP health result, authentication result and tool authorization result as separate evidence. The [PR](https://github.com/jihedbfr-art/mcp-keycloak-guard/pull/2) is merged into `main`; it is not a tagged release.
 
 ---
 
