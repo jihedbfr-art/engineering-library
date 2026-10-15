@@ -26,7 +26,7 @@ Record the exact registry response. Check the repository owner, published tag, C
 
 ## Fix verified for this case
 
-The `social-publisher-mcp` `SocialPublisherEndToEndIT` test used `minio/minio:latest`. The [proposed fix](https://github.com/jihedbfr-art/engineering-library/pull/45) uses the versioned `adobe/s3mock:5.2.3` image from [Adobe S3Mock](https://github.com/adobe/S3Mock). After publishing text, it checks that the `media-staging` bucket exists. The application's Java MinIO client remains in use. The Maven suite passed locally with Docker and the proposed change's remote build passed. See the [test scope and limits in PR #45](https://github.com/jihedbfr-art/engineering-library/blob/18bfa7b/projects/top-projects/social-publisher-mcp/docs/testing-s3-backend.md).
+The `social-publisher-mcp` `SocialPublisherEndToEndIT` test used `minio/minio:latest`. The [fix](https://github.com/jihedbfr-art/engineering-library/pull/45) uses the versioned `adobe/s3mock:5.2.3` image from [Adobe S3Mock](https://github.com/adobe/S3Mock). After publishing text, it checks that the `media-staging` bucket exists. The application's Java MinIO client remains in use. The Maven suite passed locally with Docker and in CI. See the [test scope and limits](https://github.com/jihedbfr-art/engineering-library/blob/main/projects/top-projects/social-publisher-mcp/docs/testing-s3-backend.md).
 
 This confirms the exercised path and bucket creation. It does not establish media upload or full production MinIO compatibility. Before replacing a different image, choose a substitute for the operations the test uses and add an assertion that fails when the service behaves incorrectly.
 
