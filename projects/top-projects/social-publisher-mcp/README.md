@@ -101,6 +101,8 @@ mvn verify      # unit tests + Testcontainers integration tests (needs Docker)
 mvn test        # unit tests only, no Docker
 ```
 
+The S3 integration test is described in [English](docs/testing-s3-backend.md) and [French](docs/testing-s3-backend.fr.md).
+
 Architecture decisions are written up in [docs/adr/](docs/adr/).
 
 ## Roadmap

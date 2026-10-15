@@ -7,6 +7,8 @@ import dev.jihed.socialpub.core.PublicationService;
 import dev.jihed.socialpub.core.PublicationStatus;
 import dev.jihed.socialpub.core.PublishRequest;
 import dev.jihed.socialpub.core.PublishResult;
+import io.minio.BucketExistsArgs;
+import io.minio.MinioClient;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,15 +19,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.MinIOContainer;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 /**
- * Boots the whole application against real Postgres and MinIO containers and drives a publication
- * through the MOCK connector end to end — the project's definition of done. The {@code dev} profile
- * activates the MOCK publisher.
+ * Boots the whole application against real Postgres and an S3-compatible test server, then drives a
+ * publication through the MOCK connector end to end — the project's definition of done. The {@code
+ * dev} profile activates the MOCK publisher.
  */
 @SpringBootTest
 @ActiveProfiles("dev")
@@ -35,22 +39,28 @@ class SocialPublisherEndToEndIT {
   @Container
   static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine");
 
-  @Container static MinIOContainer minio = new MinIOContainer("minio/minio:latest");
+  @Container
+  static GenericContainer<?> s3 =
+      new GenericContainer<>(DockerImageName.parse("adobe/s3mock:5.2.3"))
+          .withExposedPorts(9090)
+          .waitingFor(Wait.forHttp("/favicon.ico").forStatusCode(200));
 
   @DynamicPropertySource
   static void props(DynamicPropertyRegistry registry) {
     registry.add("spring.datasource.url", postgres::getJdbcUrl);
     registry.add("spring.datasource.username", postgres::getUsername);
     registry.add("spring.datasource.password", postgres::getPassword);
-    registry.add("media.minio.endpoint", minio::getS3URL);
-    registry.add("media.minio.access-key", minio::getUserName);
-    registry.add("media.minio.secret-key", minio::getPassword);
+    registry.add(
+        "media.minio.endpoint", () -> "http://" + s3.getHost() + ":" + s3.getMappedPort(9090));
+    registry.add("media.minio.access-key", () -> "testuser");
+    registry.add("media.minio.secret-key", () -> "testpass");
     // Push the scheduled poller far out so it doesn't fire against the container during teardown.
     registry.add("socialpub.scheduling.poll-interval-ms", () -> "3600000");
   }
 
   @Autowired private PublicationService publications;
   @Autowired private ToolCallbackProvider toolCallbackProvider;
+  @Autowired private MinioClient minioClient;
 
   @Test
   void exposesTheFullToolset() {
@@ -58,7 +68,7 @@ class SocialPublisherEndToEndIT {
   }
 
   @Test
-  void publishesThroughTheMockConnectorEndToEnd() {
+  void publishesThroughTheMockConnectorEndToEnd() throws Exception {
     PublishRequest request =
         new PublishRequest(
             "hello from the integration test", List.of(), Set.of(Platform.MOCK), null, Map.of());
@@ -70,5 +80,7 @@ class SocialPublisherEndToEndIT {
     // and it is durably recorded
     assertThat(publications.status(result.publicationId()).orElseThrow().status())
         .isEqualTo(PublicationStatus.PUBLISHED);
+    assertThat(minioClient.bucketExists(BucketExistsArgs.builder().bucket("media-staging").build()))
+        .isTrue();
   }
 }
