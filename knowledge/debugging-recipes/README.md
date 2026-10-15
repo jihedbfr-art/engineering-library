@@ -12,10 +12,7 @@ Exact symptom, likely causes in order of frequency, diagnosis commands and fix. 
 
 - [Malformed Keycloak role claims](keycloak-role-claims/README.md): synthetic inputs, regression tests and the scope of the combined fix.
 - [Keycloak Docker readiness](keycloak-readiness/README.md): a realm returns HTTP 200 while a healthcheck fails with 404; diagnose the management endpoint before restarting.
-
-## Cas documentés récemment
-
-- [Image de test introuvable avant les assertions](image-testconteneurs-introuvable.md) · [English](test-container-image-unavailable.md) : distinguer erreur de registre et échec applicatif, puis vérifier le comportement du substitut.
+- [Test container image unavailable](test-container-image-unavailable.md): distinguish registry failures from application failures, then check the substitute's behavior.
 
 ## Backlog
 
