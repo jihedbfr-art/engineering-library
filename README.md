@@ -58,6 +58,18 @@ backends. `knowledge/telecom/` is the opposite: number portability modeled as a 
 state machine, a real 5G core migration, provisioning architecture that has to survive a partner
 network being down. It's the one section of this repo nobody else can really write.
 
+## Hands-on IAM course
+
+The [JWT and Keycloak course](knowledge/security-patterns/jwt-boundaries/README.md) brings six chapters and 18 worked exercises around an executable Spring lab. It separates signature, issuer, audience, roles and HTTP responses, backed by 19 tests and a packaged JAR check. Each chapter links to a specific code revision and states the limits of its evidence.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+  <img src="assets/brand/jihedailabs-logo.svg" alt="JihedAiLabs" width="120">
+  <br>
+  <sub>A <a href="https://github.com/jihedbfr-art"><b>JihedAiLabs</b></a> project</sub>
+</div>

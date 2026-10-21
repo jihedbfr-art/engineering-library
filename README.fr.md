@@ -63,6 +63,18 @@ comme une machine à états multi-opérateurs, une vraie migration de cœur 5G, 
 provisioning qui doit survivre à la panne d'un réseau partenaire. C'est la seule section de ce
 dépôt que personne d'autre ne peut vraiment écrire.
 
+## Parcours pratique IAM
+
+Le [parcours JWT et Keycloak](knowledge/security-patterns/jwt-boundaries/README.fr.md) réunit six chapitres et 18 exercices corrigés autour d’un laboratoire Spring exécutable. Il distingue signature, issuer, audience, rôles et réponses HTTP, avec 19 tests et un contrôle du JAR. Chaque chapitre renvoie à une révision précise du code et précise ce que ses preuves ne couvrent pas.
+
 ## Licence
 
 MIT — voir [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+  <img src="assets/brand/jihedailabs-logo.svg" alt="JihedAiLabs" width="120">
+  <br>
+  <sub>Un projet <a href="https://github.com/jihedbfr-art"><b>JihedAiLabs</b></a></sub>
+</div>
