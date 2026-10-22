@@ -47,7 +47,7 @@ Non. Le jeu de clés publié reste fixe. Rotation et récupération sur clé inc
 
 ## Sources et preuve
 
-- [Tests de cette révision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
+- [Tests de cette révision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
 - [Spring Security JWT](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html).
 
 ---

@@ -10,7 +10,7 @@ A successful JAR run does not establish production readiness. Key rotation, revo
 
 ## Replay
 
-Follow the [lab](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server) terminals and prerequisites. After building and starting local Keycloak and the JAR, from `examples/resource-server`:
+Follow the [lab](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server) terminals and prerequisites. After building and starting local Keycloak and the JAR, from `examples/resource-server`:
 
 ```bash
 python smoke.py
@@ -47,7 +47,7 @@ Exact commit, commands, runtime versions, results and limits; no live tokens or 
 
 ## Sources and evidence
 
-- [Tests at this revision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
+- [Tests at this revision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
 - [Spring Security JWT](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html).
 
 ---

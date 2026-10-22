@@ -47,7 +47,7 @@ No. The HTTP test must check that header on the actual filter-chain path.
 
 ## Sources and evidence
 
-- [Tests at this revision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
+- [Tests at this revision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
 - [Spring Security JWT](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html).
 - [RFC 6750 §3](https://www.rfc-editor.org/rfc/rfc6750#section-3).
 

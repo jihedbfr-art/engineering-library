@@ -6,7 +6,7 @@ Six chapters, 18 worked exercises and a verified Java lab. For Spring developers
 
 ## Starting point
 
-The [standalone lab](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server) is pinned to commit `9e7fd6ed18a40588400e167424e85753d38ad406`. It provides 19 HTTP tests and six packaged checks. Inputs are synthetic. Its guide specifies JDK, Maven, Docker/Compose and Python prerequisites. From that repository checkout at this revision:
+The [standalone lab](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server) is pinned to commit `dc2e74e12dafbc337ea94848694fec1bbf1631b6`. It provides 19 HTTP tests and six packaged checks. Inputs are synthetic. Its guide specifies JDK, Maven, Docker/Compose and Python prerequisites. From that repository checkout at this revision:
 
 ```bash
 mvn clean install

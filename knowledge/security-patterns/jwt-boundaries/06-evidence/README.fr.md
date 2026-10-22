@@ -10,7 +10,7 @@ Le succès du JAR ne prouve pas une aptitude à la production. Rotation, révoca
 
 ## Rejouer
 
-Suivre les terminaux et prérequis du [laboratoire](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server). Après construction et démarrage local de Keycloak et du JAR, depuis `examples/resource-server` :
+Suivre les terminaux et prérequis du [laboratoire](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server). Après construction et démarrage local de Keycloak et du JAR, depuis `examples/resource-server` :
 
 ```bash
 python smoke.py
@@ -47,7 +47,7 @@ Commit exact, commandes, versions, résultats et limites ; ni jetons réels ni e
 
 ## Sources et preuve
 
-- [Tests de cette révision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
+- [Tests de cette révision](https://github.com/jihedbfr-art/spring-keycloak-toolkit/blob/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server/src/test/java/lab/JwtBoundaryTest.java).
 - [Spring Security JWT](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html).
 
 ---

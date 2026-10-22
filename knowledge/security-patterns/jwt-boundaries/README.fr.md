@@ -6,7 +6,7 @@ Un parcours de six chapitres, avec 18 exercices corrigés et un laboratoire Java
 
 ## Point de départ
 
-Le [laboratoire autonome](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/9e7fd6ed18a40588400e167424e85753d38ad406/examples/resource-server) est fixé au commit `9e7fd6ed18a40588400e167424e85753d38ad406`. Il fournit 19 tests HTTP et six contrôles du JAR. Les exemples sont synthétiques. JDK, Maven, Docker/Compose et Python sont détaillés dans son guide. Depuis un clone de ce dépôt à cette révision :
+Le [laboratoire autonome](https://github.com/jihedbfr-art/spring-keycloak-toolkit/tree/dc2e74e12dafbc337ea94848694fec1bbf1631b6/examples/resource-server) est fixé au commit `dc2e74e12dafbc337ea94848694fec1bbf1631b6`. Il fournit 19 tests HTTP et six contrôles du JAR. Les exemples sont synthétiques. JDK, Maven, Docker/Compose et Python sont détaillés dans son guide. Depuis un clone de ce dépôt à cette révision :
 
 ```bash
 mvn clean install
